@@ -1,24 +1,24 @@
 from flask import Blueprint, render_template, request
 from functions import *
 
-views = Blueprint("views", __name__)
+views = Blueprint('views', __name__)
 
-@views.route("/", methods=["POST","GET"])
-# @views.route("/main")
+@views.route('/', methods=['POST','GET'])
+# @views.route('/main')
 def main():
-    if request.method == "POST":
+    if request.method == 'POST':
 
         # Sds Input
-        # Sds = float(request.form["Sds"])
+        Sds = request.form["Sds"]
 
         # Hf Calculation
-        
-        z = float(request.form["z"])
-        h = float(request.form["h"])
-        Ta = float(request.form["Ta"])
-        a1, a2, Hf = heightfactor(z, h, Ta)
+        HfRadio = request.form['HfRadio']
+        z = request.form['z']
+        h = request.form['h']
+        Ta = request.form['Ta']
+        a1, a2, Hf, HfText = HfFunction(HfRadio, z, h, Ta)
 
-        return render_template('main.html', a1=str(a1), a2=str(a2), Hf=str(Hf))
+        return render_template('main.html', HfText=HfText)
     else:
         return render_template('main.html')
 

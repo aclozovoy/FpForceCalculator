@@ -10,7 +10,7 @@
 	<div class="container text-danger">
 		Nonstructural Seismic Force Calculator
 	</div>
-
+	<form action="#" method="post">
 	<div class="container-sm bg-primary p-3 border text-warning">
 		Seismic
 		<div class="input-group mb-3">
@@ -22,16 +22,25 @@
 
 	<div class="container-sm bg-light p-3 border">
 		Height Factor (Hf) per ASCE-XX Section XX.XX.XX
+
 		<div class="row-3 bg-light p-3 border">
 			<div class="form-check">
-				 <input class="form-check-input" type="radio" name="HfRadio" id="HfRadio1" value="option1" checked>
+				 <input class="form-check-input" type="radio" name="HfRadio" id="HfRadio1" value="PeriodKnown" checked>
 				 <label class="form-check-label" for="HfRadio1">
 				    Supported above grade by a structure (period known)
 				 </label>
 			</div>
 		</div>
 
-		<form action="#" method="post">
+		<div class="row-3 bg-light p-3 border">
+			<div class="form-check">
+				 <input class="form-check-input" type="radio" name="HfRadio" id="HfRadio2" value="PeriodUnknown" unchecked>
+				 <label class="form-check-label" for="HfRadio2">
+				    Supported above grade by a structure (period unknown)
+				 </label>
+			</div>
+		</div>
+
 		<div class="row-3 bg-light p-3 border">
 
 			<div class="col">
@@ -62,8 +71,8 @@
 
 		<div class="row-3 bg-danger p-3 border">
 			<div class="form-check">
-				 <input class="form-check-input" type="radio" name="HfRadio" id="HfRadio2" value="option2" unchecked>
-				 <label class="form-check-label" for="HfRadio2">
+				 <input class="form-check-input" type="radio" name="HfRadio" id="HfRadio3" value="BelowGrade" unchecked>
+				 <label class="form-check-label" for="HfRadio3">
 				    Supported at or below grade (Hf = 1.0)
 				 </label>
 			</div>
@@ -75,11 +84,11 @@
 		  </div>
 
 
-		</form>
+	</form>
 	</div>
 
 	<div class="container-sm bg-light p-3 border">
-		Hf = {{Hf}} (a1 = {{a1}}, a2 = {{a2}})
+		{{HfText}}
 	</div>
 
 
