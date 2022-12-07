@@ -18,7 +18,12 @@ def main():
         Ta = request.form['Ta']
         a1, a2, Hf, HfText = HfFunction(HfRadio, z, h, Ta)
 
-        return render_template('main.html', HfText=HfText)
+        # R_mu Calculation
+        R = request.form['R']
+        Omega0 = request.form['Omega0']
+        Rmu, RmuText = RmuFunction(R, Omega0)
+
+        return render_template('main.html', HfText=HfText, RmuText=RmuText)
     else:
         return render_template('main.html')
 

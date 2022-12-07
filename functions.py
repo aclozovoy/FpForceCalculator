@@ -1,7 +1,7 @@
 import math
 
 
-def HfFunction (HfRadio, z, h, Ta):
+def HfFunction(HfRadio, z, h, Ta):
 
 
     if HfRadio == 'PeriodKnown':
@@ -34,3 +34,14 @@ def HfFunction (HfRadio, z, h, Ta):
 
     return a1, a2, Hf, HfText
 
+
+def RmuFunction(R, Omega0):
+
+    R = float(R)
+    Omega0 = float(Omega0)
+
+    Rmu = (1.1 * R / Omega0)**(0.5)
+
+    RmuText = f"R_mu = {Rmu:.2f}"
+
+    return Rmu, RmuText
