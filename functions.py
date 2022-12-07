@@ -45,3 +45,47 @@ def RmuFunction(R, Omega0):
     RmuText = f"R_mu = {Rmu:.2f}"
 
     return Rmu, RmuText
+
+
+
+def IpFunction(IpRadio):
+
+    if IpRadio == 'Ip1.0':
+        Ip = 1.0
+    elif IpRadio == 'Ip1.5':
+        Ip = 1.5
+
+    return Ip
+
+
+
+def XFunction(Hf, Rmu, Car, Rpo):
+
+    Car = float(Car)
+    Rpo = float(Rpo)
+
+    Xcalc = 0.4*(Hf/Rmu)*(Car/Rpo)
+
+    if Xcalc > 1.6:
+        X = 1.6
+        XText = f"Fp = {X:.2f}*SdsIpWp (Fp was calculated as {Xcalc:.2f}*SdsIpWp, but is capped by the limit of 1.6 per XX.XX.XX)"
+    elif Xcalc < 0.3:
+        X = 0.3
+        XText = f"Fp = {X:.2f}*SdsIpWp (Fp was calculated as {Xcalc:.2f}*SdsIpWp, but is capped by the limit of 0.3 per XX.XX.XX)"
+    else:
+        X = Xcalc
+        XText = f"Fp = {X:.2f}*SdsIpWp"
+
+    return X, Xcalc, XText
+
+
+def FpFunction(X, Sds, Ip, Wp):
+
+    Sds = float(Sds)
+    Wp = float(Wp)
+
+    Fp = X * Sds * Ip * Wp
+
+    FpText = f"Fp = {Fp:.2f}"
+
+    return Fp, FpText

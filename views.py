@@ -11,19 +11,39 @@ def main():
         # Sds Input
         Sds = request.form["Sds"]
 
-        # Hf Calculation
+        # Wp Input
+        Wp = request.form["Wp"]
+
+        # Ip Input
+        IpRadio = request.form['IpRadio']
+        Ip = IpFunction(IpRadio)
+
+        # Car Input
+        Car = request.form["Car"]
+
+        # Rpo Input
+        Rpo = request.form["Rpo"]
+
+        # Hf Input and Calculation
         HfRadio = request.form['HfRadio']
         z = request.form['z']
         h = request.form['h']
         Ta = request.form['Ta']
         a1, a2, Hf, HfText = HfFunction(HfRadio, z, h, Ta)
 
-        # R_mu Calculation
+        # R_mu Input and Calculation
         R = request.form['R']
         Omega0 = request.form['Omega0']
         Rmu, RmuText = RmuFunction(R, Omega0)
 
-        return render_template('main.html', HfText=HfText, RmuText=RmuText)
+        # X Factor Calculation (X*SdsIpWp)
+        X, Xcalc, XText = XFunction(Hf, Rmu, Car, Rpo)
+
+        # Fp Calculation
+        Fp, FpText = FpFunction(X, Sds, Ip, Wp)
+
+
+        return render_template('main.html', HfText=HfText, RmuText=RmuText, XText = XText, FpText=FpText)
     else:
         return render_template('main.html')
 

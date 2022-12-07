@@ -11,12 +11,48 @@
 		Nonstructural Seismic Force Calculator
 	</div>
 	<form action="#" method="post">
-	<div class="container-sm bg-primary p-3 border text-warning">
+	<div class="container-sm bg-light p-3 border">
 		Seismic
 		<div class="input-group mb-3">
 			<span class="input-group-text" id="inputGroup-sizing-default">Sds</span>
 			<input name="Sds" type="text" class="form-control" placeholder="Spectral acceleration (11.4.5)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 			<span class="input-group-text" id="inputGroup-sizing-default">g</span>
+		</div>
+	</div>
+
+	<div class="container-sm bg-light p-3 border">
+		Weight
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="inputGroup-sizing-default">Wp</span>
+			<input name="Wp" type="text" class="form-control" placeholder="Component Weight" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			<span class="input-group-text" id="inputGroup-sizing-default">lb OR psf</span>
+		</div>
+	</div>
+
+	<div class="container-sm bg-light p-3 border">
+		Component Importance Factor
+		<div class="form-check">
+			<input class="form-check-input" type="radio" name="IpRadio" id="IpRadio1" value="Ip1.0" checked>
+			<label class="form-check-label" for="IpRadio1">Ip = 1.0</label>
+	   </div>
+	   <div class="form-check">
+			<input class="form-check-input" type="radio" name="IpRadio" id="IpRadio2" value="Ip1.5" unchecked>
+			<label class="form-check-label" for="IpRadio2">Ip = 1.5</label>
+   </div>
+	</div>
+
+
+	<div class="container-sm bg-light p-3 border">
+		Component Properties
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="inputGroup-sizing-default">CAR</span>
+			<input name="Car" type="text" class="form-control" placeholder="Component Response Ductility Factor From Table XX.XX.XX" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			<span class="input-group-text" id="inputGroup-sizing-default">None</span>
+		</div>
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="inputGroup-sizing-default">Rpo</span>
+			<input name="Rpo" type="text" class="form-control" placeholder="Component Strength From Table XX.XX.XX" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			<span class="input-group-text" id="inputGroup-sizing-default">None</span>
 		</div>
 	</div>
 
@@ -69,7 +105,7 @@
 			</div>
 		</div>
 
-		<div class="row-3 bg-danger p-3 border">
+		<div class="row-3 bg-light p-3 border">
 			<div class="form-check">
 				 <input class="form-check-input" type="radio" name="HfRadio" id="HfRadio3" value="BelowGrade" unchecked>
 				 <label class="form-check-label" for="HfRadio3">
@@ -79,9 +115,7 @@
 		</div>
 
 
-		<div class="input-group mb-3">
-			<input type="submit" value="Calculate!">
-		  </div>
+
 
 
 	
@@ -108,9 +142,18 @@
 	<div class="container-sm bg-light p-3 border">
 		{{RmuText}}
 	</div>
-	</form>
+	<div class="container-sm bg-light p-3 border">
+		{{XText}}
+	</div>
+	<div class="container-sm bg-light p-3 border">
+		{{FpText}}
+	</div>
+	
+	<div class="input-group mb-3">
+		<input type="submit" value="Calculate!">
+	  </div>
 	<div class="container">
-
+	</form>
 
 	</div>
 
