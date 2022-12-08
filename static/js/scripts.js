@@ -1,3 +1,4 @@
+// SHOW AND HIDE INPUT BOXES FOR HEIGHT FACTOR
 $(document).ready(function(){
     $("input[name$='HfRadio']").click(function(){
         var RadioValue = $(this).val();
@@ -13,9 +14,14 @@ $(document).ready(function(){
         } else if (RadioValue=='BelowGrade') {
             $("#ZInput").hide("slow");
             $("#HInput").hide("slow");
-            $("#TaInput").hide("slow")
+            $("#TaInput").hide("slow");
         }
-
     })
+});
 
-})
+// HIGHLIGHT TABLE ROW WHEN CLICKED
+$(document).ready(function(){
+    $("#ComponentsTable tbody tr").click(function() {
+        $(this).addClass("table-success").siblings().removeClass('table-success');
+    })
+});
