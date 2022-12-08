@@ -1,16 +1,16 @@
 $(document).ready(function(){
     $("input[name$='HfRadio']").click(function(){
-        var test = $(this).val();
+        var RadioValue = $(this).val();
 
-        if (test=='PeriodKnown') {
+        if (RadioValue=='PeriodKnown') {
             $("#ZInput").show("slow");
             $("#HInput").show("slow");
             $("#TaInput").show("slow");
-        } else if (test=='PeriodUnknown') {
+        } else if (RadioValue=='PeriodUnknown') {
             $("#ZInput").show("slow");
             $("#HInput").show("slow");
             $("#TaInput").hide("slow")
-        } else if (test=='BelowGrade') {
+        } else if (RadioValue=='BelowGrade') {
             $("#ZInput").hide("slow");
             $("#HInput").hide("slow");
             $("#TaInput").hide("slow")

@@ -9,8 +9,8 @@ def HfFunction(HfRadio, z, h, Ta):
         h = float(h)
         Ta = float(Ta)
 
-        a1 = 1/Ta
-        a2 = 1 - (0.4 / Ta ) **2
+        a1 = min(1/Ta , 2.5)
+        a2 = max(1 - (0.4 / Ta ) **2 , 0)
         Hf = 1 + a1 * (z/h) + a2 * (z/h)**10
 
         HfText = f"Hf = {Hf:.2f} (a1 = {a1:.2f}, a2 = {a2:.2f})"

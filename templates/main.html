@@ -18,7 +18,7 @@
 	<div class="container-sm bg-light p-3 border">
 		Seismic
 		<div class="input-group mb-3">
-			<span class="input-group-text" id="inputGroup-sizing-default">Sds</span>
+			<span class="input-group-text" id="inputGroup-sizing-default">S<sub>ds</sub></span>
 			<input name="Sds" type="text" class="form-control" placeholder="Spectral acceleration (11.4.5)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 			<span class="input-group-text" id="inputGroup-sizing-default">g</span>
 		</div>
@@ -27,7 +27,7 @@
 	<div class="container-sm bg-light p-3 border">
 		Weight
 		<div class="input-group mb-3">
-			<span class="input-group-text" id="inputGroup-sizing-default">Wp</span>
+			<span class="input-group-text" id="inputGroup-sizing-default">W<sub>p</sub></span>
 			<input name="Wp" type="text" class="form-control" placeholder="Component Weight" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 			<span class="input-group-text" id="inputGroup-sizing-default">lb OR psf</span>
 		</div>
@@ -71,33 +71,33 @@
 	<div class="container-sm bg-light p-3 border">
 		Height Factor, Hf (ASCE-XX Section XX.XX.XX)
 
-		<div class="row-3 bg-light p-3 border">
+		<!-- <div class="row-3 bg-light p-3 border"> -->
 			<div class="form-check">
 				 <input class="form-check-input" type="radio" name="HfRadio" id="HfRadio1" value="PeriodKnown" checked>
 				 <label class="form-check-label" for="HfRadio1">
 				    Supported above grade by a structure (period known)
 				 </label>
 			</div>
-		</div>
+		<!-- </div> -->
 
-		<div class="row-3 bg-light p-3 border">
+		<!-- <div class="row-3 bg-light p-3 border"> -->
 			<div class="form-check">
 				 <input class="form-check-input" type="radio" name="HfRadio" id="HfRadio2" value="PeriodUnknown" unchecked>
 				 <label class="form-check-label" for="HfRadio2">
 				    Supported above grade by a structure (period unknown)
 				 </label>
 			</div>
-		</div>
-		<div class="row-3 bg-light p-3 border">
+		<!-- </div> -->
+		<!-- <div class="row-3 bg-light p-3 border"> -->
 			<div class="form-check">
 				 <input class="form-check-input" type="radio" name="HfRadio" id="HfRadio3" value="BelowGrade" unchecked>
 				 <label class="form-check-label" for="HfRadio3">
 				    Supported at or below grade (Hf = 1.0)
 				 </label>
 			</div>
-		</div>
+		<!-- </div> -->
 
-		<div class="row-3 bg-light p-3 border">
+		<!-- <div class="row-3 bg-light p-3 border"> -->
 
 			<div class="col" id="ZInput">
 			<div class="input-group mb-3">
@@ -122,22 +122,20 @@
 			  <span class="input-group-text" id="TaInputGroup">Sec.</span>
 			</div>
 			</div>
-		</div>
-
-
+		<!-- </div> -->
 
 		{{HfText}}
 	</div>
 
 
 	<div class="container-sm bg-light p-3 border">
-		Structure Ductility Reduction Factor, R_mu (ASCE-XX Section XX.XX.XX)
+		Structure Ductility Reduction Factor, R<sub>µ</sub> (ASCE-XX Section XX.XX.XX)
 		<div class="input-group mb-3">
 			<span class="input-group-text" id="inputGroup-sizing-default">R</span>
 			<input name="R" type="text" class="form-control" placeholder="R factor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 		</div>
 		<div class="input-group mb-3">
-			<span class="input-group-text" id="inputGroup-sizing-default">Omega0</span>
+			<span class="input-group-text" id="inputGroup-sizing-default">Ω<sub>0</sub></span>
 			<input name="Omega0" type="text" class="form-control" placeholder="Overstrength factor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 		</div>
 		{{RmuText}}
@@ -148,6 +146,7 @@
 		<input type="submit" value="Calculate!">
 	</div>
 		{{XText}}
+		<br>
 		{{FpText}}
 	</form>
 
