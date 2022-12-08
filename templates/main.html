@@ -16,34 +16,92 @@
 	</div>
 	<form action="#" method="post">
 	<div class="container-sm bg-light p-3 border">
-	<div class="container-sm bg-light p-3 border">
-		Seismic
-		<div class="input-group mb-3">
-			<span class="input-group-text" id="inputGroup-sizing-default">S<sub>ds</sub></span>
-			<input name="Sds" type="text" class="form-control" placeholder="Spectral acceleration (11.4.5)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-			<span class="input-group-text" id="inputGroup-sizing-default">g</span>
+	<div class="row">
+		<div class ="col">
+			Seismic
+			<div class="input-group mb-3">
+				<span class="input-group-text" id="inputGroup-sizing-default">S<sub>ds</sub></span>
+				<input name="Sds" type="text" class="form-control" placeholder="Spectral acceleration (11.4.5)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				<span class="input-group-text" id="inputGroup-sizing-default">g</span>
+			</div>
+			Weight
+			<div class="input-group mb-3">
+				<span class="input-group-text" id="inputGroup-sizing-default">W<sub>p</sub></span>
+				<input name="Wp" type="text" class="form-control" placeholder="Component Weight" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				<span class="input-group-text" id="inputGroup-sizing-default">lb OR psf</span>
+			</div>
+			Component Importance Factor
+			<div class="form-check">
+				<input class="form-check-input" type="radio" name="IpRadio" id="IpRadio1" value="Ip1.0" checked>
+				<label class="form-check-label" for="IpRadio1">I<sub>p</sub> = 1.0</label>
+		   </div>
+		   <div class="form-check">
+				<input class="form-check-input" type="radio" name="IpRadio" id="IpRadio2" value="Ip1.5" unchecked>
+				<label class="form-check-label" for="IpRadio2">I<sub>p</sub> = 1.5</label>
+			</div>
+		</div>
+	
+
+		<div class ="col">
+			Height Factor, H<sub>f</sub> (ASCE-XX Section XX.XX.XX)
+
+			<!-- <div class="row-3 bg-light p-3 border"> -->
+				<div class="form-check">
+					 <input class="form-check-input" type="radio" name="HfRadio" id="HfRadio1" value="PeriodKnown" checked>
+					 <label class="form-check-label" for="HfRadio1">
+						Supported above grade by a structure (period known)
+					 </label>
+				</div>
+			<!-- </div> -->
+	
+			<!-- <div class="row-3 bg-light p-3 border"> -->
+				<div class="form-check">
+					 <input class="form-check-input" type="radio" name="HfRadio" id="HfRadio2" value="PeriodUnknown" unchecked>
+					 <label class="form-check-label" for="HfRadio2">
+						Supported above grade by a structure (period unknown)
+					 </label>
+				</div>
+			<!-- </div> -->
+			<!-- <div class="row-3 bg-light p-3 border"> -->
+				<div class="form-check">
+					 <input class="form-check-input" type="radio" name="HfRadio" id="HfRadio3" value="BelowGrade" unchecked>
+					 <label class="form-check-label" for="HfRadio3">
+						Supported at or below grade (H<sub>f</sub> = 1.0)
+					 </label>
+				</div>
+			<!-- </div> -->
+	
+			<!-- <div class="row-3 bg-light p-3 border"> -->
+	
+				<div class="col" id="ZInput">
+				<div class="input-group mb-3">
+				  <span class="input-group-text" id="ZInputGroup">z</span>
+				  <input name="z" type="text" class="form-control" placeholder="Component height" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				  <span class="input-group-text" id="ZInputGroup">ft.</span>
+				</div>
+				</div>
+	
+				<div class="col" id="HInput">
+				<div class="input-group mb-3">
+				  <span class="input-group-text" id="HInputGroup">h</span>
+				  <input name="h" type="text" class="form-control" placeholder="Building height"aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				  <span class="input-group-text" id="HInputGroup">ft.</span>
+				</div>
+				</div>
+	
+				<div class="col" id="TaInput">
+				<div class="input-group mb-3">
+				  <span class="input-group-text" id="TaInputGroup">T<sub>a</sub></span>
+				  <input name="Ta" type="text" class="form-control" placeholder="Building period" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				  <span class="input-group-text" id="TaInputGroup">sec.</span>
+				</div>
+				</div>
+			<!-- </div> -->
+	
+			{{HfText}}
 		</div>
 	</div>
-
-	<div class="container-sm bg-light p-3 border">
-		Weight
-		<div class="input-group mb-3">
-			<span class="input-group-text" id="inputGroup-sizing-default">W<sub>p</sub></span>
-			<input name="Wp" type="text" class="form-control" placeholder="Component Weight" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-			<span class="input-group-text" id="inputGroup-sizing-default">lb OR psf</span>
-		</div>
 	</div>
-
-	<div class="container-sm bg-light p-3 border">
-		Component Importance Factor
-		<div class="form-check">
-			<input class="form-check-input" type="radio" name="IpRadio" id="IpRadio1" value="Ip1.0" checked>
-			<label class="form-check-label" for="IpRadio1">I<sub>p</sub> = 1.0</label>
-	   </div>
-	   <div class="form-check">
-			<input class="form-check-input" type="radio" name="IpRadio" id="IpRadio2" value="Ip1.5" unchecked>
-			<label class="form-check-label" for="IpRadio2">I<sub>p</sub> = 1.5</label>
-   </div>
 	</div>
 
 
@@ -162,64 +220,6 @@
 		</div>
 	</div>
 
-	<div class="container-sm bg-light p-3 border">
-		Height Factor, H<sub>f</sub> (ASCE-XX Section XX.XX.XX)
-
-		<!-- <div class="row-3 bg-light p-3 border"> -->
-			<div class="form-check">
-				 <input class="form-check-input" type="radio" name="HfRadio" id="HfRadio1" value="PeriodKnown" checked>
-				 <label class="form-check-label" for="HfRadio1">
-				    Supported above grade by a structure (period known)
-				 </label>
-			</div>
-		<!-- </div> -->
-
-		<!-- <div class="row-3 bg-light p-3 border"> -->
-			<div class="form-check">
-				 <input class="form-check-input" type="radio" name="HfRadio" id="HfRadio2" value="PeriodUnknown" unchecked>
-				 <label class="form-check-label" for="HfRadio2">
-				    Supported above grade by a structure (period unknown)
-				 </label>
-			</div>
-		<!-- </div> -->
-		<!-- <div class="row-3 bg-light p-3 border"> -->
-			<div class="form-check">
-				 <input class="form-check-input" type="radio" name="HfRadio" id="HfRadio3" value="BelowGrade" unchecked>
-				 <label class="form-check-label" for="HfRadio3">
-				    Supported at or below grade (H<sub>f</sub> = 1.0)
-				 </label>
-			</div>
-		<!-- </div> -->
-
-		<!-- <div class="row-3 bg-light p-3 border"> -->
-
-			<div class="col" id="ZInput">
-			<div class="input-group mb-3">
-			  <span class="input-group-text" id="ZInputGroup">z</span>
-			  <input name="z" type="text" class="form-control" placeholder="Component height" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-			  <span class="input-group-text" id="ZInputGroup">ft.</span>
-			</div>
-			</div>
-
-			<div class="col" id="HInput">
-			<div class="input-group mb-3">
-			  <span class="input-group-text" id="HInputGroup">h</span>
-			  <input name="h" type="text" class="form-control" placeholder="Building height"aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-			  <span class="input-group-text" id="HInputGroup">ft.</span>
-			</div>
-			</div>
-
-			<div class="col" id="TaInput">
-			<div class="input-group mb-3">
-			  <span class="input-group-text" id="TaInputGroup">T<sub>a</sub></span>
-			  <input name="Ta" type="text" class="form-control" placeholder="Building period" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-			  <span class="input-group-text" id="TaInputGroup">sec.</span>
-			</div>
-			</div>
-		<!-- </div> -->
-
-		{{HfText}}
-	</div>
 
 
 	<div class="container-sm bg-light p-3 border">
