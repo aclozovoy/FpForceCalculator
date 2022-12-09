@@ -26,11 +26,25 @@ $(document).ready(function(){
     })
 });
 
-// ADD Rpo TABLE VALUES TO INPUT BOX
+// ADD Car AND Rpo TABLE VALUES TO INPUT BOX
 $(document).ready(function(){
     $("#ComponentsTable tbody tr").click(function() {
-        var RpoValue = $(this).children(".Rpo").text();
 
+        // Car
+        var CompRadio = $("input[name$='CompRadio']:checked").val();
+
+        if (CompRadio=='Above') {
+            var CarValue = $(this).children(".CarA").text();
+        } else if (CompRadio=='Below') {
+            var CarValue = $(this).children(".CarB").text();
+        }
+
+        $("#CarBox").val(CarValue);
+
+        // Rpo
+        var RpoValue = $(this).children(".Rpo").text();
         $("#RpoBox").val(RpoValue);
     });
 });
+
+
