@@ -31,11 +31,11 @@ $(document).ready(function(){
     $("#ComponentsTable tbody tr").click(function() {
 
         // Car
-        var CompRadio = $("input[name$='CompRadio']:checked").val();
+        var HfRadio = $("input[name$='HfRadio']:checked").val();
 
-        if (CompRadio=='Above') {
+        if (HfRadio=='PeriodKnown' || HfRadio=='PeriodUnknown') {
             var CarValue = $(this).children(".CarA").text();
-        } else if (CompRadio=='Below') {
+        } else if (HfRadio=='BelowGrade') {
             var CarValue = $(this).children(".CarB").text();
         }
 
