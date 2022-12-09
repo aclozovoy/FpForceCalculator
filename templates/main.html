@@ -39,6 +39,16 @@
 				<input class="form-check-input" type="radio" name="IpRadio" id="IpRadio2" value="Ip1.5" unchecked>
 				<label class="form-check-label" for="IpRadio2">I<sub>p</sub> = 1.5</label>
 			</div>
+			Structure Ductility Reduction Factor, R<sub>µ</sub> (ASCE-XX Section XX.XX.XX)
+				<div class="input-group mb-3">
+					<span class="input-group-text" id="inputGroup-sizing-default">R</span>
+					<input name="R" type="text" class="form-control" placeholder="R factor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				</div>
+				<div class="input-group mb-3">
+					<span class="input-group-text" id="inputGroup-sizing-default">Ω<sub>0</sub></span>
+					<input name="Omega0" type="text" class="form-control" placeholder="Overstrength factor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				</div>
+			{{RmuText}}
 		</div>
 	
 
@@ -99,15 +109,21 @@
 			<!-- </div> -->
 	
 			{{HfText}}
+			<br>
+			Component Properties (Click on Table Below)
+			<div class="input-group mb-3">
+				<span class="input-group-text" id="inputGroup-sizing-default">C<sub>AR</sub></span>
+				<input id="CarBox" name="Car" type="text" class="form-control" placeholder="Component Response Ductility Factor From Table XX.XX.XX" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			</div>
+			<div class="input-group mb-3">
+				<span class="input-group-text" id="inputGroup-sizing-default">R<sub>po</sub></span>
+				<input id="RpoBox" name="Rpo" type="text" class="form-control" placeholder="Component Strength From Table XX.XX.XX" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			</div>
 		</div>
 	</div>
 	</div>
 	</div>
 
-
-	<div class="container-sm bg-light p-3 border">
-		Component Properties
-	</div>
 	<div class="container-sm bg-light p-3 border table-responsive">
 		<table class="table table-sm table-hover" id="ComponentsTable">
 			<thead>
@@ -199,38 +215,15 @@
 
 	<div class="container-sm bg-light p-3 border">
 		<div class="input-group mb-3">
-			<span class="input-group-text" id="inputGroup-sizing-default">C<sub>AR</sub></span>
-			<input id="CarBox" name="Car" type="text" class="form-control" placeholder="Component Response Ductility Factor From Table XX.XX.XX" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			<input type="submit" value="Calculate!">
 		</div>
-		<div class="input-group mb-3">
-			<span class="input-group-text" id="inputGroup-sizing-default">R<sub>po</sub></span>
-			<input id="RpoBox" name="Rpo" type="text" class="form-control" placeholder="Component Strength From Table XX.XX.XX" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-		</div>
-	</div>
-
-
-
-	<div class="container-sm bg-light p-3 border">
-		Structure Ductility Reduction Factor, R<sub>µ</sub> (ASCE-XX Section XX.XX.XX)
-		<div class="input-group mb-3">
-			<span class="input-group-text" id="inputGroup-sizing-default">R</span>
-			<input name="R" type="text" class="form-control" placeholder="R factor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-		</div>
-		<div class="input-group mb-3">
-			<span class="input-group-text" id="inputGroup-sizing-default">Ω<sub>0</sub></span>
-			<input name="Omega0" type="text" class="form-control" placeholder="Overstrength factor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-		</div>
-		{{RmuText}}
-	</div>
-
-
-	<div class="input-group mb-3">
-		<input type="submit" value="Calculate!">
-	</div>
 		{{XText}}
 		<br>
 		{{FpText}}
+	</div>
+	
 	</form>
+	
 
 	</div>
 
