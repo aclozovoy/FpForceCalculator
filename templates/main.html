@@ -92,7 +92,7 @@
 				<div class="col" id="TaInput">
 				<div class="input-group mb-3">
 				  <span class="input-group-text" id="TaInputGroup">T<sub>a</sub></span>
-				  <input name="Ta" type="text" class="form-control" placeholder="Building period" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				  <input name="Ta" type="text" class="form-control" placeholder="Building period" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" readonly>
 				  <span class="input-group-text" id="TaInputGroup">sec.</span>
 				</div>
 				</div>
@@ -134,28 +134,28 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td>1</td>
-						<td>Interior nonstructural walls and partitions: Light frame ≤ 9ft (2.74m) in height</td>
-						<td>1.0</td>
-						<td>1.0</td>
-						<td>1.5</td>
-						<td>1.5</td>
+						<td class="num">1</td>
+						<td class="component">Interior nonstructural walls and partitions: Light frame ≤ 9ft (2.74m) in height</td>
+						<td class="CARB">1.0</td>
+						<td class="CARA">1.0</td>
+						<td class="Rpo">1.5</td>
+						<td class="Oop">1.5</td>
 					</tr>
 					<tr>
-						<td>2</td>
-						<td>Interior nonstructural walls and partitions: Light frame > 9ft (2.74m) in height</td>
-						<td>1.4</td>
-						<td>1.4</td>
-						<td>1.5</td>
-						<td>2.0</td>
+						<td class="num">2</td>
+						<td class="component">Interior nonstructural walls and partitions: Light frame > 9ft (2.74m) in height</td>
+						<td class="CARB">1.4</td>
+						<td class="CARA">1.4</td>
+						<td class="Rpo">1.5</td>
+						<td class="Oop">2.0</td>
 					</tr>
 					<tr>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
+						<td class="num">-</td>
+						<td class="component">-</td>
+						<td class="CARB">-</td>
+						<td class="CARA">-</td>
+						<td class="Rpo">-</td>
+						<td class="Oop">-</td>
 					</tr>
 					<tr>
 						<td>-</td>
@@ -212,11 +212,11 @@
 	<div class="container-sm bg-light p-3 border">
 		<div class="input-group mb-3">
 			<span class="input-group-text" id="inputGroup-sizing-default">C<sub>AR</sub></span>
-			<input name="Car" type="text" class="form-control" placeholder="Component Response Ductility Factor From Table XX.XX.XX" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			<input id="CarBox" name="Car" type="text" class="form-control" placeholder="Component Response Ductility Factor From Table XX.XX.XX" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 		</div>
 		<div class="input-group mb-3">
 			<span class="input-group-text" id="inputGroup-sizing-default">R<sub>po</sub></span>
-			<input name="Rpo" type="text" class="form-control" placeholder="Component Strength From Table XX.XX.XX" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			<input id="RpoBox" name="Rpo" type="text" class="form-control" placeholder="Component Strength From Table XX.XX.XX" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 		</div>
 	</div>
 

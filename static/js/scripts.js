@@ -25,3 +25,12 @@ $(document).ready(function(){
         $(this).addClass("table-success").siblings().removeClass('table-success');
     })
 });
+
+// ADD Rpo TABLE VALUES TO INPUT BOX
+$(document).ready(function(){
+    $("#ComponentsTable tbody tr").click(function() {
+        var RpoValue = $(this).children(".Rpo").text();
+
+        $("#RpoBox").val(RpoValue);
+    });
+});
