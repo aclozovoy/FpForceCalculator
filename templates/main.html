@@ -48,6 +48,10 @@
 					<span class="input-group-text" id="inputGroup-sizing-default">Ω<sub>0</sub></span>
 					<input name="Omega0" type="text" class="form-control" placeholder="Overstrength factor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				</div>
+				<div class="input-group mb-3">
+					<span class="input-group-text" id="inputGroup-sizing-default">R<sub>µ</sub></span>
+					<input name="R_mu" type="text" class="form-control" readonly disabled placeholder="Structure Ductility Reduction Factor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				</div>
 			{{RmuText}}
 		</div>
 	
@@ -102,8 +106,15 @@
 				<div class="col" id="TaInput">
 				<div class="input-group mb-3">
 				  <span class="input-group-text" id="TaInputGroup">T<sub>a</sub></span>
-				  <input name="Ta" type="text" class="form-control" placeholder="Building period" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" readonly>
+				  <input name="Ta" type="text" class="form-control" placeholder="Building period" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				  <span class="input-group-text" id="TaInputGroup">sec.</span>
+				</div>
+				</div>
+
+				<div class="col" id="HfOutput">
+					<div class="input-group mb-3">
+					  <span class="input-group-text" id="HfOutputGroup">H<sub>f</sub></span>
+					  <input name="Hf" type="text" class="form-control" readonly disabled placeholder="Height Factor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				</div>
 				</div>
 			<!-- </div> -->
@@ -221,7 +232,7 @@
 		<br>
 		{{FpText}}
 	</div>
-	
+
 	</form>
 	
 

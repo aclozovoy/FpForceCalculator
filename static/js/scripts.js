@@ -15,8 +15,30 @@ $(document).ready(function(){
             $("#ZInput").hide("slow");
             $("#HInput").hide("slow");
             $("#TaInput").hide("slow");
+            // $("#ZInput").attr('disabled', 'disabled');
+            // $("#HInput").attr('disabled', 'disabled');
+            // $("#TaInput").attr('disabled', 'disabled');
         }
     })
+});
+
+// LIVE CALCULATION OF R_mu FACTOR
+$(document).ready(function(){
+    $('[name=R]').add('[name=Omega0]').change(function() {
+        // alert('R or Omega0 changed!');
+        var R = parseFloat($('[name=R').val());
+        var Omega0 = parseFloat($('[name=Omega0').val());
+
+        if (R>0 & Omega0>0) {
+            // alert('R or Omega0 are both valid!');
+            R_mu = (1.1*R/Omega0)**(0.5)
+            $('[name=R_mu]').val(R_mu.toFixed(2))
+        }
+        else {
+            $('[name=R_mu]').val('')
+        }
+
+    });
 });
 
 // HIGHLIGHT TABLE ROW WHEN CLICKED
