@@ -26,16 +26,51 @@ $(document).ready(function(){
 $(document).ready(function(){
     $('[name=R]').add('[name=Omega0]').change(function() {
         // alert('R or Omega0 changed!');
-        var R = parseFloat($('[name=R').val());
-        var Omega0 = parseFloat($('[name=Omega0').val());
+        var R = parseFloat($('[name=R]').val());
+        var Omega0 = parseFloat($('[name=Omega0]').val());
 
         if (R>0 & Omega0>0) {
             // alert('R or Omega0 are both valid!');
-            R_mu = (1.1*R/Omega0)**(0.5)
-            $('[name=R_mu]').val(R_mu.toFixed(2))
+            var R_mu = (1.1*R/Omega0)**(0.5);
+            $('[name=R_mu]').val(R_mu.toFixed(2));
+        } else {
+            $('[name=R_mu]').val('');
         }
-        else {
-            $('[name=R_mu]').val('')
+
+    });
+});
+
+// LIVE CALCULATION OF Hf FACTOR
+$(document).ready(function(){
+    $('[name=z]').add('[name=h]').add('[name=Ta]').add('[name$=HfRadio]').change(function() {
+        // alert('Hf inputs changed!');
+        var z = parseFloat($('[name=z]').val());
+        var h = parseFloat($('[name=h]').val());
+        var Ta = parseFloat($('[name=Ta]').val());
+        var HfRadio = $("input[name$='HfRadio']:checked").val();
+
+        if (z>0 & h>0 & Ta>0 & HfRadio=='PeriodKnown') {
+
+            var a1 = Math.min(1/Ta, 2.5);
+            var a2 = Math.max(1 - (0.4/Ta)**2, 0);
+            var Hf = 1 + a1*(z/h) + a2*(z/h)**10;
+
+            $('[name=Hf]').val(Hf.toFixed(2));
+
+        } else if (z>0 & h>0 & HfRadio=='PeriodUnknown') {
+
+            var Hf = 1 + 2.5*(z/h);
+
+            $('[name=Hf]').val(Hf.toFixed(2));
+
+        } else if (HfRadio=='BelowGrade') {
+
+            var Hf = 1
+
+            $('[name=Hf]').val(Hf.toFixed(2));
+
+        } else {
+            $('[name=Hf]').val('');
         }
 
     });
