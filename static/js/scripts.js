@@ -134,6 +134,7 @@ $(document).ready(function(){
 //     });
 // });
 
+// LIVE CALCULATION OF Fp
 $(document).click(function() {
     var Sds = parseFloat($('[name=Sds]').val());
     var Wp = parseFloat($('[name=Wp]').val());
@@ -143,9 +144,10 @@ $(document).click(function() {
     var Hf = parseFloat($('[name=Hf]').val());
     var Car = parseFloat($('[name=Car]').val());
     var Rpo = parseFloat($('[name=Rpo]').val());
+    var Oop = parseFloat($('[name=Oop]').val());
     // alert(Ip);
 
-    if (Sds>0 & Wp>0 & R_mu>0 & Hf>0 & Car>0 & Rpo>0) {
+    if (Sds>0 & Wp>0 & R_mu>0 & Hf>0 & Car>0 & Rpo>0 & Oop>0) {
         // alert('In the loop');
         // alert(Ip)
         if (Ip_Radio=='Ip1.0') {
@@ -158,8 +160,10 @@ $(document).click(function() {
         var X = Math.min( Math.max( X_calc, 0.3), 1.6);
 
         var Fp = X * Sds * Ip * Wp;
+        var OopFp = Oop * Fp;
         
         $('#XBox').val(X.toFixed(2) + '*SdsIpWp');
         $('#FpBox').val(Fp.toFixed(1));
+        $('#OopFpBox').val(OopFp.toFixed(1));
     }
 });
