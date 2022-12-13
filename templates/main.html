@@ -121,7 +121,7 @@
 	
 			{{HfText}}
 			<br>
-			Component Properties (Click on Table Below)
+			Component Properties (Click Table to Fill)
 			<div class="input-group mb-3">
 				<span class="input-group-text" id="inputGroup-sizing-default">C<sub>AR</sub></span>
 				<input id="CarBox" name="Car" type="text" class="form-control" placeholder="Component Response Ductility Factor From Table XX.XX.XX" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
@@ -129,6 +129,10 @@
 			<div class="input-group mb-3">
 				<span class="input-group-text" id="inputGroup-sizing-default">R<sub>po</sub></span>
 				<input id="RpoBox" name="Rpo" type="text" class="form-control" placeholder="Component Strength From Table XX.XX.XX" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			</div>
+			<div class="input-group mb-3">
+				<span class="input-group-text" id="inputGroup-sizing-default">Ω<sub>op</sub></span>
+				<input id="OopBox" name="Oop" type="text" class="form-control" placeholder="Component Overstrength From Table XX.XX.XX" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 			</div>
 		</div>
 	</div>
@@ -149,8 +153,19 @@
 			</thead>
 			<tbody>
 				<tr>
+					<td class="num"></td>
+					<td class="component">
+						<strong>Interior nonstructural walls and partitions</strong>
+					</td>
+					<td class="CarB"></td>
+					<td class="CarA"></td>
+					<td class="Rpo"></td>
+					<td class="Oop"></td>
+				</tr>
+				<tr>
 					<td class="num">1</td>
-					<td class="component">Interior nonstructural walls and partitions: Light frame ≤ 9ft (2.74m) in height</td>
+					<!-- <td class="component">Interior nonstructural walls and partitions: Light frame ≤ 9ft (2.74m) in height</td> -->
+					<td class="component">--- Light frame ≤ 9ft (2.74m) in height</td>
 					<td class="CarB">1.0</td>
 					<td class="CarA">1.0</td>
 					<td class="Rpo">1.5</td>
@@ -158,7 +173,7 @@
 				</tr>
 				<tr>
 					<td class="num">2</td>
-					<td class="component">Interior nonstructural walls and partitions: Light frame > 9ft (2.74m) in height</td>
+					<td class="component">--- Light frame > 9ft (2.74m) in height</td>
 					<td class="CarB">1.4</td>
 					<td class="CarA">1.4</td>
 					<td class="Rpo">1.5</td>
@@ -166,62 +181,359 @@
 				</tr>
 				<tr>
 					<td class="num">3</td>
-					<td class="component">Test</td>
-					<td class="CarB">3</td>
-					<td class="CarA">4</td>
-					<td class="Rpo">5</td>
-					<td class="Oop">6</td>
+					<td class="component">--- Reinforced Masonry</td>
+					<td class="CarB">1.0</td>
+					<td class="CarA">1.0</td>
+					<td class="Rpo">1.5</td>
+					<td class="Oop">1.5</td>
 				</tr>
 				<tr>
-					<td>-</td>
-					<td>-</td>
-					<td>-</td>
-					<td>-</td>
-					<td>-</td>
-					<td>-</td>
+					<td class="num">4</td>
+					<td class="component">--- All other walls and partitions</td>
+					<td class="CarB">2.0</td>
+					<td class="CarA">2.8</td>
+					<td class="Rpo">1.5</td>
+					<td class="Oop">1.5</td>
 				</tr>
 				<tr>
-					<td>-</td>
-					<td>-</td>
-					<td>-</td>
-					<td>-</td>
-					<td>-</td>
-					<td>-</td>
+					<td class="num"></td>
+					<td class="component">
+						<strong>Cantilever elements (unbraced or braced to structure below its center of mass)</strong>
+					</td>
+					<td class="CarB"></td>
+					<td class="CarA"></td>
+					<td class="Rpo"></td>
+					<td class="Oop"></td>
 				</tr>
 				<tr>
-					<td>-</td>
-					<td>-</td>
-					<td>-</td>
-					<td>-</td>
-					<td>-</td>
-					<td>-</td>
+					<td class="num">5</td>
+					<td class="component">--- Parapets and cantilever interior nonstructural walls</td>
+					<td class="CarB">1.8</td>
+					<td class="CarA">2.2</td>
+					<td class="Rpo">1.5</td>
+					<td class="Oop">1.75</td>
 				</tr>
 				<tr>
-					<td>-</td>
-					<td>-</td>
-					<td>-</td>
-					<td>-</td>
-					<td>-</td>
-					<td>-</td>
+					<td class="num">6</td>
+					<td class="component">--- Chimneys where laterally braced or supported by the structural frame</td>
+					<td class="CarB">1.8</td>
+					<td class="CarA">2.2</td>
+					<td class="Rpo">1.5</td>
+					<td class="Oop">1.75</td>
 				</tr>
 				<tr>
-					<td>-</td>
-					<td>-</td>
-					<td>-</td>
-					<td>-</td>
-					<td>-</td>
-					<td>-</td>
+					<td class="num"></td>
+					<td class="component">
+						<strong>Cantilever elements (braced to structural frame above its center of mass)</strong>
+					</td>
+					<td class="CarB"></td>
+					<td class="CarA"></td>
+					<td class="Rpo"></td>
+					<td class="Oop"></td>
 				</tr>
 				<tr>
-					<td>-</td>
-					<td>-</td>
-					<td>-</td>
-					<td>-</td>
-					<td>-</td>
-					<td>-</td>
+					<td class="num">7</td>
+					<td class="component">--- Parapets</td>
+					<td class="CarB">1.0</td>
+					<td class="CarA">1.0</td>
+					<td class="Rpo">1.5</td>
+					<td class="Oop">1.5</td>
+				</tr>
+				<tr>
+					<td class="num">8</td>
+					<td class="component">--- Chimneys</td>
+					<td class="CarB">1.0</td>
+					<td class="CarA">1.0</td>
+					<td class="Rpo">1.5</td>
+					<td class="Oop">1.5</td>
+				</tr>
+				<tr>
+					<td class="num">9</td>
+					<td class="component">--- Exterior nonstructural walls</td>
+					<td class="CarB">1.0</td>
+					<td class="CarA">1.0</td>
+					<td class="Rpo">1.5</td>
+					<td class="Oop">1.5</td>
+				</tr>
+				<tr>
+					<td class="num"></td>
+					<td class="component">
+						<strong>Exterior nonstructural wall elements and connections</strong>
+					</td>
+					<td class="CarB"></td>
+					<td class="CarA"></td>
+					<td class="Rpo"></td>
+					<td class="Oop"></td>
+				</tr>
+				<tr>
+					<td class="num">10</td>
+					<td class="component">--- Wall element</td>
+					<td class="CarB">1.0</td>
+					<td class="CarA">1.0</td>
+					<td class="Rpo">1.5</td>
+					<td class="Oop">1.5</td>
+				</tr>
+				<tr>
+					<td class="num">11</td>
+					<td class="component">--- Body of wall panel connections</td>
+					<td class="CarB">1.0</td>
+					<td class="CarA">1.0</td>
+					<td class="Rpo">1.5</td>
+					<td class="Oop">1.5</td>
+				</tr>
+				<tr>
+					<td class="num">12</td>
+					<td class="component">--- Fasteners of the connecting system</td>
+					<td class="CarB">2.2</td>
+					<td class="CarA">2.8</td>
+					<td class="Rpo">1.5</td>
+					<td class="Oop">1.0</td>
+				</tr>
+				<tr>
+					<td class="num"></td>
+					<td class="component">
+						<strong>Veneer</strong>
+					</td>
+					<td class="CarB"></td>
+					<td class="CarA"></td>
+					<td class="Rpo"></td>
+					<td class="Oop"></td>
+				</tr>
+				<tr>
+					<td class="num">13</td>
+					<td class="component">--- Limited deformability elements and attachments</td>
+					<td class="CarB">1.0</td>
+					<td class="CarA">1.0</td>
+					<td class="Rpo">1.5</td>
+					<td class="Oop">1.5</td>
+				</tr>
+				<tr>
+					<td class="num">14</td>
+					<td class="component">--- Low deformability elements and attachments</td>
+					<td class="CarB">1.0</td>
+					<td class="CarA">1.0</td>
+					<td class="Rpo">1.5</td>
+					<td class="Oop">1.5</td>
+				</tr>
+				<tr>
+					<td class="num"></td>
+					<td class="component">
+						<strong>Penthouses (except where framed by an extension of the building frame</strong>
+					</td>
+					<td class="CarB"></td>
+					<td class="CarA"></td>
+					<td class="Rpo"></td>
+					<td class="Oop"></td>
+				</tr>
+				<tr>
+					<td class="num">15</td>
+					<td class="component">--- Seismic Force-Resisting Systems with R≥6</td>
+					<td class="CarB">N/A</td>
+					<td class="CarA">1.4</td>
+					<td class="Rpo">2.0</td>
+					<td class="Oop">2.0</td>
+				</tr>
+				<tr>
+					<td class="num">16</td>
+					<td class="component">--- Seismic Force-Resisting Systems with 6>R≥4</td>
+					<td class="CarB">N/A</td>
+					<td class="CarA">2.2</td>
+					<td class="Rpo">2.0</td>
+					<td class="Oop">1.75</td>
+				</tr>
+				<tr>
+					<td class="num">17</td>
+					<td class="component">--- Seismic Force-Resisting Systems with R<4</td>
+					<td class="CarB">N/A</td>
+					<td class="CarA">2.8</td>
+					<td class="Rpo">2.0</td>
+					<td class="Oop">1.5</td>
+				</tr>
+				<tr>
+					<td class="num">18</td>
+					<td class="component">--- Other Systems</td>
+					<td class="CarB">N/A</td>
+					<td class="CarA">2.8</td>
+					<td class="Rpo">1.5</td>
+					<td class="Oop">1.5</td>
+				</tr>
+				<tr>
+					<td class="num"></td>
+					<td class="component">
+						<strong>Ceilings</strong>
+					</td>
+					<td class="CarB"></td>
+					<td class="CarA"></td>
+					<td class="Rpo"></td>
+					<td class="Oop"></td>
+				</tr>
+				<tr>
+					<td class="num">19</td>
+					<td class="component">--- All</td>
+					<td class="CarB">1.0</td>
+					<td class="CarA">1.0</td>
+					<td class="Rpo">1.5</td>
+					<td class="Oop">1.5</td>
+				</tr>
+				<tr>
+					<td class="num"></td>
+					<td class="component">
+						<strong>Cabinets</strong>
+					</td>
+					<td class="CarB"></td>
+					<td class="CarA"></td>
+					<td class="Rpo"></td>
+					<td class="Oop"></td>
+				</tr>
+				<tr>
+					<td class="num">20</td>
+					<td class="component">--- Permanent floor-supported storage cabinets more than 6 ft (1,829 mm) tall, including contents</td>
+					<td class="CarB">1.0</td>
+					<td class="CarA">1.0</td>
+					<td class="Rpo">1.5</td>
+					<td class="Oop">1.5</td>
+				</tr>
+				<tr>
+					<td class="num">21</td>
+					<td class="component">--- Permanent floor-supported library shelving, book stacks, and bookshelves more than 6 ft (1,829 mm) tall, including contents</td>
+					<td class="CarB">1.0</td>
+					<td class="CarA">1.0</td>
+					<td class="Rpo">1.5</td>
+					<td class="Oop">1.5</td>
+				</tr>
+				<tr>
+					<td class="num">22</td>
+					<td class="component">
+						<strong>Laboratory equipment</strong>
+					</td>
+					<td class="CarB">1.0</td>
+					<td class="CarA">1.0</td>
+					<td class="Rpo">1.5</td>
+					<td class="Oop">1.5</td>
+				</tr>
+				<tr>
+					<td class="num"></td>
+					<td class="component">
+						<strong>Access Floors</strong>
+					</td>
+					<td class="CarB"></td>
+					<td class="CarA"></td>
+					<td class="Rpo"></td>
+					<td class="Oop"></td>
+				</tr>
+				<tr>
+					<td class="num">23</td>
+					<td class="component">--- Special access floors (designed in accordance with Section 13.5.7.2)</td>
+					<td class="CarB">1.0</td>
+					<td class="CarA">1.0</td>
+					<td class="Rpo">1.5</td>
+					<td class="Oop">1.5</td>
+				</tr>
+				<tr>
+					<td class="num">24</td>
+					<td class="component">--- All other</td>
+					<td class="CarB">2.2</td>
+					<td class="CarA">2.8</td>
+					<td class="Rpo">1.5</td>
+					<td class="Oop">1.5</td>
+				</tr>
+				<tr>
+					<td class="num">25</td>
+					<td class="component">
+						<strong>Appendages and ornamentations</strong>
+					</td>
+					<td class="CarB">1.8</td>
+					<td class="CarA">2.2</td>
+					<td class="Rpo">1.5</td>
+					<td class="Oop">1.75</td>
+				</tr>
+				<tr>
+					<td class="num">26</td>
+					<td class="component">
+						<strong>Signs and Billboards</strong>
+					</td>
+					<td class="CarB">1.8</td>
+					<td class="CarA">2.2</td>
+					<td class="Rpo">1.5</td>
+					<td class="Oop">1.75</td>
+				</tr>
+				<tr>
+					<td class="num">27</td>
+					<td class="component">
+						<strong>Other rigid components</strong>
+					</td>
+					<td class="CarB">1.0</td>
+					<td class="CarA">1.0</td>
+					<td class="Rpo">1.5</td>
+					<td class="Oop">1.5</td>
+				</tr>
+				<tr>
+					<td class="num"></td>
+					<td class="component">
+						<strong>Other flexible components</strong>
+					</td>
+					<td class="CarB"></td>
+					<td class="CarA"></td>
+					<td class="Rpo"></td>
+					<td class="Oop"></td>
+				</tr>
+				<tr>
+					<td class="num">28</td>
+					<td class="component">--- High-deformability elements and attachments</td>
+					<td class="CarB">1.4</td>
+					<td class="CarA">1.4</td>
+					<td class="Rpo">1.5</td>
+					<td class="Oop">2.0</td>
+				</tr>
+				<tr>
+					<td class="num">29</td>
+					<td class="component">--- Limited-deformability elements and attachments</td>
+					<td class="CarB">1.8</td>
+					<td class="CarA">2.2</td>
+					<td class="Rpo">1.5</td>
+					<td class="Oop">1.75</td>
+				</tr>
+				<tr>
+					<td class="num">30</td>
+					<td class="component">--- Low-deformability elements and attachments</td>
+					<td class="CarB">2.2</td>
+					<td class="CarA">2.8</td>
+					<td class="Rpo">1.5</td>
+					<td class="Oop">1.5</td>
+				</tr>
+				<tr>
+					<td class="num">31</td>
+					<td class="component">
+						<strong>Egress stairways not part of the building seismic force-resisting system</strong>
+					</td>
+					<td class="CarB">1.0</td>
+					<td class="CarA">1.0</td>
+					<td class="Rpo">1.5</td>
+					<td class="Oop">1.5</td>
+				</tr>
+				<tr>
+					<td class="num">32</td>
+					<td class="component">
+						<strong>Egress stairs and ramp fasteners and attachments</strong>
+					</td>
+					<td class="CarB">1.8</td>
+					<td class="CarA">2.2</td>
+					<td class="Rpo">1.5</td>
+					<td class="Oop">1.75</td>
 				</tr>
 			</tbody>
 		</table>
+	</div>
+
+	<div class="container-sm bg-light p-3 border">
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="inputGroup-sizing-default">X</span>
+			<input id="XBox" name="X" type="text" class="form-control" readonly disabled placeholder="Factor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+		</div>
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="inputGroup-sizing-default">F<sub>p</sub></span>
+			<input id="FpBox" name="Fp" type="text" class="form-control" readonly disabled placeholder="Force" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+		</div>
 	</div>
 
 	<div class="container-sm bg-light p-3 border">

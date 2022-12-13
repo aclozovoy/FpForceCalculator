@@ -83,7 +83,7 @@ $(document).ready(function(){
     })
 });
 
-// ADD Car AND Rpo TABLE VALUES TO INPUT BOX
+// ADD Car, Rpo, and Oop TABLE VALUES TO INPUT BOX
 $(document).ready(function(){
     $("#ComponentsTable tbody tr").click(function() {
 
@@ -101,7 +101,65 @@ $(document).ready(function(){
         // Rpo
         var RpoValue = $(this).children(".Rpo").text();
         $("#RpoBox").val(RpoValue);
+
+        // Oop
+        var OopValue = $(this).children(".Oop").text();
+        $("#OopBox").val(OopValue);
     });
 });
 
 
+// LIVE CALCULATION OF Fp --- IN PROGRESS
+// $(document).ready(function(){
+//     $('[name=Sds]').add('[name=Wp]').add('[name$=IpRadio]').add('[name=R_mu]').add('[name=Hf]').add('[name=Car]').add('[name=Rpo]').change(function() {
+//         var Sds = parseFloat($('[name=Sds]').val());
+//         var Wp = parseFloat($('[name=Wp]').val());
+//         var Ip = parseFloat($("input[name$='IpRadio']:checked").val()); // Radio
+//         var R_mu = parseFloat($('[name=R_mu]').val());
+//         var Hf = parseFloat($('[name=Hf]').val());
+//         var Car = parseFloat($('[name=Car]').val());
+//         var Rpo = parseFloat($('[name=Rpo]').val());
+
+//         if (Sds>0 & Wp>0 & R_mu>0 & Hf>0 & Car>0 & Rpo>0) {
+//             alert('In the loop');
+//             var X_calc = (Hf/R_mu) * (Car/Rpo);
+//             var X = Math.min( Math.max( X_calc, 0.3), 1.6);
+    
+//             var Fp = X * Sds * Ip * Wp;
+            
+//             $('[name=XBox]').val(X.toFixed(2));
+//             $('[name=FpBox]').val(Fp.toFixed(2));
+
+//         }
+//     });
+// });
+
+$(document).click(function() {
+    var Sds = parseFloat($('[name=Sds]').val());
+    var Wp = parseFloat($('[name=Wp]').val());
+    // var Ip = parseFloat($("input[name$='IpRadio']:checked").val()); // Radio
+    var Ip_Radio = $("input[name$='IpRadio']:checked").val(); // Radio
+    var R_mu = parseFloat($('[name=R_mu]').val());
+    var Hf = parseFloat($('[name=Hf]').val());
+    var Car = parseFloat($('[name=Car]').val());
+    var Rpo = parseFloat($('[name=Rpo]').val());
+    // alert(Ip);
+
+    if (Sds>0 & Wp>0 & R_mu>0 & Hf>0 & Car>0 & Rpo>0) {
+        // alert('In the loop');
+        // alert(Ip)
+        if (Ip_Radio=='Ip1.0') {
+            var Ip = 1.0;
+        } else if (Ip_Radio=='Ip1.5') {
+            var Ip = 1.5;
+        }
+
+        var X_calc = (Hf/R_mu) * (Car/Rpo);
+        var X = Math.min( Math.max( X_calc, 0.3), 1.6);
+
+        var Fp = X * Sds * Ip * Wp;
+        
+        $('#XBox').val(X.toFixed(2) + '*SdsIpWp');
+        $('#FpBox').val(Fp.toFixed(1));
+    }
+});
