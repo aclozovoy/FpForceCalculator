@@ -14,6 +14,8 @@ def main():
         # Wp Input
         Wp = request.form["Wp"]
 
+        # Units =   
+
         # Ip Input
         IpRadio = request.form['IpRadio']
         Ip = IpFunction(IpRadio)
@@ -23,6 +25,9 @@ def main():
 
         # Rpo Input
         Rpo = request.form["Rpo"]
+
+        # Oop Input
+        Oop = request.form["Oop"]
 
         # Hf Input and Calculation
         HfRadio = request.form['HfRadio']
@@ -40,7 +45,7 @@ def main():
         X, Xcalc, XText = XFunction(Hf, Rmu, Car, Rpo)
 
         # Fp Calculation
-        Fp, FpText = FpFunction(X, Sds, Ip, Wp)
+        Fp, FpText, OopFp = FpFunction(X, Sds, Ip, Wp, Oop)
 
 
         return render_template('main.html', HfText=HfText, RmuText=RmuText, XText = XText, FpText=FpText)

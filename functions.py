@@ -79,13 +79,14 @@ def XFunction(Hf, Rmu, Car, Rpo):
     return X, Xcalc, XText
 
 
-def FpFunction(X, Sds, Ip, Wp):
+def FpFunction(X, Sds, Ip, Wp, Oop):
 
     Sds = float(Sds)
     Wp = float(Wp)
 
     Fp = X * Sds * Ip * Wp
+    OopFp = Oop*Fp
 
     FpText = f"Fp = {Fp:.2f}"
 
-    return Fp, FpText
+    return Fp, FpText, OopFp

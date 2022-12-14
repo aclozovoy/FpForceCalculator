@@ -109,31 +109,6 @@ $(document).ready(function(){
 });
 
 
-// LIVE CALCULATION OF Fp --- IN PROGRESS
-// $(document).ready(function(){
-//     $('[name=Sds]').add('[name=Wp]').add('[name$=IpRadio]').add('[name=R_mu]').add('[name=Hf]').add('[name=Car]').add('[name=Rpo]').change(function() {
-//         var Sds = parseFloat($('[name=Sds]').val());
-//         var Wp = parseFloat($('[name=Wp]').val());
-//         var Ip = parseFloat($("input[name$='IpRadio']:checked").val()); // Radio
-//         var R_mu = parseFloat($('[name=R_mu]').val());
-//         var Hf = parseFloat($('[name=Hf]').val());
-//         var Car = parseFloat($('[name=Car]').val());
-//         var Rpo = parseFloat($('[name=Rpo]').val());
-
-//         if (Sds>0 & Wp>0 & R_mu>0 & Hf>0 & Car>0 & Rpo>0) {
-//             alert('In the loop');
-//             var X_calc = (Hf/R_mu) * (Car/Rpo);
-//             var X = Math.min( Math.max( X_calc, 0.3), 1.6);
-    
-//             var Fp = X * Sds * Ip * Wp;
-            
-//             $('[name=XBox]').val(X.toFixed(2));
-//             $('[name=FpBox]').val(Fp.toFixed(2));
-
-//         }
-//     });
-// });
-
 // LIVE CALCULATION OF Fp
 $(document).click(function() {
     var Sds = parseFloat($('[name=Sds]').val());
@@ -166,4 +141,27 @@ $(document).click(function() {
         $('#FpBox').val(Fp.toFixed(1));
         $('#OopFpBox').val(OopFp.toFixed(1));
     }
+});
+
+// CHANGE UNITS
+$(document).ready(function(){
+    $("#units_in").click(function() {
+
+        if ($(this).text()=='lb') {
+            $(this).text('psf');
+            $('[name=units_out]').text('psf');
+        } else if ($(this).text()=='psf') {
+            $(this).text('k');
+            $('[name=units_out]').text('k');
+        } else if ($(this).text()=='k') {
+            $(this).text('ksf');
+            $('[name=units_out]').text('ksf');
+        } else if ($(this).text()=='ksf') {
+            $(this).text('lb');
+            $('[name=units_out]').text('lb');
+        }
+    });
+    $("#units_in").hover(function() {
+        $(this).css('cursor','pointer')
+    });
 });
