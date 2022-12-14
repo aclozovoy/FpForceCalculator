@@ -145,23 +145,16 @@ $(document).click(function() {
 
 // CHANGE UNITS
 $(document).ready(function(){
-    $("#units_in").click(function() {
+    $('#Units').change(function() {
 
-        if ($(this).text()=='lb') {
-            $(this).text('psf');
-            $('[name=units_out]').text('psf');
-        } else if ($(this).text()=='psf') {
-            $(this).text('k');
-            $('[name=units_out]').text('k');
-        } else if ($(this).text()=='k') {
-            $(this).text('ksf');
-            $('[name=units_out]').text('ksf');
-        } else if ($(this).text()=='ksf') {
-            $(this).text('lb');
+        if ($('#Units option:selected').val()=='lb') {
             $('[name=units_out]').text('lb');
+        } else if ($(this).val()=='psf') {
+            $('[name=units_out]').text('psf');
+        } else if ($(this).val()=='k') {
+            $('[name=units_out]').text('k');
+        } else if ($(this).val()=='ksf') {
+            $('[name=units_out]').text('ksf');
         }
-    });
-    $("#units_in").hover(function() {
-        $(this).css('cursor','pointer')
     });
 });

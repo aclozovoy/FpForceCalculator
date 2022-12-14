@@ -14,7 +14,8 @@ def main():
         # Wp Input
         Wp = request.form["Wp"]
 
-        # Units =   
+        # Units Input
+        Units = request.form['Units']
 
         # Ip Input
         IpRadio = request.form['IpRadio']

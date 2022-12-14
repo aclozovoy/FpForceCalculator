@@ -27,8 +27,16 @@
 			<div class="input-group mb-3">
 				<span class="input-group-text" id="inputGroup-sizing-default">W<sub>p</sub></span>
 				<input name="Wp" type="text" class="form-control" placeholder="Component Weight" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-				<span class="input-group-text" id="units_in">lb</span>
+				<!-- <div class="input-group-append"> -->
+				<select class="custom-select" id="Units">
+					<option value="lb" selected>lb</option>
+					<option value="psf">psf</option>
+					<option value="k">k</option>
+					<option value="ksf">ksf</option>
+				</select>
+				<!-- </div> -->
 			</div>
+			
 			Component Importance Factor
 			<div class="form-check">
 				<input class="form-check-input" type="radio" name="IpRadio" id="IpRadio1" value="Ip1.0" checked>
