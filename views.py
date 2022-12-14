@@ -12,13 +12,13 @@ def main():
         Sds = request.form["Sds"]
         Sds = float(Sds)
         SdsT = f"{Sds:.3f}"
-        # SdsT = str(round(Sds, 3))
 
         # Wp Input
         Wp = request.form["Wp"]
 
         # Units Input
-        Units = request.form.get('Units')
+        units = request.form.get('units')
+        print(units)
 
         # Ip Input
         IpRadio = request.form['IpRadio']
@@ -36,9 +36,11 @@ def main():
 
         # Oop Input
         Oop = request.form["Oop"]
+        Oop = float(Oop)
+        OopT = f"{Oop:.2f}"
 
         # Component Number Input
-        CompNum = request.form.get("CompNum")
+        CompNum = request.form["CompNum"]
 
         # Hf Input and Calculation
         HfRadio = request.form['HfRadio']
@@ -50,8 +52,12 @@ def main():
 
         # R_mu Input and Calculation
         R = request.form['R']
+        R = float(R)
         Omega0 = request.form['Omega0']
+        Omega0 = float(Omega0)
         Rmu, RmuText = RmuFunction(R, Omega0)
+        RT = f"{R:.1f}"
+        Omega0T = f"{Omega0:.2f}"
         RmuT = f"{Rmu:.2f}"
 
         # X Factor Calculation (X*SdsIpWp)
@@ -63,9 +69,7 @@ def main():
         Fp, FpText, OopFp = FpFunction(X, Sds, Ip, Wp, Oop)
         FpT = f"{Fp:.2f}"
 
-        # List = [Sds, Wp, Units, Ip, Car, Rpo, Oop, CompNum, HfRadio, z, h, Ta, a1, a2]
-
-        return render_template('printout.html', HfText=HfText, RmuText=RmuText, XText = XText, FpText=FpText, Sds=SdsT, Hf=HfT, Rmu=RmuT, Car=CarT, Rpo=RpoT, X=XT, Xcalc=XcalcT, Fp=FpT ,Wp=Wp, Units=Units, CompNum=CompNum, Ip=Ip)
+        return render_template('printout.html', HfText=HfText, RmuText=RmuText, XText = XText, FpText=FpText, Omega0=Omega0T, Oop=OopT, R=RT, Sds=SdsT, Hf=HfT, Rmu=RmuT, Car=CarT, Rpo=RpoT, X=XT, Xcalc=XcalcT, Fp=FpT, Wp=Wp, units=units, CompNum=CompNum, Ip=Ip)
     else:
         return render_template('main.html')
 
