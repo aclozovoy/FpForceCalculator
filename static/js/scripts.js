@@ -105,6 +105,10 @@ $(document).ready(function(){
         // Oop
         var OopValue = $(this).children(".Oop").text();
         $("#OopBox").val(OopValue);
+
+        // CompNum
+        var CompNum = $(this).children(".num").text();
+        $("#CompNum").val(CompNum);
     });
 });
 

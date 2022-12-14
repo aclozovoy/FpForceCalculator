@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Printout</title>
+</head>
+<body>
+    <h1>ASCE 7-22 Nonstructural Seismic Force</h1>
+    <h2>Inputs</h2>
+    <p>S<sub>ds</sub>: {{Sds}} g</p>
+    <p>W<sub>p</sub>: {{Wp}} {{Units}}</p>
+    <p>Component Importance Factor I<sub>p</sub>: {{Ip}}</p>
+    <p>Component Type: {{CompNum}}</p>
+    
+    <h2>Calculation</h2>
+    <p>F<sub>p</sub> = 0.4 * [H<sub>f</sub>/R<sub>µ</sub>][C<sub>AR</sub>/R<sub>po</sub>] * S<sub>ds</sub>I<sub>p</sub>W<sub>p</sub></p>
+    <p>F<sub>p</sub> = 0.4 * [{{Hf}}/{{Rmu}}][{{Car}}/{{Rpo}}] * S<sub>ds</sub>I<sub>p</sub>W<sub>p</sub></p>
+    <p>F<sub>p</sub> = {{X}} * S<sub>ds</sub>I<sub>p</sub>W<sub>p</sub> (Calculated as {{Xcalc}} * S<sub>ds</sub>I<sub>p</sub>W<sub>p</sub>.)</p>
+    <p>F<sub>p</sub> = {{X}} * ({{Sds}})({{Ip}})({{Wp}} {{Units}})</p>
+    <p>F<sub>p</sub> = {{Fp}} {{Units}}</p>
+
+
+    
+</body>
+</html>

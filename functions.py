@@ -83,6 +83,7 @@ def FpFunction(X, Sds, Ip, Wp, Oop):
 
     Sds = float(Sds)
     Wp = float(Wp)
+    Oop = float(Oop)
 
     Fp = X * Sds * Ip * Wp
     OopFp = Oop*Fp
