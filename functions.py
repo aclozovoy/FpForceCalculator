@@ -14,6 +14,7 @@ def HfFunction(HfRadio, z, h, Ta):
         Hf = 1 + a1 * (z/h) + a2 * (z/h)**10
 
         HfText = f"Hf = {Hf:.2f} (a1 = {a1:.2f}, a2 = {a2:.2f})"
+        HfType ='Supported above grade by a building or nonbuilding structure with a known approximate fundamental period'
 
     elif HfRadio == 'PeriodUnknown':
         z = float(z)
@@ -24,6 +25,7 @@ def HfFunction(HfRadio, z, h, Ta):
         a2 = None
 
         HfText = f"Hf = {Hf:.2f}"
+        HfType ='Supported above grade by a building or nonbuilding structure with an unknown approximate fundamental period'
 
     elif HfRadio == 'BelowGrade':
         Hf = 1.0
@@ -31,8 +33,9 @@ def HfFunction(HfRadio, z, h, Ta):
         a2 = None
 
         HfText = "Hf = 1.00"
+        HfType ='Supported at or below grade'
 
-    return a1, a2, Hf, HfText
+    return a1, a2, Hf, HfText, HfType
 
 
 def RmuFunction(R, Omega0):

@@ -47,7 +47,7 @@ def main():
         z = request.form['z']
         h = request.form['h']
         Ta = request.form['Ta']
-        a1, a2, Hf, HfText = HfFunction(HfRadio, z, h, Ta)
+        a1, a2, Hf, HfText, HfType = HfFunction(HfRadio, z, h, Ta)
         HfT = f"{Hf:.2f}"
 
         # R_mu Input and Calculation
@@ -69,7 +69,7 @@ def main():
         Fp, FpText, OopFp = FpFunction(X, Sds, Ip, Wp, Oop)
         FpT = f"{Fp:.2f}"
 
-        return render_template('printout.html', HfText=HfText, RmuText=RmuText, XText = XText, FpText=FpText, Omega0=Omega0T, Oop=OopT, R=RT, Sds=SdsT, Hf=HfT, Rmu=RmuT, Car=CarT, Rpo=RpoT, X=XT, Xcalc=XcalcT, Fp=FpT, Wp=Wp, units=units, CompNum=CompNum, Ip=Ip)
+        return render_template('printout.html', HfText=HfText, RmuText=RmuText, XText = XText, HfType=HfType, FpText=FpText, Omega0=Omega0T, Oop=OopT, R=RT, Sds=SdsT, Hf=HfT, Rmu=RmuT, Car=CarT, Rpo=RpoT, X=XT, Xcalc=XcalcT, Fp=FpT, Wp=Wp, units=units, CompNum=CompNum, Ip=Ip)
     else:
         return render_template('main.html')
 
