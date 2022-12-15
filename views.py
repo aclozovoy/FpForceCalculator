@@ -41,6 +41,7 @@ def main():
 
         # Component Number Input
         CompNum = request.form["CompNum"]
+        CompTxt = CompFunction(CompNum)
 
         # Hf Input and Calculation
         HfRadio = request.form['HfRadio']
@@ -72,7 +73,7 @@ def main():
         FpT = f"{Fp:.1f}"
         OopFpT = f"{OopFp:.1f}"
 
-        return render_template('printout.html', HfText=HfText, RmuText=RmuText, HfCalc=HfCalc, XText = XText, OopFp=OopFpT, CarType=CarType, HfType=HfType, FpText=FpText, Omega0=Omega0T, Oop=OopT, R=RT, Sds=SdsT, Hf=HfT, Rmu=RmuT, Car=CarT, Rpo=RpoT, X=XT, Xcalc=XcalcT, Fp=FpT, Wp=Wp, units=units, CompNum=CompNum, Ip=Ip)
+        return render_template('printout.html', HfText=HfText, RmuText=RmuText, CompTxt=CompTxt, HfCalc=HfCalc, XText = XText, OopFp=OopFpT, CarType=CarType, HfType=HfType, FpText=FpText, Omega0=Omega0T, Oop=OopT, R=RT, Sds=SdsT, Hf=HfT, Rmu=RmuT, Car=CarT, Rpo=RpoT, X=XT, Xcalc=XcalcT, Fp=FpT, Wp=Wp, units=units, Ip=Ip)
     else:
         return render_template('main.html')
 

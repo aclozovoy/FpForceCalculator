@@ -20,10 +20,13 @@ def HfFunction(HfRadio, z, h, Ta):
         CarType = '(Supported above grade by a structure)'
 
         HfCalc = f'''
+        <p>z = {z:.0f} ft</p>
+        <p>h = {h:.0f} ft</p>
+        <p>T<sub>a</sub> = {Ta:.2f}</p>
         <p>H<sub>f</sub> = 1 + a<sub>1</sub>(z/h) + a<sub>2</sub>(z/h)<sup>10</sup></p>
         <p>&emsp;a<sub>1</sub> = min(1/T<sub>a</sub> , 2.5) = min(1/{Ta:.2f} , 2.5) = min({a1calc:.2f} , 2.5) = {a1:.2f}</p>
         <p>&emsp;a<sub>2</sub> = max(1 - (0.4/T<sub>a</sub>)<sup>2</sup> , 0) = max(1 - (0.4/{Ta:.2f})<sup>2</sup> , 0) = max({a2calc:.2f} , 0) = {a2:.2f}</p>
-        <p>H<sub>f</sub> = 1 + {a1:.2f}( {z:.0f} / {h:.0f} ) + {a2:.2f}( {z:.0f} / {h:.0f} )<sup>10</sup></p>
+        <p>H<sub>f</sub> = 1 + {a1:.2f}( {z:.0f}ft / {h:.0f}ft ) + {a2:.2f}( {z:.0f}ft / {h:.0f}ft )<sup>10</sup></p>
         <p>H<sub>f</sub> = {Hf:.2f}</p>
         '''
 
@@ -42,8 +45,10 @@ def HfFunction(HfRadio, z, h, Ta):
         CarType = '(Supported above grade by a structure)'
 
         HfCalc = f'''
+        <p>z = {z:.0f} ft</p>
+        <p>h = {h:.0f} ft</p>
         <p>H<sub>f</sub> = 1 + 2.5(z/h)</p>
-        <p>H<sub>f</sub> = 1 + 2.5({z:.0f}/{h:.0f})</p>
+        <p>H<sub>f</sub> = 1 + 2.5({z:.0f}ft /{h:.0f}ft )</p>
         <p>H<sub>f</sub> = {Hf:.2f}</p>
         '''
 
@@ -119,3 +124,45 @@ def FpFunction(X, Sds, Ip, Wp, Oop):
     FpText = f"Fp = {Fp:.2f}"
 
     return Fp, FpText, OopFp
+
+def CompFunction(CompNum):
+
+    i = int(CompNum) - 1
+    CompList = (
+        'Interior nonstructural walls and partitions: Light frame ≤ 9ft (2.74m) in height',
+        'Interior nonstructural walls and partitions: Light frame > 9ft (2.74m) in height',
+        'Interior nonstructural walls and partitions: Reinforced Masonry',
+        'Interior nonstructural walls and partitions: All other walls and partitions',
+        'Cantilever elements (unbraced or braced to structure below its center of mass): Parapets and cantilever interior nonstructural walls',
+        'Cantilever elements (unbraced or braced to structure below its center of mass): Chimneys where laterally braced or supported by the structural frame',
+        'Cantilever elements (braced to structural frame above its center of mass): Parapets',
+        'Cantilever elements (braced to structural frame above its center of mass): Chimneys',
+        'Cantilever elements (braced to structural frame above its center of mass): Exterior nonstructural walls',
+        'Exterior nonstructural wall elements and connections: Wall element',
+        'Exterior nonstructural wall elements and connections: Body of wall panel connections',
+        'Exterior nonstructural wall elements and connections: Fasteners of the connecting system',
+        'Veneer: Limited deformability elements and attachments',
+        'Veneer: Low deformability elements and attachments',
+        'Penthouses (except where framed by an extension of the building frame): Seismic Force-Resisting Systems with R≥6',
+        'Penthouses (except where framed by an extension of the building frame): Seismic Force-Resisting Systems with 6>R≥4',
+        'Penthouses (except where framed by an extension of the building frame): Seismic Force-Resisting Systems with R<4',
+        'Penthouses (except where framed by an extension of the building frame): Other Systems',
+        'Ceilings: All',
+        'Cabinets: Permanent floor-supported storage cabinets more than 6 ft (1,829 mm) tall, including contents',
+        'Cabinets: Permanent floor-supported library shelving, book stacks, and bookshelves more than 6 ft (1,829 mm) tall, including contents',
+        'Laboratory equipment',
+        'Access Floors: Special access floors (designed in accordance with Section 13.5.7.2)',
+        'Access Floors: All other',
+        'Appendages and ornamentations',
+        'Signs and Billboards',
+        'Other rigid components',
+        'Other flexible components: High-deformability elements and attachments',
+        'Other flexible components: Limited-deformability elements and attachments',
+        'Other flexible components: Low-deformability elements and attachments',
+        'Egress stairways not part of the building seismic force-resisting system',
+        'Egress stairs and ramp fasteners and attachments'
+    )
+
+    CompTxt = CompList[i]
+
+    return CompTxt
