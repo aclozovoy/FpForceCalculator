@@ -16,6 +16,12 @@
     
     <h2>Height Factor</h2>
     <p>Condition: {{HfType}}</p>
+    <p>
+        {% autoescape false %}
+        {{HfCalc}}
+        {% endautoescape%}
+    </p>
+
 
     <h2>Structure Ductility Reduction Factor</h2>
     <p>R<sub>µ</sub> = (1.1R/Ω<sub>0</sub>)<sup>1/2</sup></p>
@@ -24,7 +30,7 @@
 
     <h2>Table Values</h2>
     <p>Component Type: </p>
-    <p>C<sub>AR</sub>: {{Car}} </p>
+    <p>C<sub>AR</sub>: {{Car}} {{CarType}}</p>
     <p>R<sub>po</sub>: {{Rpo}}</p>
     <p>Ω<sub>op</sub>: {{Oop}}</p>
 
@@ -34,6 +40,10 @@
     <p>F<sub>p</sub> = {{X}} * S<sub>ds</sub>I<sub>p</sub>W<sub>p</sub> (Calculated as {{Xcalc}} * S<sub>ds</sub>I<sub>p</sub>W<sub>p</sub>)</p>
     <p>F<sub>p</sub> = {{X}} * ({{Sds}})({{Ip}})({{Wp}} {{units}})</p>
     <p>F<sub>p</sub> = {{Fp}} {{units}}</p>
+    <br>
+    <p>Ω<sub>op</sub>F<sub>p</sub> = Ω<sub>op</sub> * F<sub>p</sub></p>
+    <p>Ω<sub>op</sub>F<sub>p</sub> = ({{Oop}}) * ({{Fp}} {{units}})</p>
+    <p>Ω<sub>op</sub>F<sub>p</sub> = {{OopFp}} {{units}}</p>
 
 
     
