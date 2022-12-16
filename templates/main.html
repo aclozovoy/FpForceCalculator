@@ -20,13 +20,13 @@
 			Seismic
 			<div class="input-group mb-3">
 				<span class="input-group-text" id="inputGroup-sizing-default">S<sub>ds</sub></span>
-				<input name="Sds" type="text" class="form-control" placeholder="Spectral acceleration (11.4.5)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				<input name="Sds" type="number" step="any" min="0" class="form-control" placeholder="Spectral acceleration (11.4.5)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				<span class="input-group-text" id="inputGroup-sizing-default">g</span>
 			</div>
 			Weight
 			<div class="input-group mb-3">
 				<span class="input-group-text" id="inputGroup-sizing-default">W<sub>p</sub></span>
-				<input name="Wp" type="text" class="form-control" placeholder="Component Weight" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				<input name="Wp" type="number" step="any" min="0" class="form-control" placeholder="Component Weight" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				<span class="input-group-text">
 					<select class="custom-select" id="units" name="units">
 						<option value="lb" selected>lb</option>
@@ -49,15 +49,15 @@
 			Structure Ductility Reduction Factor, R<sub>µ</sub> (ASCE-XX Section XX.XX.XX)
 				<div class="input-group mb-3">
 					<span class="input-group-text" id="inputGroup-sizing-default">R</span>
-					<input name="R" type="text" class="form-control" placeholder="R factor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+					<input name="R" type="number" step="any" min="0" class="form-control" placeholder="R factor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				</div>
 				<div class="input-group mb-3">
 					<span class="input-group-text" id="inputGroup-sizing-default">Ω<sub>0</sub></span>
-					<input name="Omega0" type="text" class="form-control" placeholder="Overstrength factor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+					<input name="Omega0" type="number" step="any" min="0" class="form-control" placeholder="Overstrength factor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				</div>
 				<div class="input-group mb-3">
 					<span class="input-group-text" id="inputGroup-sizing-default">R<sub>µ</sub></span>
-					<input name="R_mu" type="text" class="form-control" readonly disabled placeholder="Structure Ductility Reduction Factor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+					<input name="R_mu" type="number" step="any" min="0" class="form-control" readonly disabled placeholder="Structure Ductility Reduction Factor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				</div>
 				<input type="hidden" id="CompNum" name="CompNum" value="">
 		</div>
@@ -97,7 +97,7 @@
 				<div class="col" id="ZInput">
 				<div class="input-group mb-3">
 				  <span class="input-group-text" id="ZInputGroup">z</span>
-				  <input name="z" type="text" class="form-control" placeholder="Component height" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				  <input name="z" type="number" step="any" min="0" class="form-control" placeholder="Component height" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				  <span class="input-group-text" id="ZInputGroup">ft.</span>
 				</div>
 				</div>
@@ -105,7 +105,7 @@
 				<div class="col" id="HInput">
 				<div class="input-group mb-3">
 				  <span class="input-group-text" id="HInputGroup">h</span>
-				  <input name="h" type="text" class="form-control" placeholder="Building height"aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				  <input name="h" type="number" step="any" min="0" class="form-control" placeholder="Building height"aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				  <span class="input-group-text" id="HInputGroup">ft.</span>
 				</div>
 				</div>
@@ -113,7 +113,7 @@
 				<div class="col" id="TaInput">
 				<div class="input-group mb-3">
 				  <span class="input-group-text" id="TaInputGroup">T<sub>a</sub></span>
-				  <input name="Ta" type="text" class="form-control" placeholder="Building period" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				  <input name="Ta" type="number" step="any" min="0" class="form-control" placeholder="Building period" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				  <span class="input-group-text" id="TaInputGroup">sec.</span>
 				</div>
 				</div>
@@ -121,7 +121,7 @@
 				<div class="col" id="HfOutput">
 					<div class="input-group mb-3">
 					  <span class="input-group-text" id="HfOutputGroup">H<sub>f</sub></span>
-					  <input name="Hf" type="text" class="form-control" readonly disabled placeholder="Height Factor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+					  <input name="Hf" type="number" step="any" min="0" class="form-control" readonly disabled placeholder="Height Factor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				</div>
 				</div>
 			<!-- </div> -->
@@ -131,15 +131,15 @@
 			Component Properties (Click Table to Fill)
 			<div class="input-group mb-3">
 				<span class="input-group-text" id="inputGroup-sizing-default">C<sub>AR</sub></span>
-				<input id="CarBox" name="Car" type="text" class="form-control" placeholder="Component Response Ductility Factor From Table XX.XX.XX" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				<input id="CarBox" name="Car" type="number" step="any" min="0" class="form-control" placeholder="Component Response Ductility Factor From Table XX.XX.XX" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 			</div>
 			<div class="input-group mb-3">
 				<span class="input-group-text" id="inputGroup-sizing-default">R<sub>po</sub></span>
-				<input id="RpoBox" name="Rpo" type="text" class="form-control" placeholder="Component Strength From Table XX.XX.XX" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				<input id="RpoBox" name="Rpo" type="number" step="any" min="0" class="form-control" placeholder="Component Strength From Table XX.XX.XX" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 			</div>
 			<div class="input-group mb-3">
 				<span class="input-group-text" id="inputGroup-sizing-default">Ω<sub>op</sub></span>
-				<input id="OopBox" name="Oop" type="text" class="form-control" placeholder="Component Overstrength From Table XX.XX.XX" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				<input id="OopBox" name="Oop" type="number" step="any" min="0" class="form-control" placeholder="Component Overstrength From Table XX.XX.XX" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 			</div>
 		</div>
 	</div>

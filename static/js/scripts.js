@@ -23,21 +23,17 @@ $(document).ready(function(){
 });
 
 // LIVE CALCULATION OF R_mu FACTOR
-$(document).ready(function(){
-    $('[name=R]').add('[name=Omega0]').change(function() {
-        // alert('R or Omega0 changed!');
-        var R = parseFloat($('[name=R]').val());
-        var Omega0 = parseFloat($('[name=Omega0]').val());
+$(document).click(function() {
 
-        if (R>0 & Omega0>0) {
-            // alert('R or Omega0 are both valid!');
-            var R_mu = (1.1*R/Omega0)**(0.5);
-            $('[name=R_mu]').val(R_mu.toFixed(2));
-        } else {
-            $('[name=R_mu]').val('');
-        }
+    var R = parseFloat($('[name=R]').val());
+    var Omega0 = parseFloat($('[name=Omega0]').val());
 
-    });
+    if (R>0 & Omega0>0) {
+        var R_mu = (1.1*R/Omega0)**(0.5);
+        $('[name=R_mu]').val(R_mu.toFixed(2));
+    } else {
+         $('[name=R_mu]').val('');
+    }
 });
 
 // LIVE CALCULATION OF Hf FACTOR
@@ -79,7 +75,12 @@ $(document).ready(function(){
 // HIGHLIGHT TABLE ROW WHEN CLICKED
 $(document).ready(function(){
     $("#ComponentsTable tbody tr").click(function() {
-        $(this).addClass("table-success").siblings().removeClass('table-success');
+        $(this).siblings().removeClass('table-success');
+        var CompNum = $(this).children(".num").text();
+        var CompInt = parseInt(CompNum);
+        if (CompInt > 0) {
+            $(this).addClass("table-success");
+        }
     })
 });
 
@@ -144,14 +145,18 @@ $(document).click(function() {
         $('#XBox').val(X.toFixed(2) + '*SdsIpWp');
         $('#FpBox').val(Fp.toFixed(1));
         $('#OopFpBox').val(OopFp.toFixed(1));
+    } else {
+        $('#XBox').val('');
+        $('#FpBox').val('');
+        $('#OopFpBox').val('');
     }
 });
 
 // CHANGE UNITS
 $(document).ready(function(){
-    $('#Units').change(function() {
+    $('#units').change(function() {
 
-        if ($('#Units option:selected').val()=='lb') {
+        if ($('#units option:selected').val()=='lb') {
             $('[name=units_out]').text('lb');
         } else if ($(this).val()=='psf') {
             $('[name=units_out]').text('psf');
