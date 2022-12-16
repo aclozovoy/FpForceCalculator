@@ -59,7 +59,6 @@
 					<span class="input-group-text" id="inputGroup-sizing-default">R<sub>µ</sub></span>
 					<input name="R_mu" type="number" step="any" min="0" class="form-control" readonly disabled placeholder="Structure Ductility Reduction Factor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				</div>
-				<input type="hidden" id="CompNum" name="CompNum" value="">
 		</div>
 	
 
@@ -129,6 +128,11 @@
 			{{HfText}}
 			<br>
 			Component Properties (Click Table to Fill)
+			<input type="hidden" id="CompNum" name="CompNum" value="">
+			<!-- <div class="input-group mb-3">
+				<span class="input-group-text" id="inputGroup-sizing-default">Num</span>
+				<input id="CompNum" name="CompNum" type="text" class="form-control" readonly disabled placeholder="Component Number" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			</div> -->
 			<div class="input-group mb-3">
 				<span class="input-group-text" id="inputGroup-sizing-default">C<sub>AR</sub></span>
 				<input id="CarBox" name="Car" type="number" step="any" min="0" class="form-control" placeholder="Component Response Ductility Factor From Table XX.XX.XX" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
@@ -551,7 +555,7 @@
 
 	<div class="container-sm bg-light p-3 border">
 		<div class="input-group mb-3">
-			<input type="submit" value="Printout">
+			<input id="printbutton" type="submit" value="Printout">
 		</div>
 	</div>
 

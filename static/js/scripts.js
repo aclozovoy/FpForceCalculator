@@ -37,39 +37,34 @@ $(document).click(function() {
 });
 
 // LIVE CALCULATION OF Hf FACTOR
-$(document).ready(function(){
-    $('[name=z]').add('[name=h]').add('[name=Ta]').add('[name$=HfRadio]').change(function() {
-        // alert('Hf inputs changed!');
-        var z = parseFloat($('[name=z]').val());
-        var h = parseFloat($('[name=h]').val());
-        var Ta = parseFloat($('[name=Ta]').val());
-        var HfRadio = $("input[name$='HfRadio']:checked").val();
+$(document).click(function() {
 
-        if (z>0 & h>0 & Ta>0 & HfRadio=='PeriodKnown') {
+    // alert('Hf inputs changed!');
+    var z = parseFloat($('[name=z]').val());
+    var h = parseFloat($('[name=h]').val());
+    var Ta = parseFloat($('[name=Ta]').val());
+    var HfRadio = $("input[name$='HfRadio']:checked").val();
 
-            var a1 = Math.min(1/Ta, 2.5);
-            var a2 = Math.max(1 - (0.4/Ta)**2, 0);
-            var Hf = 1 + a1*(z/h) + a2*(z/h)**10;
+    if (z>0 & h>0 & Ta>0 & HfRadio=='PeriodKnown') {
 
-            $('[name=Hf]').val(Hf.toFixed(2));
+        var a1 = Math.min(1/Ta, 2.5);
+        var a2 = Math.max(1 - (0.4/Ta)**2, 0);
+        var Hf = 1 + a1*(z/h) + a2*(z/h)**10;
+        $('[name=Hf]').val(Hf.toFixed(2));
 
-        } else if (z>0 & h>0 & HfRadio=='PeriodUnknown') {
+    } else if (z>0 & h>0 & HfRadio=='PeriodUnknown') {
 
-            var Hf = 1 + 2.5*(z/h);
+        var Hf = 1 + 2.5*(z/h);
+        $('[name=Hf]').val(Hf.toFixed(2));
 
-            $('[name=Hf]').val(Hf.toFixed(2));
+    } else if (HfRadio=='BelowGrade') {
 
-        } else if (HfRadio=='BelowGrade') {
+        var Hf = 1
+        $('[name=Hf]').val(Hf.toFixed(2));
 
-            var Hf = 1
-
-            $('[name=Hf]').val(Hf.toFixed(2));
-
-        } else {
-            $('[name=Hf]').val('');
-        }
-
-    });
+    } else {
+        $('[name=Hf]').val('');
+    }
 });
 
 // HIGHLIGHT TABLE ROW WHEN CLICKED
@@ -118,7 +113,6 @@ $(document).ready(function(){
 $(document).click(function() {
     var Sds = parseFloat($('[name=Sds]').val());
     var Wp = parseFloat($('[name=Wp]').val());
-    // var Ip = parseFloat($("input[name$='IpRadio']:checked").val()); // Radio
     var Ip_Radio = $("input[name$='IpRadio']:checked").val(); // Radio
     var R_mu = parseFloat($('[name=R_mu]').val());
     var Hf = parseFloat($('[name=Hf]').val());
@@ -128,8 +122,7 @@ $(document).click(function() {
     // alert(Ip);
 
     if (Sds>0 & Wp>0 & R_mu>0 & Hf>0 & Car>0 & Rpo>0 & Oop>0) {
-        // alert('In the loop');
-        // alert(Ip)
+
         if (Ip_Radio=='Ip1.0') {
             var Ip = 1.0;
         } else if (Ip_Radio=='Ip1.5') {
@@ -145,15 +138,27 @@ $(document).click(function() {
         $('#XBox').val(X.toFixed(2) + '*SdsIpWp');
         $('#FpBox').val(Fp.toFixed(1));
         $('#OopFpBox').val(OopFp.toFixed(1));
+
+        // Enable printout button
+        $('#printbutton').prop('disabled', false);
     } else {
         $('#XBox').val('');
         $('#FpBox').val('');
         $('#OopFpBox').val('');
+
+        // Disable printout button
+        $('#printbutton').prop('disabled', true);
     }
 });
 
+// SELECT PREVIOUS UNITS ON BACK
+// $(document).ready(function(){
+//     $('#units').val(('[name=units_out]').val())
+// });
+
 // CHANGE UNITS
 $(document).ready(function(){
+
     $('#units').change(function() {
 
         if ($('#units option:selected').val()=='lb') {
@@ -167,3 +172,25 @@ $(document).ready(function(){
         }
     });
 });
+
+
+// CLICK HIDDEN INPUT ON PAGE LOAD
+$(document).ready(function(){
+    $('#CompNum').click();
+
+    // var CompInt = $('#CompNum').val();
+
+    // $("#ComponentsTable tbody tr").each(function( index ))
+
+});
+
+// $(document).ready(function(){
+//     $("#ComponentsTable tbody tr").click(function() {
+//         $(this).siblings().removeClass('table-success');
+//         var CompNum = $(this).children(".num").text();
+//         var CompInt = parseInt(CompNum);
+//         if (CompInt > 0) {
+//             $(this).addClass("table-success");
+//         }
+//     })
+// });
