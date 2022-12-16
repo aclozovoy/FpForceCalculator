@@ -79,6 +79,11 @@ $(document).ready(function(){
     })
 });
 
+
+           
+        
+
+
 // ADD Car, Rpo, and Oop TABLE VALUES TO INPUT BOX
 $(document).ready(function(){
     $("#ComponentsTable tbody tr").click(function() {
@@ -184,13 +189,3 @@ $(document).ready(function(){
 
 });
 
-// $(document).ready(function(){
-//     $("#ComponentsTable tbody tr").click(function() {
-//         $(this).siblings().removeClass('table-success');
-//         var CompNum = $(this).children(".num").text();
-//         var CompInt = parseInt(CompNum);
-//         if (CompInt > 0) {
-//             $(this).addClass("table-success");
-//         }
-//     })
-// });

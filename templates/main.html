@@ -17,13 +17,11 @@
 	<div class="container-sm bg-light p-3 border">
 	<div class="row">
 		<div class ="col">
-			Seismic
 			<div class="input-group mb-3">
 				<span class="input-group-text" id="inputGroup-sizing-default">S<sub>ds</sub></span>
-				<input name="Sds" type="number" step="any" min="0" class="form-control" placeholder="Spectral acceleration (11.4.5)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				<input name="Sds" type="number" step="any" min="0" class="form-control" placeholder="Spectral acceleration" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				<span class="input-group-text" id="inputGroup-sizing-default">g</span>
 			</div>
-			Weight
 			<div class="input-group mb-3">
 				<span class="input-group-text" id="inputGroup-sizing-default">W<sub>p</sub></span>
 				<input name="Wp" type="number" step="any" min="0" class="form-control" placeholder="Component Weight" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
@@ -37,16 +35,8 @@
 				</span>
 			</div>
 			
-			Component Importance Factor
-			<div class="form-check">
-				<input class="form-check-input" type="radio" name="IpRadio" id="IpRadio1" value="Ip1.0" checked>
-				<label class="form-check-label" for="IpRadio1">I<sub>p</sub> = 1.0</label>
-		   </div>
-		   <div class="form-check">
-				<input class="form-check-input" type="radio" name="IpRadio" id="IpRadio2" value="Ip1.5" unchecked>
-				<label class="form-check-label" for="IpRadio2">I<sub>p</sub> = 1.5</label>
-			</div>
-			Structure Ductility Reduction Factor, R<sub>µ</sub> (ASCE-XX Section XX.XX.XX)
+
+			Structure Ductility Reduction Factor, R<sub>µ</sub>
 				<div class="input-group mb-3">
 					<span class="input-group-text" id="inputGroup-sizing-default">R</span>
 					<input name="R" type="number" step="any" min="0" class="form-control" placeholder="R factor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
@@ -60,16 +50,15 @@
 					<input name="R_mu" type="number" step="any" min="0" class="form-control" readonly disabled placeholder="Structure Ductility Reduction Factor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				</div>
 		</div>
-	
 
 		<div class ="col">
-			Height Factor, H<sub>f</sub> (ASCE-XX Section XX.XX.XX)
+			Height Factor, H<sub>f</sub>
 
 			<!-- <div class="row-3 bg-light p-3 border"> -->
 				<div class="form-check">
 					 <input class="form-check-input" type="radio" name="HfRadio" id="HfRadio1" value="PeriodKnown" checked>
 					 <label class="form-check-label" for="HfRadio1">
-						Supported above grade by a structure (period known)
+						Supported above grade (period known)
 					 </label>
 				</div>
 			<!-- </div> -->
@@ -78,7 +67,7 @@
 				<div class="form-check">
 					 <input class="form-check-input" type="radio" name="HfRadio" id="HfRadio2" value="PeriodUnknown" unchecked>
 					 <label class="form-check-label" for="HfRadio2">
-						Supported above grade by a structure (period unknown)
+						Supported above grade (period unknown)
 					 </label>
 				</div>
 			<!-- </div> -->
@@ -86,7 +75,7 @@
 				<div class="form-check">
 					 <input class="form-check-input" type="radio" name="HfRadio" id="HfRadio3" value="BelowGrade" unchecked>
 					 <label class="form-check-label" for="HfRadio3">
-						Supported at or below grade (H<sub>f</sub> = 1.0)
+						Supported at or below grade
 					 </label>
 				</div>
 			<!-- </div> -->
@@ -124,28 +113,39 @@
 				</div>
 				</div>
 			<!-- </div> -->
-	
-			{{HfText}}
+
+			
+
+		</div>
+
+		<div class ="col">
+			Component Importance Factor
+			<div class="form-check">
+				<input class="form-check-input" type="radio" name="IpRadio" id="IpRadio1" value="Ip1.0" checked>
+				<label class="form-check-label" for="IpRadio1">I<sub>p</sub> = 1.0</label>
+		   </div>
+		   <div class="form-check">
+				<input class="form-check-input" type="radio" name="IpRadio" id="IpRadio2" value="Ip1.5" unchecked>
+				<label class="form-check-label" for="IpRadio2">I<sub>p</sub> = 1.5</label>
+			</div>
 			<br>
 			Component Properties (Click Table to Fill)
 			<input type="hidden" id="CompNum" name="CompNum" value="">
-			<!-- <div class="input-group mb-3">
-				<span class="input-group-text" id="inputGroup-sizing-default">Num</span>
-				<input id="CompNum" name="CompNum" type="text" class="form-control" readonly disabled placeholder="Component Number" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-			</div> -->
 			<div class="input-group mb-3">
 				<span class="input-group-text" id="inputGroup-sizing-default">C<sub>AR</sub></span>
-				<input id="CarBox" name="Car" type="number" step="any" min="0" class="form-control" placeholder="Component Response Ductility Factor From Table XX.XX.XX" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				<input id="CarBox" name="Car" type="number" step="any" min="0" class="form-control" placeholder="Component Response Ductility Factor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 			</div>
 			<div class="input-group mb-3">
 				<span class="input-group-text" id="inputGroup-sizing-default">R<sub>po</sub></span>
-				<input id="RpoBox" name="Rpo" type="number" step="any" min="0" class="form-control" placeholder="Component Strength From Table XX.XX.XX" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				<input id="RpoBox" name="Rpo" type="number" step="any" min="0" class="form-control" placeholder="Component Strength" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 			</div>
 			<div class="input-group mb-3">
 				<span class="input-group-text" id="inputGroup-sizing-default">Ω<sub>op</sub></span>
-				<input id="OopBox" name="Oop" type="number" step="any" min="0" class="form-control" placeholder="Component Overstrength From Table XX.XX.XX" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				<input id="OopBox" name="Oop" type="number" step="any" min="0" class="form-control" placeholder="Component Overstrength" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 			</div>
 		</div>
+
+
 	</div>
 	</div>
 	</div>
@@ -537,26 +537,32 @@
 	</div>
 
 	<div class="container-sm bg-light p-3 border">
-		<div class="input-group mb-3">
-			<span class="input-group-text" id="inputGroup-sizing-default">X</span>
-			<input id="XBox" name="X" type="text" class="form-control" readonly disabled placeholder="Factor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-		</div>
-		<div class="input-group mb-3">
-			<span class="input-group-text" id="inputGroup-sizing-default">F<sub>p</sub></span>
-			<input id="FpBox" name="Fp" type="text" class="form-control" readonly disabled placeholder="Force" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-			<span class="input-group-text" name="units_out">lb</span>
-		</div>
-		<div class="input-group mb-3">
-			<span class="input-group-text" id="inputGroup-sizing-default">Ω<sub>op</sub>F<sub>p</sub></span>
-			<input id="OopFpBox" name="OopFp" type="text" class="form-control" readonly disabled placeholder="Force" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-			<span class="input-group-text" name="units_out">lb</span>
+		<div class="row">
+			<div class="col-2">
+				<!-- <div class="input-group mb-3">
+					<span class="input-group-text" id="inputGroup-sizing-default">X</span>
+					<input id="XBox" name="X" type="text" class="form-control" readonly disabled placeholder="Factor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				</div> -->
+				<div class="input-group mb-3">
+					<span class="input-group-text" id="inputGroup-sizing-default">F<sub>p</sub></span>
+					<input id="FpBox" name="Fp" type="text" class="form-control" readonly disabled placeholder="Force" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+					<span class="input-group-text" name="units_out">lb</span>
+				</div>
+				<div class="input-group mb-3">
+					<span class="input-group-text" id="inputGroup-sizing-default">Ω<sub>op</sub>F<sub>p</sub></span>
+					<input id="OopFpBox" name="OopFp" type="text" class="form-control" readonly disabled placeholder="Force" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+					<span class="input-group-text" name="units_out">lb</span>
+				</div>
+			</div>
+			<div class="col">
+				<div class="input-group mb-3">
+					<input id="printbutton" type="submit" value="Printout">
+				</div>
+			</div>
 		</div>
 	</div>
 
-	<div class="container-sm bg-light p-3 border">
-		<div class="input-group mb-3">
-			<input id="printbutton" type="submit" value="Printout">
-		</div>
+
 	</div>
 
 	</form>
