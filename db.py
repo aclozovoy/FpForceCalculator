@@ -10,7 +10,9 @@ def db_conn():
         with open('localpass.txt') as f:
             password = f.readline().strip('\n')
     except:
-        password = '${{ secrets.DB_PASSWORD }}'
+        import os
+        endpoint = os.environ['DB_PASSWORD']
+        password = endpoint
         
 
 
