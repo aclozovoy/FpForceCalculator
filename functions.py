@@ -126,7 +126,7 @@ def FpFunction(X, Sds, Ip, Wp, Oop):
     return Fp, FpText, OopFp
 
 def CompFunction(CompNum):
-    print(CompNum)
+
     i = int(CompNum) - 1
     CompList = (
         'Interior nonstructural walls and partitions: Light frame ≤ 9ft (2.74m) in height',

@@ -10,9 +10,9 @@ def db_conn():
         with open('localpass.txt') as f:
             password = f.readline().strip('\n')
     except:
-        password = ''
+        password = '${{ secrets.DB_PASSWORD }}'
+        
 
-    print(password)
 
     connection = pymysql.connect(
                     host = host,
@@ -23,7 +23,7 @@ def db_conn():
 
 
     # USE DATABASE
-    sql = '''USE fpdatabase'''
+    sql = '''USE fpdatabase;'''
     cursor.execute(sql)
     cursor.fetchall()
 
@@ -48,13 +48,13 @@ def db_conn():
     timestamp TIMESTAMP DEFAULT NOW(),
     ip_address VARCHAR(100) NOT NULL,
     page VARCHAR(100) NOT NULL
-    )
+    );
     '''
     cursor.execute(sql)
     cursor.fetchall()
 
     # CREATE PRINTOUTS TABLE
-    # sql = '''
+    # sql = sql + '''
     # CREATE TABLE IF NOT EXISTS printouts (
     # id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     # timestamp TIMESTAMP DEFAULT NOW(),
@@ -86,6 +86,7 @@ def db_conn():
 
 
     # COMMIT CHANGES
+    cursor.execute(sql)
     cursor.connection.commit()
     cursor.fetchall()
 
@@ -106,9 +107,11 @@ def db_pages(page):
 
     sql = f'''
     INSERT INTO pageviews (ip_address, page)
-    VALUES ({ip_addr}, {page});
+    VALUES ('{ip_addr}', '{page}');
     '''
+
     cursor.execute(sql)
+    cursor.connection.commit()
     cursor.fetchall()
     
     return

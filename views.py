@@ -19,7 +19,6 @@ def main():
 
         # Units Input
         units = request.form.get('units')
-        print(units)
 
         # Ip Input
         IpRadio = request.form['IpRadio']
@@ -83,8 +82,6 @@ def main():
         # Log main page visits  
         db_pages('main')
         
-
-
         return render_template('main.html')
 
 
