@@ -80,7 +80,7 @@ def main():
     else:
 
         # Log main page visits  
-        # db_pages('main')
+        db_pages('main')
         
         return render_template('main.html')
 
