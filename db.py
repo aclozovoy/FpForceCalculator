@@ -98,7 +98,8 @@ def db_pages(page):
     from flask import request
 
     cursor = db_conn()
-    ip_addr = request.remote_addr
+    # ip_addr = request.remote_addr
+    ip_addr = request.access_route[-1]
 
     sql = f'''
     INSERT INTO pageviews (ip_address, page)
