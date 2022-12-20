@@ -15,7 +15,6 @@ def db_conn():
         password = endpoint
         
 
-
     connection = pymysql.connect(
                     host = host,
                     user = user,
@@ -56,16 +55,15 @@ def db_conn():
     cursor.fetchall()
 
     # CREATE PRINTOUTS TABLE
-    # sql = sql + '''
+    # sql = '''
     # CREATE TABLE IF NOT EXISTS printouts (
     # id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     # timestamp TIMESTAMP DEFAULT NOW(),
     # ip_address VARCHAR(100) NOT NULL,
-    # page_name VARCHAR(100) NOT NULL,
-    # Sds
-    # Wp
-    # units
-    # R
+    # Sds DECIMAL(7,3),
+    # Wp DECIMAL(7,3),
+    # units VARCHAR(10),
+    # R DECIMAL(7,3),
     # Omega0
     # R_mu
     # z
@@ -76,10 +74,10 @@ def db_conn():
     # Car
     # Rpo
     # Omegaop
-    # CompNum
-    # CompType
-    # Fp
-    # OopFp
+    # ComponentNumber INT,
+    # ComponentType VARCHAR(250),
+    # Fp DECIMAL(9,3),
+    # OopFp DECIMAL(9,3)
     # )
     # '''
     # cursor.execute(sql)
@@ -88,14 +86,10 @@ def db_conn():
 
 
     # COMMIT CHANGES
-    cursor.execute(sql)
     cursor.connection.commit()
     cursor.fetchall()
 
     return cursor
-
-
-
 
 
 
@@ -104,7 +98,6 @@ def db_pages(page):
     from flask import request
 
     cursor = db_conn()
-
     ip_addr = request.remote_addr
 
     sql = f'''
@@ -115,5 +108,28 @@ def db_pages(page):
     cursor.execute(sql)
     cursor.connection.commit()
     cursor.fetchall()
+
+    return
+
+
+# LOG PRINTOUT DATA IN DATABASE
+def db_printout(Sds, Wp, units, R, Omega0, R_mu, z, h, Ta, Hf, Ip, Car, Rpo, Omegaop, CompNum, CompType, Fp, OopFp):
+    from flask import request
+
+    cursor = db_conn()
+
+    ip_addr = request.remote_addr
+
+    sql = f'''
+    INSERT INTO pageviews (ip_address, Sds, Wp, units, R, Omega0, R_mu, z, h, Ta, Hf, Ip, Car, Rpo, Omegaop, ComponentNumber, ComponentType, Fp, OopFp)
+    VALUES ('{ip_addr}', '{Sds}', '{Wp}', '{units}', '{R}', '{Omega0}', '{R_mu}', '{z}', '{h}', '{Ta}', '{Hf}', '{Ip}', '{Car}', '{Rpo}', '{Omegaop}', '{CompNum}', '{CompType}', '{Fp}', '{OopFp}');
+    '''
+
+    cursor.execute(sql)
+    cursor.connection.commit()
+    cursor.fetchall()
     
     return
+
+
+

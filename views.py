@@ -74,7 +74,8 @@ def main():
         OopFpT = f"{OopFp:.1f}"
 
         # Log printout
-        # db_pages('printout')
+        db_pages('printout')
+        # db_printout(Sds, Wp, units, R, Omega0, Rmu, z, h, Ta, Hf, Ip, Car, Rpo, Oop, CompNum, CompTxt, Fp, OopFp)
 
         return render_template('printout.html', HfText=HfText, RmuText=RmuText, CompTxt=CompTxt, HfCalc=HfCalc, XText = XText, OopFp=OopFpT, CarType=CarType, HfType=HfType, FpText=FpText, Omega0=Omega0T, Oop=OopT, R=RT, Sds=SdsT, Hf=HfT, Rmu=RmuT, Car=CarT, Rpo=RpoT, X=XT, Xcalc=XcalcT, Fp=FpT, Wp=Wp, units=units, Ip=Ip)
     else:
