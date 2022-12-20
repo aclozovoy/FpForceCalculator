@@ -28,25 +28,11 @@ def db_conn():
     cursor.execute(sql)
     cursor.fetchall()
 
-
-    # DROP TABLE
-    # sql = "DROP TABLE IF EXISTS pageviews"
-    # cursor.execute(sql)
-    # cursor.fetchall()
-
-    # sql = "DROP TABLE IF EXISTS printouts"
-    # cursor.execute(sql)
-    # cursor.fetchall()
-
-    # cursor.connection.commit()
-    # cursor.fetchall()
-
- 
     # CREATE PAGEVIEWS TABLE
     sql = '''
     CREATE TABLE IF NOT EXISTS pageviews (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    timestamp TIMESTAMP DEFAULT NOW(),
+    timestamp DATETIME DEFAULT NOW(),
     ip_address VARCHAR(100) NOT NULL,
     page VARCHAR(100) NOT NULL
     );
@@ -58,27 +44,27 @@ def db_conn():
     sql = '''
     CREATE TABLE IF NOT EXISTS printouts (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    timestamp TIMESTAMP DEFAULT NOW(),
+    timestamp DATETIME DEFAULT NOW(),
     ip_address VARCHAR(100) NOT NULL,
     Sds DECIMAL(7,3),
     Wp DECIMAL(7,3),
     units VARCHAR(10),
-    R DECIMAL(7,3),
-    Omega0 DECIMAL(2,1),
-    R_mu DECIMAL(2,1),
-    z DECIMAL(9,3),
-    h DECIMAL(9,3),
-    Ta DECIMAL(9,3),
-    Hf DECIMAL(9,3),
+    R DECIMAL(5,3),
+    Omega0 DECIMAL(5,3),
+    R_mu DECIMAL(5,3),
+    z DECIMAL(7,3),
+    h DECIMAL(7,3),
+    Ta DECIMAL(5,3),
+    Hf DECIMAL(5,3),
     Ip DECIMAL(2,1),
-    Car DECIMAL(2,1),
-    Rpo DECIMAL(2,1),
-    Omegaop DECIMAL(2,1),
+    Car DECIMAL(5,3),
+    Rpo DECIMAL(5,3),
+    Omegaop DECIMAL(5,3),
     ComponentNumber INT,
     ComponentType VARCHAR(250),
     Fp DECIMAL(9,3),
     OopFp DECIMAL(9,3)
-    )
+    );
     '''
     cursor.execute(sql)
     cursor.fetchall()
@@ -110,14 +96,14 @@ def db_pages(page):
     cursor.connection.commit()
     cursor.fetchall()
 
-    return
+    return cursor
 
 
 # LOG PRINTOUT DATA IN DATABASE
-def db_printout(Sds, Wp, units, R, Omega0, R_mu, z, h, Ta, Hf, Ip, Car, Rpo, Omegaop, CompNum, CompType, Fp, OopFp):
+def db_printout(cursor, Sds, Wp, units, R, Omega0, R_mu, z, h, Ta, Hf, Ip, Car, Rpo, Omegaop, CompNum, CompType, Fp, OopFp):
     from flask import request
 
-    cursor = db_conn()
+    # cursor = db_conn()
 
     ip_addr = request.access_route[-1]
 
