@@ -80,17 +80,21 @@ def main():
         return render_template('printout.html', HfText=HfText, RmuText=RmuText, CompTxt=CompTxt, HfCalc=HfCalc, XText = XText, OopFp=OopFpT, CarType=CarType, HfType=HfType, FpText=FpText, Omega0=Omega0T, Oop=OopT, R=RT, Sds=SdsT, Hf=HfT, Rmu=RmuT, Car=CarT, Rpo=RpoT, X=XT, Xcalc=XcalcT, Fp=FpT, Wp=Wp, units=units, Ip=Ip)
     else:
 
-        # Log main page visits  
+        # Log main page visits 
         cursor = db_pages('main')
         
         return render_template('main.html')
 
 
 
+# About page
+@views.route("/about")
+def about():
+    db_pages('about')
+    return render_template("about.html")
 
-
-
-
-# @views.route("/about")
-# def about():
-#     return render_template("about.html")
+# Feedback page
+@views.route("/feedback")
+def feedback():
+    db_pages('feedback')
+    return render_template("feedback.html")
