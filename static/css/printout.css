@@ -9,7 +9,7 @@ p {
     padding: 0px;
 }
 
-@print {
+@media print {
     @page :footer {
         display: none
     }

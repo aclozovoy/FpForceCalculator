@@ -50,8 +50,6 @@ def main():
         Ta = request.form['Ta']
         a1, a2, Hf, HfText, HfType, CarType, HfCalc = HfFunction(HfRadio, z, h, Ta)
         HfT = f"{Hf:.2f}"
-        # zT = f"{z:.0f}"
-        # hT = f"{h:.0f}"
 
         # R_mu Input and Calculation
         R = request.form['R']
