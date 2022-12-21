@@ -8,13 +8,13 @@
 		ASCE 7-22 Nonstructural Seismic Force Calculator
 	</div>
 	<form action="#" method="post" target="_blank">
-	<div class="container-sm bg-light p-3 border">
+	<div class="container-sm bg-light p-3 border border-dark">
 	<div class="row">
 		<div class ="col">
 			<div class="input-group mb-3">
-				<span class="input-group-text" id="inputGroup-sizing-default">S<sub>ds</sub></span>
+				<span class="input-group-text bg-primary text-light" id="inputGroup-sizing-default">S<sub>ds</sub></span>
 				<input name="Sds" type="number" step="any" min="0" class="form-control" placeholder="Spectral acceleration" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-				<span class="input-group-text" id="inputGroup-sizing-default">g</span>
+				<span class="input-group-text bg-success text-light" id="inputGroup-sizing-default">g</span>
 			</div>
 			<div class="input-group mb-3">
 				<span class="input-group-text" id="inputGroup-sizing-default">W<sub>p</sub></span>
@@ -137,13 +137,13 @@
 	</div>
 
 	<div class="container-sm bg-light p-3 border table-responsive">
-		<table class="table table-sm table-hover" id="ComponentsTable">
-			<thead>
+		<table class="table table-sm table-hover bg-white table-bordered border-dark" id="ComponentsTable">
+			<thead class="table-primary">
 				<tr>
-					<th>Number</th>
+					<th>Num.</th>
 					<th>Architectural Component</th>
-					<th>C<sub>AR</sub> (Below grade)</th>
-					<th>C<sub>AR</sub> (Above grade)</th>
+					<th>Below_C<sub>AR</sub></th>
+					<th>Above_C<sub>AR</sub></th>
 					<th>R<sub>po</sub></th>
 					<th>Ω<sub>op</sub></th>
 				</tr>
@@ -523,7 +523,7 @@
 
 	<div class="container-sm bg-light p-3 border">
 		<div class="row">
-			<div class="col-2">
+			<div class="col-3">
 				<!-- <div class="input-group mb-3">
 					<span class="input-group-text" id="inputGroup-sizing-default">X</span>
 					<input id="XBox" name="X" type="text" class="form-control" readonly disabled placeholder="Factor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
@@ -542,6 +542,41 @@
 			<div class="col">
 				<div class="input-group mb-3">
 					<input id="printbutton" type="submit" value="Printout">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-sm bg-light p-3 border">
+		<div class="row">
+			<div class="col">
+				<div class="input-group mb-3">
+					<span class="input-group-text" id="inputGroup-sizing-default">Title</span>
+					<input id="TitleBox" name="title" type="text" class="form-control" placeholder="Title" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				</div>
+				<div class="input-group mb-3">
+					<span class="input-group-text" id="inputGroup-sizing-default">Project</span>
+					<input id="ProjectBox" name="project" type="text" class="form-control" placeholder="Project" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				</div>
+				<div class="input-group mb-3">
+					<span class="input-group-text" id="inputGroup-sizing-default">Location</span>
+					<input id="LocationBox" name="location" type="text" class="form-control" placeholder="Location" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				</div>
+				<div class="input-group mb-3">
+					<span class="input-group-text" id="inputGroup-sizing-default">Client</span>
+					<input id="ClientBox" name="client" type="text" class="form-control" placeholder="Client" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				</div>
+				<div class="input-group mb-3">
+					<span class="input-group-text" id="inputGroup-sizing-default">Company</span>
+					<input id="CompanyBox" name="company" type="text" class="form-control" placeholder="Company" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				</div>
+				<div class="input-group mb-3">
+					<span class="input-group-text" id="inputGroup-sizing-default">Engineer</span>
+					<input id="EngineerBox" name="engineer" type="text" class="form-control" placeholder="Engineer" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+				</div>
+				<div class="input-group mb-3">
+					<span class="input-group-text" id="inputGroup-sizing-default">Date</span>
+					<input id="DateBox" name="date" type="text" class="form-control" placeholder="Date" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				</div>
 			</div>
 		</div>
