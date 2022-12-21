@@ -169,3 +169,16 @@ def CompFunction(CompNum):
     CompTxt = CompList[i]
 
     return CompTxt
+
+
+
+def InfoFunction(info):
+
+    info_log = [None] * len(info)
+
+    i = 0
+    for element in info:
+        info_log[i] = len(element)
+        i += 1
+
+    return info_log

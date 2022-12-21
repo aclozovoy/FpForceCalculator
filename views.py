@@ -73,11 +73,15 @@ def main():
         FpT = f"{Fp:.1f}"
         OopFpT = f"{OopFp:.1f}"
 
+        # Text inputs for printout page
+        info = [ request.form['title'], request.form['project'], request.form['location'], request.form['client'], request.form['company'], request.form['engineer'], request.form['date'], request.form['notes'] ]
+        info_log = InfoFunction(info)
+
         # Log printout
         cursor = db_pages('printout')
-        db_printout(cursor, Sds, Wp, units, R, Omega0, Rmu, z, h, Ta, Hf, Ip, Car, Rpo, Oop, CompNum, CompTxt, Fp, OopFp)
+        db_printout(cursor, Sds, Wp, units, R, Omega0, Rmu, z, h, Ta, Hf, Ip, Car, Rpo, Oop, CompNum, CompTxt, Fp, OopFp, info_log)
 
-        return render_template('printout.html', HfText=HfText, RmuText=RmuText, CompTxt=CompTxt, HfCalc=HfCalc, XText = XText, OopFp=OopFpT, CarType=CarType, HfType=HfType, FpText=FpText, Omega0=Omega0T, Oop=OopT, R=RT, Sds=SdsT, Hf=HfT, Rmu=RmuT, Car=CarT, Rpo=RpoT, X=XT, Xcalc=XcalcT, Fp=FpT, Wp=Wp, units=units, Ip=Ip)
+        return render_template('printout.html', HfText=HfText, RmuText=RmuText, CompTxt=CompTxt, HfCalc=HfCalc, XText = XText, OopFp=OopFpT, CarType=CarType, HfType=HfType, FpText=FpText, Omega0=Omega0T, Oop=OopT, R=RT, Sds=SdsT, Hf=HfT, Rmu=RmuT, Car=CarT, Rpo=RpoT, X=XT, Xcalc=XcalcT, Fp=FpT, Wp=Wp, units=units, Ip=Ip, info=info)
     else:
 
         # Log main page visits 
