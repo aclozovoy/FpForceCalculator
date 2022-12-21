@@ -7,46 +7,165 @@
     <title>Printout</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link href="static/css/printout.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="static/favicon.ico"/>
 </head>
 <body>
-    <h1>ASCE 7-22 Nonstructural Seismic Force</h1>
-    <div class="border">
-    <h2>Inputs</h2>
-    <p>S<sub>ds</sub>: {{Sds}} g</p>
-    <p>W<sub>p</sub>: {{Wp}} {{units}}</p>
-    <p>Component Importance Factor I<sub>p</sub>: {{Ip}}</p>
-    
-    <h2>Height Factor</h2>
-    <p>Condition: {{HfType}}</p>
-    <p>
-        {% autoescape false %}
-        {{HfCalc}}
-        {% endautoescape%}
-    </p>
+    <div class="border border-dark border-5">
+    <div class="container">
+        <div class="row">
+            <h3>ASCE 7-22 Nonstructural Seismic Force Calculation</h3>
+
+            <!-- Left -->
+            <div class ="col-4">
+                <div class="row">
+                    <div class="col-3">
+                        <p><strong>Title:</strong></p>
+                    </div>
+                    <div class="col">
+                        <p>Surfboard Anchorage</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <p><strong>Project:</strong></p>
+                    </div>
+                    <div class="col">
+                        <p>Beachside Taco Shack</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <p><strong>Location:</strong></p>
+                    </div>
+                    <div class="col">
+                        <p> Longyearbyen, Svalbard</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Middle -->
+            <div class ="col-4">
+                <div class="row">
+                    <div class="col-3">
+                        <p><strong>Client:</strong></p>
+                    </div>
+                    <div class="col">
+                        <p> Polar Bear Architects</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <p><strong>Company:</strong></p>
+                    </div>
+                    <div class="col">
+                        <p> Spitsbergen Engineering</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <p><strong>Engineer:</strong></p>
+                    </div>
+                    <div class="col">
+                        <p> AL</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right -->
+            <div class ="col-4">
+                <div class="row">
+                    <div class="col-3">
+                        <p><strong>Code:</strong></p>
+                    </div>
+                    <div class="col">
+                        <p>ASCE 7-22, Chapter 13</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <p><strong>Date:</strong></p>
+                    </div>
+                    <div class="col">
+                        <p>December 20, 2022</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <p><strong>Revised:</strong></p>
+                    </div>
+                    <div class="col">
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Notes -->
+        <div class="row">
+            <div class="col-1">
+                <p><strong>Notes:</strong></p>
+            </div>
+            <div class="col">
+                <p>This is where we get to put lots of interesting engineering notes. Ea nobis illo ex inventore doloremque et nobis rerum ex praesentium officia est nobis aspernatur est labore aperiam rem sapiente voluptatem. A repellendus esse sed voluptate consequatur a excepturi molestiae. Hic quia repellat nam voluptate iure sit expedita quisquam vel omnis iure. Qui error ducimus ut voluptatem quasi est consequatur excepturi et porro architecto.</p>
+            </div>
+        </div>
+
+        <div class="border-bottom border-dark"></div>
+        <div class="row">
+            <div class="col">
+                <h5>Inputs</h5>
+                <p>S<sub>ds</sub>: {{Sds}} g</p>
+                <p>W<sub>p</sub>: {{Wp}} {{units}}</p>
+                <p>Component Importance Factor I<sub>p</sub>: {{Ip}}</p>
+            </div>
+            <div class="col">
+                <h5>Table Values</h5>
+                <p>Component Type: {{CompTxt}}</p>
+                <p>C<sub>AR</sub>: {{Car}} {{CarType}}</p>
+                <p>R<sub>po</sub>: {{Rpo}}</p>
+                <p>Ω<sub>op</sub>: {{Oop}}</p>
+            </div>
+            <div class="col">
+                <h5>Structure Ductility Reduction Factor</h5>
+                <p>R<sub>µ</sub> = (1.1R/Ω<sub>0</sub>)<sup>1/2</sup></p>
+                <p>R<sub>µ</sub> = (1.1({{R}})/({{Omega0}}))<sup>1/2</sup></p>
+                <p>R<sub>µ</sub> = {{Rmu}}</p>
+            </div>
+        </div>
 
 
-    <h2>Structure Ductility Reduction Factor</h2>
-    <p>R<sub>µ</sub> = (1.1R/Ω<sub>0</sub>)<sup>1/2</sup></p>
-    <p>R<sub>µ</sub> = (1.1({{R}})/({{Omega0}}))<sup>1/2</sup></p>
-    <p>R<sub>µ</sub> = {{Rmu}}</p>
+        <div class="border-bottom border-dark"></div>
+        <div class="row">
+            <h5>Height Factor</h5>
+            <p>
+                {% autoescape false %}
+                {{HfCalc}}
+                {% endautoescape%}
+            </p>
+        </div>
+        <div class="border-bottom border-dark"></div>
+        <div class="row">
 
-    <h2>Table Values</h2>
-    <p>Component Type: {{CompTxt}}</p>
-    <p>C<sub>AR</sub>: {{Car}} {{CarType}}</p>
-    <p>R<sub>po</sub>: {{Rpo}}</p>
-    <p>Ω<sub>op</sub>: {{Oop}}</p>
 
-    <h2>Calculation</h2>
-    <p>F<sub>p</sub> = 0.4 * [H<sub>f</sub>/R<sub>µ</sub>][C<sub>AR</sub>/R<sub>po</sub>] * S<sub>ds</sub>I<sub>p</sub>W<sub>p</sub></p>
-    <p>F<sub>p</sub> = 0.4 * [{{Hf}}/{{Rmu}}][{{Car}}/{{Rpo}}] * S<sub>ds</sub>I<sub>p</sub>W<sub>p</sub></p>
-    <p>F<sub>p</sub> = {{X}} * S<sub>ds</sub>I<sub>p</sub>W<sub>p</sub> (Calculated as {{Xcalc}} * S<sub>ds</sub>I<sub>p</sub>W<sub>p</sub>)</p>
-    <p>F<sub>p</sub> = {{X}} * ({{Sds}})({{Ip}})({{Wp}} {{units}})</p>
-    <p>F<sub>p</sub> = {{Fp}} {{units}}</p>
-    <br>
-    <p>Ω<sub>op</sub>F<sub>p</sub> = Ω<sub>op</sub> * F<sub>p</sub></p>
-    <p>Ω<sub>op</sub>F<sub>p</sub> = ({{Oop}}) * ({{Fp}} {{units}})</p>
-    <p>Ω<sub>op</sub>F<sub>p</sub> = {{OopFp}} {{units}}</p>
-    </span>
+        <div class="row">
+            <h5>Nonstructural Seismic Force</h5>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>F<sub>p</sub> = 0.4 * [H<sub>f</sub>/R<sub>µ</sub>][C<sub>AR</sub>/R<sub>po</sub>] * S<sub>ds</sub>I<sub>p</sub>W<sub>p</sub></p>
+                <p>F<sub>p</sub> = 0.4 * [{{Hf}}/{{Rmu}}][{{Car}}/{{Rpo}}] * S<sub>ds</sub>I<sub>p</sub>W<sub>p</sub></p>
+                <p>F<sub>p</sub> = {{X}} * S<sub>ds</sub>I<sub>p</sub>W<sub>p</sub> (Calculated as {{Xcalc}} * S<sub>ds</sub>I<sub>p</sub>W<sub>p</sub>)</p>
+                <p>F<sub>p</sub> = {{X}} * ({{Sds}})({{Ip}})({{Wp}} {{units}})</p>
+                <p>F<sub>p</sub> = {{Fp}} {{units}}</p>
+            </div>
+            <div class="col">
+                <p>Ω<sub>op</sub>F<sub>p</sub> = Ω<sub>op</sub> * F<sub>p</sub></p>
+                <p>Ω<sub>op</sub>F<sub>p</sub> = ({{Oop}}) * ({{Fp}} {{units}})</p>
+                <p>Ω<sub>op</sub>F<sub>p</sub> = {{OopFp}} {{units}}</p>
+            </div>
+        </div>
+    </div>
 
     
 </body>

@@ -20,13 +20,14 @@ def HfFunction(HfRadio, z, h, Ta):
         CarType = '(Supported above grade by a structure)'
 
         HfCalc = f'''
-        <p>z = {z:.0f} ft</p>
-        <p>h = {h:.0f} ft</p>
-        <p>T<sub>a</sub> = {Ta:.2f}</p>
+        <p>Condition: Supported above grade by a building or nonbuilding structure with a known approximate fundamental period</p>
+        <p>z = {z:.1f} ft</p>
+        <p>h = {h:.1f} ft</p>
+        <p>T<sub>a</sub> = {Ta:.2f} sec.</p>
         <p>H<sub>f</sub> = 1 + a<sub>1</sub>(z/h) + a<sub>2</sub>(z/h)<sup>10</sup></p>
-        <p>&emsp;a<sub>1</sub> = min(1/T<sub>a</sub> , 2.5) = min(1/{Ta:.2f} , 2.5) = min({a1calc:.2f} , 2.5) = {a1:.2f}</p>
-        <p>&emsp;a<sub>2</sub> = max(1 - (0.4/T<sub>a</sub>)<sup>2</sup> , 0) = max(1 - (0.4/{Ta:.2f})<sup>2</sup> , 0) = max({a2calc:.2f} , 0) = {a2:.2f}</p>
-        <p>H<sub>f</sub> = 1 + {a1:.2f}( {z:.0f}ft / {h:.0f}ft ) + {a2:.2f}( {z:.0f}ft / {h:.0f}ft )<sup>10</sup></p>
+        <p>&emsp;&emsp;&emsp;a<sub>1</sub> = min(1/T<sub>a</sub> , 2.5) = min(1/{Ta:.2f} , 2.5) = min({a1calc:.2f} , 2.5) = {a1:.2f}</p>
+        <p>&emsp;&emsp;&emsp;a<sub>2</sub> = max(1 - (0.4/T<sub>a</sub>)<sup>2</sup> , 0) = max(1 - (0.4/{Ta:.2f})<sup>2</sup> , 0) = max({a2calc:.2f} , 0) = {a2:.2f}</p>
+        <p>H<sub>f</sub> = 1 + {a1:.2f}( {z:.1f} ft / {h:.1f} ft ) + {a2:.2f}( {z:.1f} ft / {h:.1f} ft )<sup>10</sup></p>
         <p>H<sub>f</sub> = {Hf:.2f}</p>
         '''
 
@@ -45,10 +46,11 @@ def HfFunction(HfRadio, z, h, Ta):
         CarType = '(Supported above grade by a structure)'
 
         HfCalc = f'''
-        <p>z = {z:.0f} ft</p>
-        <p>h = {h:.0f} ft</p>
+        <p>Condition: Supported above grade by a building or nonbuilding structure with an unknown approximate fundamental period</p>
+        <p>z = {z:.1f} ft</p>
+        <p>h = {h:.1f} ft</p>
         <p>H<sub>f</sub> = 1 + 2.5(z/h)</p>
-        <p>H<sub>f</sub> = 1 + 2.5({z:.0f}ft /{h:.0f}ft )</p>
+        <p>H<sub>f</sub> = 1 + 2.5({z:.1f}ft /{h:.1f}ft )</p>
         <p>H<sub>f</sub> = {Hf:.2f}</p>
         '''
 
@@ -62,6 +64,7 @@ def HfFunction(HfRadio, z, h, Ta):
         CarType ='(Supported at or below grade)'
 
         HfCalc = f'''
+        <p>Condition: Supported at or below grade</p>
         <p>H<sub>f</sub> = {Hf:.2f}</p>
         '''
 

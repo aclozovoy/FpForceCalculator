@@ -3,3 +3,18 @@ body {
     font-size: small;
     margin-left: 3px;
 }
+
+p {
+    margin: 2px;
+    padding: 0px;
+}
+
+@print {
+    @page :footer {
+        display: none
+    }
+ 
+    @page :header {
+        display: none
+    }
+}
