@@ -178,7 +178,10 @@ def InfoFunction(info):
 
     i = 0
     for element in info:
-        info_log[i] = len(element)
+        if len(element) > 0:
+            info_log[i] = 1
+        else:
+            info_log[i] = 0
         i += 1
 
     return info_log

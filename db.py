@@ -64,14 +64,14 @@ def db_conn():
     ComponentType VARCHAR(250),
     Fp DECIMAL(9,3),
     OopFp DECIMAL(9,3),
-    TitleLength INT,
-    ProjectLength INT,
-    LocationLength INT,
-    ClientLength INT,
-    CompanyLength INT,
-    EngineerLength INT,
-    DateLength INT,
-    NotesLength INT
+    Title TINYINT,
+    Project TINYINT,
+    Location TINYINT,
+    Client TINYINT,
+    Company TINYINT,
+    Engineer TINYINT,
+    Date TINYINT,
+    Notes TINYINT
     );
     '''
     cursor.execute(sql)
@@ -116,7 +116,7 @@ def db_printout(cursor, Sds, Wp, units, R, Omega0, R_mu, z, h, Ta, Hf, Ip, Car, 
     ip_addr = request.access_route[-1]
 
     sql = f'''
-    INSERT INTO printouts (ip_address, Sds, Wp, units, R, Omega0, R_mu, z, h, Ta, Hf, Ip, Car, Rpo, Omegaop, ComponentNumber, ComponentType, Fp, OopFp, TitleLength, ProjectLength, LocationLength, ClientLength, CompanyLength, EngineerLength, DateLength, NotesLength)
+    INSERT INTO printouts (ip_address, Sds, Wp, units, R, Omega0, R_mu, z, h, Ta, Hf, Ip, Car, Rpo, Omegaop, ComponentNumber, ComponentType, Fp, OopFp, Title, Project, Location, Client, Company, Engineer, Date, Notes)
     VALUES ('{ip_addr}', '{Sds}', '{Wp}', '{units}', '{R}', '{Omega0}', '{R_mu}', '{z}', '{h}', '{Ta}', '{Hf}', '{Ip}', '{Car}', '{Rpo}', '{Omegaop}', '{CompNum}', '{CompType}', '{Fp}', '{OopFp}', '{info_log[0]}', '{info_log[1]}', '{info_log[2]}', '{info_log[3]}', '{info_log[4]}', '{info_log[5]}', '{info_log[6]}', '{info_log[7]}');
     '''
 
