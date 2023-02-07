@@ -3,7 +3,7 @@ def db_conn():
 
     import pymysql
 
-    host = 'fp-database.cl7ay4156fuf.us-west-2.rds.amazonaws.com'
+    host = 'acl-database.cl7ay4156fuf.us-west-2.rds.amazonaws.com'
     user = 'admin'
 
     try:
