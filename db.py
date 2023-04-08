@@ -90,14 +90,16 @@ def db_conn():
 # LOG PAGE VIEWS IN DATABASE
 def db_pages(page):
     from flask import request
+    from hashlib import sha256
 
     cursor = db_conn()
 
     ip_addr = request.access_route[-1]
+    ip_addr_hash = sha256(ip_addr.encode('utf-8')).hexdigest()
 
     sql = f'''
     INSERT INTO pageviews (ip_address, page)
-    VALUES ('{ip_addr}', '{page}');
+    VALUES ('{ip_addr_hash}', '{page}');
     '''
 
     cursor.execute(sql)
@@ -110,14 +112,16 @@ def db_pages(page):
 # LOG PRINTOUT DATA IN DATABASE
 def db_printout(cursor, Sds, Wp, units, R, Omega0, R_mu, z, h, Ta, Hf, Ip, Car, Rpo, Omegaop, CompNum, CompType, Fp, OopFp, info_log):
     from flask import request
+    from hashlib import sha256
 
     # cursor = db_conn()
 
     ip_addr = request.access_route[-1]
+    ip_addr_hash = sha256(ip_addr.encode('utf-8')).hexdigest()
 
     sql = f'''
     INSERT INTO printouts (ip_address, Sds, Wp, units, R, Omega0, R_mu, z, h, Ta, Hf, Ip, Car, Rpo, Omegaop, ComponentNumber, ComponentType, Fp, OopFp, Title, Project, Location, Client, Company, Engineer, Date, Notes)
-    VALUES ('{ip_addr}', '{Sds}', '{Wp}', '{units}', '{R}', '{Omega0}', '{R_mu}', '{z}', '{h}', '{Ta}', '{Hf}', '{Ip}', '{Car}', '{Rpo}', '{Omegaop}', '{CompNum}', '{CompType}', '{Fp}', '{OopFp}', '{info_log[0]}', '{info_log[1]}', '{info_log[2]}', '{info_log[3]}', '{info_log[4]}', '{info_log[5]}', '{info_log[6]}', '{info_log[7]}');
+    VALUES ('{ip_addr_hash}', '{Sds}', '{Wp}', '{units}', '{R}', '{Omega0}', '{R_mu}', '{z}', '{h}', '{Ta}', '{Hf}', '{Ip}', '{Car}', '{Rpo}', '{Omegaop}', '{CompNum}', '{CompType}', '{Fp}', '{OopFp}', '{info_log[0]}', '{info_log[1]}', '{info_log[2]}', '{info_log[3]}', '{info_log[4]}', '{info_log[5]}', '{info_log[6]}', '{info_log[7]}');
     '''
 
     cursor.execute(sql)
