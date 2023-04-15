@@ -96,7 +96,23 @@ def about():
     return render_template("about.html")
 
 # Feedback page
-@views.route("/feedback")
+@views.route("/feedback", methods=['POST','GET'])
 def feedback():
-    db_pages('feedback')
-    return render_template("feedback.html")
+    if request.method == 'POST':
+
+        # Feedback Input
+        feedback = request.form['feedback']
+        feedback_single = " (N) ".join(line.strip() for line in feedback.splitlines())
+
+        # Log feedback
+        cursor = db_pages('thankyou')
+        db_feedback(cursor, feedback_single)
+
+        return render_template('thankyou.html')
+
+    else:
+
+        # Log feedback page visits
+        cursor = db_pages('feedback')
+
+        return render_template("feedback.html")

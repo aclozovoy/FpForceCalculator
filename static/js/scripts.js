@@ -189,3 +189,9 @@ $(document).ready(function(){
 
 });
 
+
+// PREVENT MULTILINE TEXT IN FEEDBACK BOX
+$('feedback').on('keyup', function(){
+    $(this).val($(this).val().replace(/[\r\n\v]+/g, ''));
+  });
+  
