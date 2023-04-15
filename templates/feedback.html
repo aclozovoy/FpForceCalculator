@@ -5,8 +5,20 @@
 
 {% block content %}
 
-<h1>Feedback</h1>
+<div class="container">
+    <br>
+    <h1>Feedback</h1>
 
-<p>This is a page where users can give their comments and suggestions about the site.</p>
+        <p>User feedback is appreciated to help improve the site!</p>
+        
+        <p>Please leave your comments below:</p>
+    <div class="input-group">
+		<textarea class="form-control" id="FeedbackBox" name="feedback" aria-label="With textarea"></textarea>
+	</div>
+    <br>
+    <div class="input-group mb-3">
+        <input id="feedbackbutton" type="submit" value="Submit">
+    </div>
+</div>
 
 {% endblock %}

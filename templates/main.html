@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Nonstructural Seismic Force Calculator{% endblock %}
+{% block title %}FpForce.net{% endblock %}
 
 
 
@@ -29,7 +29,7 @@
 				</span>
 			</div>
 			
-
+			<br>
 			Structure Ductility Reduction Factor, R<sub>µ</sub>
 				<div class="input-group mb-3">
 					<span class="input-group-text" id="inputGroup-sizing-default">R</span>
@@ -524,10 +524,6 @@
 	<div class="container-sm bg-light p-3 border border-dark">
 		<div class="row">
 			<div class="col-3">
-				<!-- <div class="input-group mb-3">
-					<span class="input-group-text" id="inputGroup-sizing-default">X</span>
-					<input id="XBox" name="X" type="text" class="form-control" readonly disabled placeholder="Factor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-				</div> -->
 				<div class="input-group mb-3">
 					<span class="input-group-text" id="inputGroup-sizing-default">F<sub>p</sub></span>
 					<input id="FpBox" name="Fp" type="text" class="form-control" readonly disabled placeholder="Force" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
@@ -543,6 +539,7 @@
 				<div class="input-group mb-3">
 					<input id="printbutton" type="submit" value="Printout">
 				</div>
+				<div class="small text-muted fst-italic">Use Google Chrome for best printout results.</div>
 			</div>
 		</div>
 	</div>
