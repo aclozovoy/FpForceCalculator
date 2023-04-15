@@ -1,6 +1,6 @@
 # FpForceCalculator
 
-[FpForce.net](http://fpforce.net/).
+[FpForce.net](http://fpforce.net/)
 
 ASCE 7-22 Nonstructural Seismic Force Calculator
 
