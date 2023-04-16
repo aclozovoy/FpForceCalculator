@@ -15,9 +15,6 @@ $(document).ready(function(){
             $("#ZInput").hide("slow");
             $("#HInput").hide("slow");
             $("#TaInput").hide("slow");
-            // $("#ZInput").attr('disabled', 'disabled');
-            // $("#HInput").attr('disabled', 'disabled');
-            // $("#TaInput").attr('disabled', 'disabled');
         }
     })
 });
@@ -39,7 +36,6 @@ $(document).click(function() {
 // LIVE CALCULATION OF Hf FACTOR
 $(document).click(function() {
 
-    // alert('Hf inputs changed!');
     var z = parseFloat($('[name=z]').val());
     var h = parseFloat($('[name=h]').val());
     var Ta = parseFloat($('[name=Ta]').val());
@@ -156,10 +152,6 @@ $(document).click(function() {
     }
 });
 
-// SELECT PREVIOUS UNITS ON BACK
-// $(document).ready(function(){
-//     $('#units').val(('[name=units_out]').val())
-// });
 
 // CHANGE UNITS
 $(document).ready(function(){
@@ -182,16 +174,5 @@ $(document).ready(function(){
 // CLICK HIDDEN INPUT ON PAGE LOAD
 $(document).ready(function(){
     $('#CompNum').click();
-
-    // var CompInt = $('#CompNum').val();
-
-    // $("#ComponentsTable tbody tr").each(function( index ))
-
 });
 
-
-// PREVENT MULTILINE TEXT IN FEEDBACK BOX
-$('feedback').on('keyup', function(){
-    $(this).val($(this).val().replace(/[\r\n\v]+/g, ''));
-  });
-  
