@@ -1,18 +1,26 @@
 FROM python:3.9-slim
 
-# ENV DB_PASSWORD Password
+ENV DB_PASSWORD xxmssxPzk6UBcBCAhztKVbuwRQWZPg
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
 COPY requirements.txt requirements.txt
 RUN pip install -U pip && pip install -r requirements.txt
 
-COPY ./app /dapp/app
-COPY ./bin /dapp/bin
-COPY wsgi.py /dapp/wsgi.py
-WORKDIR /dapp
+RUN apt-get -y update && apt-get -y install nginx
 
-RUN useradd flaskuser
-USER flaskuser
+COPY ./app /app/app
+COPY ./bin /app/bin
+COPY wsgi.py /app/wsgi.py
+WORKDIR /app
 
-EXPOSE 8080
+# RUN useradd nginx
+# USER nginx
 
-ENTRYPOINT ["bash", "/dapp/bin/run.sh"]
+COPY nginx.conf /etc/nginx/conf.d/flask-fp-app.conf
+
+EXPOSE 80 443
+
+ENTRYPOINT ["bash", "/app/bin/run.sh"]
+
+CMD /usr/sbin/nginx -g "daemon off;"
