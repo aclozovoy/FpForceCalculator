@@ -15,7 +15,7 @@ WORKDIR /app
 # RUN useradd fp-user
 # USER fp-user
 
-# EXPOSE 8000
+EXPOSE 8000
 
 ENTRYPOINT ["bash", "/app/bin/run.sh"]
 

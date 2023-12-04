@@ -85,3 +85,9 @@ host="0.0.0.0", port=8000
                 proxy_set_header Host $host;
                 proxy_set_header X-NginX-Proxy true;
                 proxy_redirect off;
+
+
+
+
+
+
