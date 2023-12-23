@@ -1,6 +1,7 @@
-from flask import Blueprint, render_template, request
-from functions import *
-from db import *
+from flask import Blueprint, render_template, request, Response
+from .functions import *
+from .db import *
+import os
 
 views = Blueprint('views', __name__)
 
@@ -116,3 +117,20 @@ def feedback():
         cursor = db_pages('feedback')
 
         return render_template("feedback.html")
+    
+# Health
+@views.route("/health")
+def health():
+    return Response("OK", status=200)
+
+
+# Env Var Check
+@views.route("/env")
+def env():
+
+    try:
+        env = os.environ['DB_PASSWORD']
+    except:
+        env = "No environment variable"
+
+    return Response(env, status=200)
