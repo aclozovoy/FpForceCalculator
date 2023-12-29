@@ -9,6 +9,9 @@ RUN apt install -y certbot
 RUN apt install -y python3-certbot-nginx
 # RUN certbot --nginx -d fpforce.net -d www.fpforce.net
 
-EXPOSE 80
+RUN useradd nginx-user
+USER nginx-user
+
+EXPOSE 80 443
 
 CMD ["nginx", "-g", "daemon off;"]
