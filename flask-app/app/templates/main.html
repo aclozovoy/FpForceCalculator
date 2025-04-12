@@ -4,596 +4,213 @@
 
 
 {% block content %}
-	<div class="container h1">
-		ASCE 7-22 Nonstructural Seismic Force Calculator
-	</div>
-	<form action="#" method="post" target="_blank">
-	<div class="container-sm bg-light p-3 border border-dark">
-	<div class="row">
-		<div class ="col">
-			<div class="input-group mb-3">
-				<span class="input-group-text" id="inputGroup-sizing-default">S<sub>ds</sub></span>
-				<input name="Sds" type="number" step="any" min="0" class="form-control" placeholder="Spectral acceleration" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-				<span class="input-group-text" id="inputGroup-sizing-default">g</span>
+<div class="bg-white shadow rounded-lg p-6">
+	<h1 class="text-2xl font-bold text-gray-900 mb-6">FpForce Calculator</h1>
+	
+	<form id="calculatorForm" class="space-y-6">
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+			<!-- Basic Parameters -->
+			<div class="space-y-4">
+				<h2 class="text-lg font-semibold text-gray-700">Basic Parameters</h2>
+				
+				<div>
+					<label for="Sds" class="block text-sm font-medium text-gray-700">Sds</label>
+					<input type="number" step="0.001" id="Sds" name="Sds" required
+						   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+				</div>
+
+				<div>
+					<label for="Wp" class="block text-sm font-medium text-gray-700">Wp</label>
+					<input type="number" step="0.001" id="Wp" name="Wp" required
+						   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+				</div>
+
+				<div>
+					<label class="block text-sm font-medium text-gray-700">Units</label>
+					<div class="mt-1 space-x-4">
+						<label class="inline-flex items-center">
+							<input type="radio" name="units" value="metric" checked
+								   class="text-indigo-600 focus:ring-indigo-500">
+							<span class="ml-2">Metric</span>
+						</label>
+						<label class="inline-flex items-center">
+							<input type="radio" name="units" value="imperial"
+								   class="text-indigo-600 focus:ring-indigo-500">
+							<span class="ml-2">Imperial</span>
+						</label>
+					</div>
+				</div>
 			</div>
-			<div class="input-group mb-3">
-				<span class="input-group-text" id="inputGroup-sizing-default">W<sub>p</sub></span>
-				<input name="Wp" type="number" step="any" min="0" class="form-control" placeholder="Component Weight" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-				<span class="input-group-text">
-					<select class="custom-select" id="units" name="units">
-						<option value="lb" selected>lb</option>
-						<option value="psf">psf</option>
-						<option value="k">k</option>
-						<option value="ksf">ksf</option>
+
+			<!-- Component Parameters -->
+			<div class="space-y-4">
+				<h2 class="text-lg font-semibold text-gray-700">Component Parameters</h2>
+				
+				<div>
+					<label for="CompNum" class="block text-sm font-medium text-gray-700">Component Number</label>
+					<select id="CompNum" name="CompNum" required
+							class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
 					</select>
-				</span>
-			</div>
-			
-			<br>
-			Structure Ductility Reduction Factor, R<sub>µ</sub>
-				<div class="input-group mb-3">
-					<span class="input-group-text" id="inputGroup-sizing-default">R</span>
-					<input name="R" type="number" step="any" min="0" class="form-control" placeholder="R factor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 				</div>
-				<div class="input-group mb-3">
-					<span class="input-group-text" id="inputGroup-sizing-default">Ω<sub>0</sub></span>
-					<input name="Omega0" type="number" step="any" min="0" class="form-control" placeholder="Overstrength factor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+
+				<div>
+					<label for="IpRadio" class="block text-sm font-medium text-gray-700">Ip</label>
+					<select id="IpRadio" name="IpRadio" required
+							class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+						<option value="1">1.0</option>
+						<option value="1.5">1.5</option>
+					</select>
 				</div>
-				<div class="input-group mb-3">
-					<span class="input-group-text" id="inputGroup-sizing-default">R<sub>µ</sub></span>
-					<input name="R_mu" type="number" step="any" min="0" class="form-control" readonly disabled placeholder="Structure Ductility Reduction Factor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-				</div>
-		</div>
-
-		<div class ="col">
-			Height Factor, H<sub>f</sub>
-			<div class="form-check">
-				<input class="form-check-input" type="radio" name="HfRadio" id="HfRadio1" value="PeriodKnown" checked>
-				<label class="form-check-label" for="HfRadio1">
-					Supported above grade (period known)
-				</label>
-			</div>
-
-			<div class="form-check">
-				<input class="form-check-input" type="radio" name="HfRadio" id="HfRadio2" value="PeriodUnknown" unchecked>
-				<label class="form-check-label" for="HfRadio2">
-					Supported above grade (period unknown)
-				</label>
-			</div>
-
-			<div class="form-check">
-				<input class="form-check-input" type="radio" name="HfRadio" id="HfRadio3" value="BelowGrade" unchecked>
-				<label class="form-check-label" for="HfRadio3">
-					Supported at or below grade
-				</label>
-			</div>
-
-	
-			<div class="col" id="ZInput">
-				<div class="input-group mb-3">
-				  <span class="input-group-text" id="ZInputGroup">z</span>
-				  <input name="z" type="number" step="any" min="0" class="form-control" placeholder="Component height" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-				  <span class="input-group-text" id="ZInputGroup">ft.</span>
-				</div>
-			</div>
-	
-			<div class="col" id="HInput">
-				<div class="input-group mb-3">
-				  <span class="input-group-text" id="HInputGroup">h</span>
-				  <input name="h" type="number" step="any" min="0" class="form-control" placeholder="Building height"aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-				  <span class="input-group-text" id="HInputGroup">ft.</span>
-				</div>
-			</div>
-	
-			<div class="col" id="TaInput">
-				<div class="input-group mb-3">
-				  <span class="input-group-text" id="TaInputGroup">T<sub>a</sub></span>
-				  <input name="Ta" type="number" step="any" min="0" class="form-control" placeholder="Building period" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-				  <span class="input-group-text" id="TaInputGroup">sec.</span>
-				</div>
-			</div>
-
-			<div class="col" id="HfOutput">
-				<div class="input-group mb-3">
-					<span class="input-group-text" id="HfOutputGroup">H<sub>f</sub></span>
-					<input name="Hf" type="number" step="any" min="0" class="form-control" readonly disabled placeholder="Height Factor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-				</div>
-			</div>
-
-			
-
-		</div>
-
-		<div class ="col">
-			Component Importance Factor
-			<div class="form-check">
-				<input class="form-check-input" type="radio" name="IpRadio" id="IpRadio1" value="Ip1.0" checked>
-				<label class="form-check-label" for="IpRadio1">I<sub>p</sub> = 1.0</label>
-		   </div>
-		   <div class="form-check">
-				<input class="form-check-input" type="radio" name="IpRadio" id="IpRadio2" value="Ip1.5" unchecked>
-				<label class="form-check-label" for="IpRadio2">I<sub>p</sub> = 1.5</label>
-			</div>
-			<br>
-			Component Properties (Click Table to Fill)
-			<input type="hidden" id="CompNum" name="CompNum" value="">
-			<div class="input-group mb-3">
-				<span class="input-group-text" id="inputGroup-sizing-default">C<sub>AR</sub></span>
-				<input id="CarBox" name="Car" type="number" step="any" min="0" class="form-control" placeholder="Component Response Ductility Factor" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-			</div>
-			<div class="input-group mb-3">
-				<span class="input-group-text" id="inputGroup-sizing-default">R<sub>po</sub></span>
-				<input id="RpoBox" name="Rpo" type="number" step="any" min="0" class="form-control" placeholder="Component Strength" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-			</div>
-			<div class="input-group mb-3">
-				<span class="input-group-text" id="inputGroup-sizing-default">Ω<sub>op</sub></span>
-				<input id="OopBox" name="Oop" type="number" step="any" min="0" class="form-control" placeholder="Component Overstrength" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 			</div>
 		</div>
 
-
-	</div>
-	</div>
-	</div>
-
-	<div class="container-sm bg-light p-3 border border-dark table-responsive">
-		<table class="table table-sm table-hover bg-white table-bordered border-dark" id="ComponentsTable">
-			<thead class="table-dark">
-				<tr>
-					<th>Num.</th>
-					<th>Architectural Component</th>
-					<th>Below_C<sub>AR</sub></th>
-					<th>Above_C<sub>AR</sub></th>
-					<th>R<sub>po</sub></th>
-					<th>Ω<sub>op</sub></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td class="num"></td>
-					<td class="component">
-						<strong>Interior nonstructural walls and partitions</strong>
-					</td>
-					<td class="CarB"></td>
-					<td class="CarA"></td>
-					<td class="Rpo"></td>
-					<td class="Oop"></td>
-				</tr>
-				<tr>
-					<td class="num">1</td>
-					<td class="component">--- Light frame ≤ 9ft (2.74m) in height</td>
-					<td class="CarB">1.0</td>
-					<td class="CarA">1.0</td>
-					<td class="Rpo">1.5</td>
-					<td class="Oop">1.5</td>
-				</tr>
-				<tr>
-					<td class="num">2</td>
-					<td class="component">--- Light frame > 9ft (2.74m) in height</td>
-					<td class="CarB">1.4</td>
-					<td class="CarA">1.4</td>
-					<td class="Rpo">1.5</td>
-					<td class="Oop">2.0</td>
-				</tr>
-				<tr>
-					<td class="num">3</td>
-					<td class="component">--- Reinforced Masonry</td>
-					<td class="CarB">1.0</td>
-					<td class="CarA">1.0</td>
-					<td class="Rpo">1.5</td>
-					<td class="Oop">1.5</td>
-				</tr>
-				<tr>
-					<td class="num">4</td>
-					<td class="component">--- All other walls and partitions</td>
-					<td class="CarB">2.0</td>
-					<td class="CarA">2.8</td>
-					<td class="Rpo">1.5</td>
-					<td class="Oop">1.5</td>
-				</tr>
-				<tr>
-					<td class="num"></td>
-					<td class="component">
-						<strong>Cantilever elements (unbraced or braced to structure below its center of mass)</strong>
-					</td>
-					<td class="CarB"></td>
-					<td class="CarA"></td>
-					<td class="Rpo"></td>
-					<td class="Oop"></td>
-				</tr>
-				<tr>
-					<td class="num">5</td>
-					<td class="component">--- Parapets and cantilever interior nonstructural walls</td>
-					<td class="CarB">1.8</td>
-					<td class="CarA">2.2</td>
-					<td class="Rpo">1.5</td>
-					<td class="Oop">1.75</td>
-				</tr>
-				<tr>
-					<td class="num">6</td>
-					<td class="component">--- Chimneys where laterally braced or supported by the structural frame</td>
-					<td class="CarB">1.8</td>
-					<td class="CarA">2.2</td>
-					<td class="Rpo">1.5</td>
-					<td class="Oop">1.75</td>
-				</tr>
-				<tr>
-					<td class="num"></td>
-					<td class="component">
-						<strong>Cantilever elements (braced to structural frame above its center of mass)</strong>
-					</td>
-					<td class="CarB"></td>
-					<td class="CarA"></td>
-					<td class="Rpo"></td>
-					<td class="Oop"></td>
-				</tr>
-				<tr>
-					<td class="num">7</td>
-					<td class="component">--- Parapets</td>
-					<td class="CarB">1.0</td>
-					<td class="CarA">1.0</td>
-					<td class="Rpo">1.5</td>
-					<td class="Oop">1.5</td>
-				</tr>
-				<tr>
-					<td class="num">8</td>
-					<td class="component">--- Chimneys</td>
-					<td class="CarB">1.0</td>
-					<td class="CarA">1.0</td>
-					<td class="Rpo">1.5</td>
-					<td class="Oop">1.5</td>
-				</tr>
-				<tr>
-					<td class="num">9</td>
-					<td class="component">--- Exterior nonstructural walls</td>
-					<td class="CarB">1.0</td>
-					<td class="CarA">1.0</td>
-					<td class="Rpo">1.5</td>
-					<td class="Oop">1.5</td>
-				</tr>
-				<tr>
-					<td class="num"></td>
-					<td class="component">
-						<strong>Exterior nonstructural wall elements and connections</strong>
-					</td>
-					<td class="CarB"></td>
-					<td class="CarA"></td>
-					<td class="Rpo"></td>
-					<td class="Oop"></td>
-				</tr>
-				<tr>
-					<td class="num">10</td>
-					<td class="component">--- Wall element</td>
-					<td class="CarB">1.0</td>
-					<td class="CarA">1.0</td>
-					<td class="Rpo">1.5</td>
-					<td class="Oop">1.5</td>
-				</tr>
-				<tr>
-					<td class="num">11</td>
-					<td class="component">--- Body of wall panel connections</td>
-					<td class="CarB">1.0</td>
-					<td class="CarA">1.0</td>
-					<td class="Rpo">1.5</td>
-					<td class="Oop">1.5</td>
-				</tr>
-				<tr>
-					<td class="num">12</td>
-					<td class="component">--- Fasteners of the connecting system</td>
-					<td class="CarB">2.2</td>
-					<td class="CarA">2.8</td>
-					<td class="Rpo">1.5</td>
-					<td class="Oop">1.0</td>
-				</tr>
-				<tr>
-					<td class="num"></td>
-					<td class="component">
-						<strong>Veneer</strong>
-					</td>
-					<td class="CarB"></td>
-					<td class="CarA"></td>
-					<td class="Rpo"></td>
-					<td class="Oop"></td>
-				</tr>
-				<tr>
-					<td class="num">13</td>
-					<td class="component">--- Limited deformability elements and attachments</td>
-					<td class="CarB">1.0</td>
-					<td class="CarA">1.0</td>
-					<td class="Rpo">1.5</td>
-					<td class="Oop">1.5</td>
-				</tr>
-				<tr>
-					<td class="num">14</td>
-					<td class="component">--- Low deformability elements and attachments</td>
-					<td class="CarB">1.0</td>
-					<td class="CarA">1.0</td>
-					<td class="Rpo">1.5</td>
-					<td class="Oop">1.5</td>
-				</tr>
-				<tr>
-					<td class="num"></td>
-					<td class="component">
-						<strong>Penthouses (except where framed by an extension of the building frame)</strong>
-					</td>
-					<td class="CarB"></td>
-					<td class="CarA"></td>
-					<td class="Rpo"></td>
-					<td class="Oop"></td>
-				</tr>
-				<tr>
-					<td class="num">15</td>
-					<td class="component">--- Seismic Force-Resisting Systems with R≥6</td>
-					<td class="CarB">N/A</td>
-					<td class="CarA">1.4</td>
-					<td class="Rpo">2.0</td>
-					<td class="Oop">2.0</td>
-				</tr>
-				<tr>
-					<td class="num">16</td>
-					<td class="component">--- Seismic Force-Resisting Systems with 6>R≥4</td>
-					<td class="CarB">N/A</td>
-					<td class="CarA">2.2</td>
-					<td class="Rpo">2.0</td>
-					<td class="Oop">1.75</td>
-				</tr>
-				<tr>
-					<td class="num">17</td>
-					<td class="component">--- Seismic Force-Resisting Systems with R<4</td>
-					<td class="CarB">N/A</td>
-					<td class="CarA">2.8</td>
-					<td class="Rpo">2.0</td>
-					<td class="Oop">1.5</td>
-				</tr>
-				<tr>
-					<td class="num">18</td>
-					<td class="component">--- Other Systems</td>
-					<td class="CarB">N/A</td>
-					<td class="CarA">2.8</td>
-					<td class="Rpo">1.5</td>
-					<td class="Oop">1.5</td>
-				</tr>
-				<tr>
-					<td class="num"></td>
-					<td class="component">
-						<strong>Ceilings</strong>
-					</td>
-					<td class="CarB"></td>
-					<td class="CarA"></td>
-					<td class="Rpo"></td>
-					<td class="Oop"></td>
-				</tr>
-				<tr>
-					<td class="num">19</td>
-					<td class="component">--- All</td>
-					<td class="CarB">1.0</td>
-					<td class="CarA">1.0</td>
-					<td class="Rpo">1.5</td>
-					<td class="Oop">1.5</td>
-				</tr>
-				<tr>
-					<td class="num"></td>
-					<td class="component">
-						<strong>Cabinets</strong>
-					</td>
-					<td class="CarB"></td>
-					<td class="CarA"></td>
-					<td class="Rpo"></td>
-					<td class="Oop"></td>
-				</tr>
-				<tr>
-					<td class="num">20</td>
-					<td class="component">--- Permanent floor-supported storage cabinets more than 6 ft (1,829 mm) tall, including contents</td>
-					<td class="CarB">1.0</td>
-					<td class="CarA">1.0</td>
-					<td class="Rpo">1.5</td>
-					<td class="Oop">1.5</td>
-				</tr>
-				<tr>
-					<td class="num">21</td>
-					<td class="component">--- Permanent floor-supported library shelving, book stacks, and bookshelves more than 6 ft (1,829 mm) tall, including contents</td>
-					<td class="CarB">1.0</td>
-					<td class="CarA">1.0</td>
-					<td class="Rpo">1.5</td>
-					<td class="Oop">1.5</td>
-				</tr>
-				<tr>
-					<td class="num">22</td>
-					<td class="component">
-						<strong>Laboratory equipment</strong>
-					</td>
-					<td class="CarB">1.0</td>
-					<td class="CarA">1.0</td>
-					<td class="Rpo">1.5</td>
-					<td class="Oop">1.5</td>
-				</tr>
-				<tr>
-					<td class="num"></td>
-					<td class="component">
-						<strong>Access Floors</strong>
-					</td>
-					<td class="CarB"></td>
-					<td class="CarA"></td>
-					<td class="Rpo"></td>
-					<td class="Oop"></td>
-				</tr>
-				<tr>
-					<td class="num">23</td>
-					<td class="component">--- Special access floors (designed in accordance with Section 13.5.7.2)</td>
-					<td class="CarB">1.0</td>
-					<td class="CarA">1.0</td>
-					<td class="Rpo">1.5</td>
-					<td class="Oop">1.5</td>
-				</tr>
-				<tr>
-					<td class="num">24</td>
-					<td class="component">--- All other</td>
-					<td class="CarB">2.2</td>
-					<td class="CarA">2.8</td>
-					<td class="Rpo">1.5</td>
-					<td class="Oop">1.5</td>
-				</tr>
-				<tr>
-					<td class="num">25</td>
-					<td class="component">
-						<strong>Appendages and ornamentations</strong>
-					</td>
-					<td class="CarB">1.8</td>
-					<td class="CarA">2.2</td>
-					<td class="Rpo">1.5</td>
-					<td class="Oop">1.75</td>
-				</tr>
-				<tr>
-					<td class="num">26</td>
-					<td class="component">
-						<strong>Signs and Billboards</strong>
-					</td>
-					<td class="CarB">1.8</td>
-					<td class="CarA">2.2</td>
-					<td class="Rpo">1.5</td>
-					<td class="Oop">1.75</td>
-				</tr>
-				<tr>
-					<td class="num">27</td>
-					<td class="component">
-						<strong>Other rigid components</strong>
-					</td>
-					<td class="CarB">1.0</td>
-					<td class="CarA">1.0</td>
-					<td class="Rpo">1.5</td>
-					<td class="Oop">1.5</td>
-				</tr>
-				<tr>
-					<td class="num"></td>
-					<td class="component">
-						<strong>Other flexible components</strong>
-					</td>
-					<td class="CarB"></td>
-					<td class="CarA"></td>
-					<td class="Rpo"></td>
-					<td class="Oop"></td>
-				</tr>
-				<tr>
-					<td class="num">28</td>
-					<td class="component">--- High-deformability elements and attachments</td>
-					<td class="CarB">1.4</td>
-					<td class="CarA">1.4</td>
-					<td class="Rpo">1.5</td>
-					<td class="Oop">2.0</td>
-				</tr>
-				<tr>
-					<td class="num">29</td>
-					<td class="component">--- Limited-deformability elements and attachments</td>
-					<td class="CarB">1.8</td>
-					<td class="CarA">2.2</td>
-					<td class="Rpo">1.5</td>
-					<td class="Oop">1.75</td>
-				</tr>
-				<tr>
-					<td class="num">30</td>
-					<td class="component">--- Low-deformability elements and attachments</td>
-					<td class="CarB">2.2</td>
-					<td class="CarA">2.8</td>
-					<td class="Rpo">1.5</td>
-					<td class="Oop">1.5</td>
-				</tr>
-				<tr>
-					<td class="num">31</td>
-					<td class="component">
-						<strong>Egress stairways not part of the building seismic force-resisting system</strong>
-					</td>
-					<td class="CarB">1.0</td>
-					<td class="CarA">1.0</td>
-					<td class="Rpo">1.5</td>
-					<td class="Oop">1.5</td>
-				</tr>
-				<tr>
-					<td class="num">32</td>
-					<td class="component">
-						<strong>Egress stairs and ramp fasteners and attachments</strong>
-					</td>
-					<td class="CarB">1.8</td>
-					<td class="CarA">2.2</td>
-					<td class="Rpo">1.5</td>
-					<td class="Oop">1.75</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-
-	<div class="container-sm bg-light p-3 border border-dark">
-		<div class="row">
-			<div class="col-3">
-				<div class="input-group mb-3">
-					<span class="input-group-text" id="inputGroup-sizing-default">F<sub>p</sub></span>
-					<input id="FpBox" name="Fp" type="text" class="form-control" readonly disabled placeholder="Force" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-					<span class="input-group-text" name="units_out">lb</span>
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+			<!-- Structural Parameters -->
+			<div class="space-y-4">
+				<h2 class="text-lg font-semibold text-gray-700">Structural Parameters</h2>
+				
+				<div>
+					<label for="R" class="block text-sm font-medium text-gray-700">R</label>
+					<input type="number" step="0.1" id="R" name="R" required
+						   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
 				</div>
-				<div class="input-group mb-3">
-					<span class="input-group-text" id="inputGroup-sizing-default">Ω<sub>op</sub>F<sub>p</sub></span>
-					<input id="OopFpBox" name="OopFp" type="text" class="form-control" readonly disabled placeholder="Force" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-					<span class="input-group-text" name="units_out">lb</span>
+
+				<div>
+					<label for="Omega0" class="block text-sm font-medium text-gray-700">Ω0</label>
+					<input type="number" step="0.01" id="Omega0" name="Omega0" required
+						   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
 				</div>
 			</div>
-			<div class="col">
-				<div class="input-group mb-3">
-					<input id="printbutton" type="submit" value="Printout">
-				</div>
-				<div class="small text-muted fst-italic">Use Google Chrome for best printout results.</div>
-			</div>
-		</div>
-	</div>
 
-	<div class="container-sm bg-light p-3 border border-dark">
-		<div class="row">
-			<div class="col">
-				<div class="input-group mb-3">
-					<span class="input-group-text" id="inputGroup-sizing-default">Title</span>
-					<input id="TitleBox" name="title" type="text" class="form-control" placeholder="Title" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			<!-- Additional Parameters -->
+			<div class="space-y-4">
+				<h2 class="text-lg font-semibold text-gray-700">Additional Parameters</h2>
+				
+				<div>
+					<label for="Car" class="block text-sm font-medium text-gray-700">Car</label>
+					<input type="number" step="0.01" id="Car" name="Car" required
+						   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
 				</div>
-				<div class="input-group mb-3">
-					<span class="input-group-text" id="inputGroup-sizing-default">Project</span>
-					<input id="ProjectBox" name="project" type="text" class="form-control" placeholder="Project" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+
+				<div>
+					<label for="Rpo" class="block text-sm font-medium text-gray-700">Rpo</label>
+					<input type="number" step="0.01" id="Rpo" name="Rpo" required
+						   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
 				</div>
-				<div class="input-group mb-3">
-					<span class="input-group-text" id="inputGroup-sizing-default">Location</span>
-					<input id="LocationBox" name="location" type="text" class="form-control" placeholder="Location" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-				</div>
-				<div class="input-group mb-3">
-					<span class="input-group-text" id="inputGroup-sizing-default">Client</span>
-					<input id="ClientBox" name="client" type="text" class="form-control" placeholder="Client" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-				</div>
-			</div>
-			<div class="col">
-				<div class="input-group mb-3">
-					<span class="input-group-text" id="inputGroup-sizing-default">Company</span>
-					<input id="CompanyBox" name="company" type="text" class="form-control" placeholder="Company" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-				</div>
-				<div class="input-group mb-3">
-					<span class="input-group-text" id="inputGroup-sizing-default">Engineer</span>
-					<input id="EngineerBox" name="engineer" type="text" class="form-control" placeholder="Engineer" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-				</div>
-				<div class="input-group mb-3">
-					<span class="input-group-text" id="inputGroup-sizing-default">Date</span>
-					<input id="DateBox" name="date" type="text" class="form-control" placeholder="Date" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+
+				<div>
+					<label for="Oop" class="block text-sm font-medium text-gray-700">Oop</label>
+					<input type="number" step="0.01" id="Oop" name="Oop" required
+						   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
 				</div>
 			</div>
 		</div>
-		<div class="input-group">
-			<span class="input-group-text">Notes</span>
-			<textarea class="form-control" id="NotesBox" name="notes" aria-label="With textarea"></textarea>
+
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+			<!-- Height Parameters -->
+			<div class="space-y-4">
+				<h2 class="text-lg font-semibold text-gray-700">Height Parameters</h2>
+				
+				<div>
+					<label for="HfRadio" class="block text-sm font-medium text-gray-700">Hf Type</label>
+					<select id="HfRadio" name="HfRadio" required
+							class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+						<option value="1">Type 1</option>
+						<option value="2">Type 2</option>
+					</select>
+				</div>
+
+				<div>
+					<label for="z" class="block text-sm font-medium text-gray-700">z</label>
+					<input type="number" step="0.001" id="z" name="z" required
+						   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+				</div>
+
+				<div>
+					<label for="h" class="block text-sm font-medium text-gray-700">h</label>
+					<input type="number" step="0.001" id="h" name="h" required
+						   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+				</div>
+
+				<div>
+					<label for="Ta" class="block text-sm font-medium text-gray-700">Ta</label>
+					<input type="number" step="0.001" id="Ta" name="Ta" required
+						   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+				</div>
+			</div>
 		</div>
-		<div class="row">
+
+		<div class="flex justify-end">
+			<button type="submit"
+					class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+				Calculate
+			</button>
 		</div>
-	</div>
-
-
-	</div>
-
 	</form>
-	
 
+	<!-- Results Section -->
+	<div id="results" class="mt-8 hidden">
+		<h2 class="text-lg font-semibold text-gray-700 mb-4">Results</h2>
+		<div class="bg-gray-50 rounded-lg p-4">
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+				<div>
+					<p class="text-sm text-gray-500">Fp</p>
+					<p id="result-Fp" class="text-lg font-semibold text-gray-900"></p>
+				</div>
+				<div>
+					<p class="text-sm text-gray-500">OopFp</p>
+					<p id="result-OopFp" class="text-lg font-semibold text-gray-900"></p>
+				</div>
+				<div>
+					<p class="text-sm text-gray-500">Hf</p>
+					<p id="result-Hf" class="text-lg font-semibold text-gray-900"></p>
+				</div>
+				<div>
+					<p class="text-sm text-gray-500">Rmu</p>
+					<p id="result-Rmu" class="text-lg font-semibold text-gray-900"></p>
+				</div>
+			</div>
+		</div>
 	</div>
+</div>
+{% endblock %}
 
-
+{% block scripts %}
+<script>
+document.getElementById('calculatorForm').addEventListener('submit', async (e) => {
+	e.preventDefault();
+	
+	const formData = new FormData(e.target);
+	const data = Object.fromEntries(formData.entries());
+	
+	try {
+		const response = await fetch('/calculate', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(data)
+		});
+		
+		const result = await response.json();
+		
+		if (result.success) {
+			document.getElementById('results').classList.remove('hidden');
+			
+			// Update results
+			document.getElementById('result-Fp').textContent = result.results.Fp;
+			document.getElementById('result-OopFp').textContent = result.results.OopFp;
+			document.getElementById('result-Hf').textContent = result.results.Hf;
+			document.getElementById('result-Rmu').textContent = result.results.Rmu;
+		} else {
+			alert('Error: ' + result.error);
+		}
+	} catch (error) {
+		alert('Error calculating results: ' + error.message);
+	}
+});
+</script>
 {% endblock %}

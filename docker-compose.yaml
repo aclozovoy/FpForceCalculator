@@ -1,18 +1,19 @@
-version: '3'
+version: '3.8'
 
 services:
 
   app:
-    image: flask-fp-app
     build:
       context: ./flask-app
-      dockerfile: ./Dockerfile
+      dockerfile: Dockerfile
     ports:
       - "8000:8000"
-    expose:
-      - "8000"
+    volumes:
+      - ./flask-app:/app
     environment:
-      DB_PASSWORD: ${DB_PASSWORD}
+      - FLASK_ENV=development
+      - FLASK_DEBUG=1
+    restart: unless-stopped
 
 
   nginx:

@@ -1,16 +1,21 @@
-FROM python:3.9-slim
+FROM python:3.11-slim
 
-COPY requirements.txt requirements.txt
-RUN pip install -U pip
-RUN pip install -r requirements.txt
-
-COPY ./app /app/app
-COPY wsgi.py /app/wsgi.py
 WORKDIR /app
 
-RUN useradd app-user
-USER app-user
+# Install uv
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Copy requirements first to leverage Docker cache
+COPY requirements.txt .
+
+# Install dependencies using uv
+RUN uv pip install -r requirements.txt
+
+COPY . .
+
+ENV FLASK_APP=wsgi.py
+ENV FLASK_ENV=development
 
 EXPOSE 8000
 
-ENTRYPOINT ["gunicorn", "wsgi:application", "--bind", "0.0.0.0:8000", "--log-level=debug", "--workers=4"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "wsgi:application"]

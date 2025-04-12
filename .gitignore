@@ -1,4 +1,7 @@
-__pycache__
+__pycache__/
+*.pyc
 localpass.txt
 .env
 .DS_Store
+venv/
+.venv/
