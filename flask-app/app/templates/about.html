@@ -6,24 +6,47 @@
     
     <div class="prose max-w-none">
         <p class="text-gray-600 mb-4">
-            ASCE 7-22 Nonstructural Seismic Force Calculator is a tool designed to help engineers calculate seismic forces for nonstructural components according to ASCE 7-22 standards.
+            The ASCE 7-22 Nonstructural Seismic Force Calculator is a tool designed to help engineers calculate seismic forces for nonstructural components according to ASCE 7-22, Chapter 13 standards. This calculator implements the equations and requirements specified in Section 13.3.1 for determining the seismic design force, F<sub>p</sub>, and the amplified seismic design force, Ω<sub>op</sub>F<sub>p</sub>.
         </p>
         
         <h2 class="text-xl font-semibold text-gray-800 mt-6 mb-4">Features</h2>
         <ul class="list-disc list-inside text-gray-600 space-y-2">
-            <li>Calculate Fp and OopFp forces</li>
+            <li>Calculate F<sub>p</sub> and Ω<sub>op</sub>F<sub>p</sub> forces</li>
             <li>Modern, responsive interface</li>
             <li>Real-time calculations</li>
+            <li>Comprehensive component database</li>
+            <li>Detailed calculation printout</li>
         </ul>
         
         <h2 class="text-xl font-semibold text-gray-800 mt-6 mb-4">How to Use</h2>
         <ol class="list-decimal list-inside text-gray-600 space-y-2">
-            <li>Enter the basic parameters (Sds, Wp, units)</li>
-            <li>Select the component type and importance factor</li>
-            <li>Input structural parameters (R, Ω0)</li>
-            <li>Enter height parameters (z, h, Ta)</li>
-            <li>Click "Calculate" to get results</li>
+            <li>Enter the basic parameters (S<sub>DS</sub>, W<sub>p</sub>, units)</li>
+            <li>Select the component type and importance factor (I<sub>p</sub>)</li>
+            <li>Input structural parameters (R, Ω<sub>0</sub>)</li>
+            <li>Enter height parameters (z, h, T<sub>a</sub>)</li>
+            <li>View real-time calculation results</li>
+            <li>Print detailed calculation report</li>
         </ol>
+
+        <h2 class="text-xl font-semibold text-gray-800 mt-6 mb-4">Reference</h2>
+        <p class="text-gray-600">
+            This calculator implements the requirements of ASCE 7-22, Chapter 13: "Seismic Design Requirements for Nonstructural Components." The seismic design force, F<sub>p</sub>, is calculated per Section 13.3.1 using the following equation:
+        </p>
+        <p class="text-gray-600 mt-2">
+            F<sub>p</sub> = 0.4a<sub>p</sub>S<sub>DS</sub>W<sub>p</sub>(1 + 2z/h)/(R<sub>p</sub>/I<sub>p</sub>)
+        </p>
+        <p class="text-gray-600 mt-2">
+            where:
+            <ul class="list-disc list-inside text-gray-600 space-y-1 ml-4">
+                <li>a<sub>p</sub> = component amplification factor</li>
+                <li>S<sub>DS</sub> = design spectral acceleration</li>
+                <li>W<sub>p</sub> = component operating weight</li>
+                <li>z = height in structure of point of attachment</li>
+                <li>h = average roof height of structure</li>
+                <li>R<sub>p</sub> = component response modification factor</li>
+                <li>I<sub>p</sub> = component importance factor</li>
+            </ul>
+        </p>
     </div>
 </div>
 {% endblock %}
