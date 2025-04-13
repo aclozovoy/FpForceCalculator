@@ -3,24 +3,35 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %}FpForce Calculator{% endblock %}</title>
+        <title>{% block title %}FpForce.net{% endblock %}</title>
         <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            forest: '#228B22',
+                        }
+                    }
+                }
+            }
+        </script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
         {% block head %}{% endblock %}
     </head>
-    <body class="bg-gray-50 min-h-screen">
-        <nav class="bg-white shadow-lg">
+    <body class="bg-white min-h-screen">
+        <nav class="bg-forest shadow-lg">
             <div class="max-w-7xl mx-auto px-4">
                 <div class="flex justify-between h-16">
                     <div class="flex">
                         <div class="flex-shrink-0 flex items-center">
-                            <a href="/" class="text-xl font-bold text-gray-800">FpForce Calculator</a>
+                            <a href="/" class="text-xl font-bold text-white">FpForce.net</a>
                         </div>
                         <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-                            <a href="/" class="{% if request.endpoint == 'views.main' %}border-indigo-500 text-gray-900{% else %}border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700{% endif %} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            <a href="/" class="{% if request.endpoint == 'views.main' %}border-white text-white{% else %}border-transparent text-white hover:border-white hover:text-white{% endif %} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                                 Calculator
                             </a>
-                            <a href="/about" class="{% if request.endpoint == 'views.about' %}border-indigo-500 text-gray-900{% else %}border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700{% endif %} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                            <a href="/about" class="{% if request.endpoint == 'views.about' %}border-white text-white{% else %}border-transparent text-white hover:border-white hover:text-white{% endif %} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                                 About
                             </a>
                         </div>
@@ -33,10 +44,10 @@
             {% block content %}{% endblock %}
         </main>
 
-        <footer class="bg-white shadow mt-8">
+        <footer class="bg-black shadow mt-8">
             <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
-                <p class="text-center text-gray-500 text-sm">
-                    &copy; 2024 FpForce Calculator. All rights reserved.
+                <p class="text-center text-white text-sm">
+                    &copy; 2024 FpForce.net. All rights reserved.
                 </p>
             </div>
         </footer>
