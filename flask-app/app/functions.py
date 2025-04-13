@@ -2,7 +2,14 @@ import math
 
 
 def HfFunction(HfRadio, z, h, Ta):
-
+    # Initialize default values
+    a1 = 0.0
+    a2 = 0.0
+    Hf = 1.0
+    HfText = "Hf = 1.00"
+    HfType = 'Default'
+    CarType = '(Default)'
+    HfCalc = '<p>Default calculation</p>'
 
     if HfRadio == 'PeriodKnown':
         z = float(z)
@@ -31,15 +38,13 @@ def HfFunction(HfRadio, z, h, Ta):
         <p>H<sub>f</sub> = {Hf:.2f}</p>
         '''
 
-
-
     elif HfRadio == 'PeriodUnknown':
         z = float(z)
         h = float(h)
 
         Hf = 1 + 2.5 * (z/h)
-        a1 = None
-        a2 = None
+        a1 = 2.5  # Set a1 for this case
+        a2 = 0.0  # Set a2 for this case
 
         HfText = f"Hf = {Hf:.2f}"
         HfType ='Supported above grade by a building or nonbuilding structure with an unknown approximate fundamental period'
@@ -56,8 +61,8 @@ def HfFunction(HfRadio, z, h, Ta):
 
     elif HfRadio == 'BelowGrade':
         Hf = 1.0
-        a1 = None
-        a2 = None
+        a1 = 0.0  # Set a1 for this case
+        a2 = 0.0  # Set a2 for this case
 
         HfText = "Hf = 1.00"
         HfType ='Supported at or below grade'
@@ -85,7 +90,7 @@ def RmuFunction(R, Omega0):
 
 
 def IpFunction(IpRadio):
-
+    Ip = 1.0  # Default value
     if IpRadio == 'Ip1.0':
         Ip = 1.0
     elif IpRadio == 'Ip1.5':

@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, jsonify
 from .functions import *
+from datetime import datetime
 
 views = Blueprint('views', __name__)
 
@@ -69,3 +70,76 @@ def about():
 @views.route('/health')
 def health():
     return jsonify({'status': 'healthy'}), 200
+
+@views.route('/printout', methods=['GET'])
+def printout():
+    try:
+        # Get the calculation data from the session or request
+        data = request.args
+        
+        # Extract and validate input data
+        Sds = float(data.get('Sds', 0))
+        Wp = float(data.get('Wp', 0))
+        Ip = IpFunction(data.get('IpRadio', '1'))
+        Car = float(data.get('Car', 0))
+        Rpo = float(data.get('Rpo', 0))
+        Oop = float(data.get('Oop', 0))
+        CompNum = data.get('CompNum', '1')
+        CompTxt = CompFunction(CompNum)
+        
+        # Calculate Hf
+        HfRadio = data.get('HfRadio', '1')
+        z = float(data.get('z', 0))
+        h = float(data.get('h', 0))
+        Ta = float(data.get('Ta', 0))
+        a1, a2, Hf, HfText, HfType, CarType, HfCalc = HfFunction(HfRadio, z, h, Ta)
+        
+        # Calculate R_mu
+        R = float(data.get('R', 0))
+        Omega0 = float(data.get('Omega0', 0))
+        Rmu, RmuText = RmuFunction(R, Omega0)
+        
+        # Calculate X Factor
+        X, Xcalc, XText = XFunction(Hf, Rmu, Car, Rpo)
+        
+        # Calculate Fp
+        Fp, FpText, OopFp = FpFunction(X, Sds, Ip, Wp, Oop)
+
+        # Default project info
+        info = [
+            "Nonstructural Seismic Force Calculation",
+            "Project Name",
+            "Location",
+            "Client Name",
+            "Company Name",
+            "Engineer Name",
+            datetime.now().strftime("%m/%d/%Y"),
+            "Notes: This calculation is based on ASCE 7-22, Chapter 13."
+        ]
+
+        return render_template('printout.html',
+                             info=info,
+                             Sds=Sds,
+                             Wp=Wp,
+                             Ip=Ip,
+                             Car=Car,
+                             Rpo=Rpo,
+                             Oop=Oop,
+                             CompTxt=CompTxt,
+                             CarType=CarType,
+                             R=R,
+                             Omega0=Omega0,
+                             Rmu=Rmu,
+                             RmuText=RmuText,
+                             Hf=Hf,
+                             HfText=HfText,
+                             HfType=HfType,
+                             HfCalc=HfCalc,
+                             X=X,
+                             Xcalc=Xcalc,
+                             XText=XText,
+                             Fp=Fp,
+                             FpText=FpText,
+                             OopFp=OopFp)
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 400
