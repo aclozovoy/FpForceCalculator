@@ -2,32 +2,34 @@ import math
 from typing import Tuple, List, Dict, Union, Optional
 
 
-def HfFunction(HfRadio: str, z: Union[str, float], h: Union[str, float], Ta: Union[str, float]) -> Tuple[float, float, float, str, str, str, str]:
+def HfFunction(
+    HfRadio: str, z: Union[str, float], h: Union[str, float], Ta: Union[str, float]
+) -> Tuple[float, float, float, str, str, str, str]:
     # Initialize default values
     a1 = 0.0
     a2 = 0.0
     Hf = 1.0
     HfText = "Hf = 1.00"
-    HfType = 'Default'
-    CarType = '(Default)'
-    HfCalc = '<p>Default calculation</p>'
+    HfType = "Default"
+    CarType = "(Default)"
+    HfCalc = "<p>Default calculation</p>"
 
-    if HfRadio == 'PeriodKnown':
+    if HfRadio == "PeriodKnown":
         z = float(z)
         h = float(h)
         Ta = float(Ta)
 
-        a1 = min(1/Ta , 2.5)
-        a1calc = 1/Ta
-        a2 = max(1 - (0.4 / Ta ) **2 , 0)
-        a2calc = 1 - (0.4 / Ta ) **2
-        Hf = 1 + a1 * (z/h) + a2 * (z/h)**10
+        a1 = min(1 / Ta, 2.5)
+        a1calc = 1 / Ta
+        a2 = max(1 - (0.4 / Ta) ** 2, 0)
+        a2calc = 1 - (0.4 / Ta) ** 2
+        Hf = 1 + a1 * (z / h) + a2 * (z / h) ** 10
 
         HfText = f"Hf = {Hf:.2f} (a1 = {a1:.2f}, a2 = {a2:.2f})"
-        HfType ='Supported above grade by a building or nonbuilding structure with a known approximate fundamental period'
-        CarType = '(Supported above grade by a structure)'
+        HfType = "Supported above grade by a building or nonbuilding structure with a known approximate fundamental period"
+        CarType = "(Supported above grade by a structure)"
 
-        HfCalc = f'''
+        HfCalc = f"""
         <p>Condition: Supported above grade by a building or nonbuilding structure with a known approximate fundamental period</p>
         <p>z = {z:.1f} ft</p>
         <p>h = {h:.1f} ft</p>
@@ -37,76 +39,74 @@ def HfFunction(HfRadio: str, z: Union[str, float], h: Union[str, float], Ta: Uni
         <p>&emsp;&emsp;&emsp;a<sub>2</sub> = max(1 - (0.4/T<sub>a</sub>)<sup>2</sup> , 0) = max(1 - (0.4/{Ta:.2f})<sup>2</sup> , 0) = max({a2calc:.2f} , 0) = {a2:.2f}</p>
         <p>H<sub>f</sub> = 1 + {a1:.2f}( {z:.1f} ft / {h:.1f} ft ) + {a2:.2f}( {z:.1f} ft / {h:.1f} ft )<sup>10</sup></p>
         <p>H<sub>f</sub> = {Hf:.2f}</p>
-        '''
+        """
 
-    elif HfRadio == 'PeriodUnknown':
+    elif HfRadio == "PeriodUnknown":
         z = float(z)
         h = float(h)
 
-        Hf = 1 + 2.5 * (z/h)
+        Hf = 1 + 2.5 * (z / h)
         a1 = 2.5  # Set a1 for this case
         a2 = 0.0  # Set a2 for this case
 
         HfText = f"Hf = {Hf:.2f}"
-        HfType ='Supported above grade by a building or nonbuilding structure with an unknown approximate fundamental period'
-        CarType = '(Supported above grade by a structure)'
+        HfType = "Supported above grade by a building or nonbuilding structure with an unknown approximate fundamental period"
+        CarType = "(Supported above grade by a structure)"
 
-        HfCalc = f'''
+        HfCalc = f"""
         <p>Condition: Supported above grade by a building or nonbuilding structure with an unknown approximate fundamental period</p>
         <p>z = {z:.1f} ft</p>
         <p>h = {h:.1f} ft</p>
         <p>H<sub>f</sub> = 1 + 2.5(z/h)</p>
         <p>H<sub>f</sub> = 1 + 2.5({z:.1f}ft /{h:.1f}ft )</p>
         <p>H<sub>f</sub> = {Hf:.2f}</p>
-        '''
+        """
 
-    elif HfRadio == 'BelowGrade':
+    elif HfRadio == "BelowGrade":
         Hf = 1.0
         a1 = 0.0  # Set a1 for this case
         a2 = 0.0  # Set a2 for this case
 
         HfText = "Hf = 1.00"
-        HfType ='Supported at or below grade'
-        CarType ='(Supported at or below grade)'
+        HfType = "Supported at or below grade"
+        CarType = "(Supported at or below grade)"
 
-        HfCalc = f'''
+        HfCalc = f"""
         <p>Condition: Supported at or below grade</p>
         <p>H<sub>f</sub> = {Hf:.2f}</p>
-        '''
+        """
 
     return a1, a2, Hf, HfText, HfType, CarType, HfCalc
 
 
 def RmuFunction(R: Union[str, float], Omega0: Union[str, float]) -> Tuple[float, str]:
-
     R = float(R)
     Omega0 = float(Omega0)
 
-    Rmu = (1.1 * R / Omega0)**(0.5)
+    Rmu = (1.1 * R / Omega0) ** (0.5)
 
     RmuText = f"R_mu = {Rmu:.2f}"
 
     return Rmu, RmuText
 
 
-
 def IpFunction(IpRadio: str) -> float:
     Ip = 1.0  # Default value
-    if IpRadio == 'Ip1.0':
+    if IpRadio == "Ip1.0":
         Ip = 1.0
-    elif IpRadio == 'Ip1.5':
+    elif IpRadio == "Ip1.5":
         Ip = 1.5
 
     return Ip
 
 
-
-def XFunction(Hf: float, Rmu: float, Car: Union[str, float], Rpo: Union[str, float]) -> Tuple[float, float, str]:
-
+def XFunction(
+    Hf: float, Rmu: float, Car: Union[str, float], Rpo: Union[str, float]
+) -> Tuple[float, float, str]:
     Car = float(Car)
     Rpo = float(Rpo)
 
-    Xcalc = 0.4*(Hf/Rmu)*(Car/Rpo)
+    Xcalc = 0.4 * (Hf / Rmu) * (Car / Rpo)
 
     if Xcalc > 1.6:
         X = 1.6
@@ -121,55 +121,60 @@ def XFunction(Hf: float, Rmu: float, Car: Union[str, float], Rpo: Union[str, flo
     return X, Xcalc, XText
 
 
-def FpFunction(X: float, Sds: Union[str, float], Ip: float, Wp: Union[str, float], Oop: Union[str, float]) -> Tuple[float, str, float]:
-
+def FpFunction(
+    X: float,
+    Sds: Union[str, float],
+    Ip: float,
+    Wp: Union[str, float],
+    Oop: Union[str, float],
+) -> Tuple[float, str, float]:
     Sds = float(Sds)
     Wp = float(Wp)
     Oop = float(Oop)
 
     Fp = X * Sds * Ip * Wp
-    OopFp = Oop*Fp
+    OopFp = Oop * Fp
 
     FpText = f"Fp = {Fp:.2f}"
 
     return Fp, FpText, OopFp
 
-def CompFunction(CompNum: Union[str, int]) -> str:
 
+def CompFunction(CompNum: Union[str, int]) -> str:
     i = int(CompNum) - 1
     CompList = (
-        'Interior nonstructural walls and partitions: Light frame ≤ 9ft (2.74m) in height',
-        'Interior nonstructural walls and partitions: Light frame > 9ft (2.74m) in height',
-        'Interior nonstructural walls and partitions: Reinforced Masonry',
-        'Interior nonstructural walls and partitions: All other walls and partitions',
-        'Cantilever elements (unbraced or braced to structure below its center of mass): Parapets and cantilever interior nonstructural walls',
-        'Cantilever elements (unbraced or braced to structure below its center of mass): Chimneys where laterally braced or supported by the structural frame',
-        'Cantilever elements (braced to structural frame above its center of mass): Parapets',
-        'Cantilever elements (braced to structural frame above its center of mass): Chimneys',
-        'Cantilever elements (braced to structural frame above its center of mass): Exterior nonstructural walls',
-        'Exterior nonstructural wall elements and connections: Wall element',
-        'Exterior nonstructural wall elements and connections: Body of wall panel connections',
-        'Exterior nonstructural wall elements and connections: Fasteners of the connecting system',
-        'Veneer: Limited deformability elements and attachments',
-        'Veneer: Low deformability elements and attachments',
-        'Penthouses (except where framed by an extension of the building frame): Seismic Force-Resisting Systems with R≥6',
-        'Penthouses (except where framed by an extension of the building frame): Seismic Force-Resisting Systems with 6>R≥4',
-        'Penthouses (except where framed by an extension of the building frame): Seismic Force-Resisting Systems with R<4',
-        'Penthouses (except where framed by an extension of the building frame): Other Systems',
-        'Ceilings: All',
-        'Cabinets: Permanent floor-supported storage cabinets more than 6 ft (1,829 mm) tall, including contents',
-        'Cabinets: Permanent floor-supported library shelving, book stacks, and bookshelves more than 6 ft (1,829 mm) tall, including contents',
-        'Laboratory equipment',
-        'Access Floors: Special access floors (designed in accordance with Section 13.5.7.2)',
-        'Access Floors: All other',
-        'Appendages and ornamentations',
-        'Signs and Billboards',
-        'Other rigid components',
-        'Other flexible components: High-deformability elements and attachments',
-        'Other flexible components: Limited-deformability elements and attachments',
-        'Other flexible components: Low-deformability elements and attachments',
-        'Egress stairways not part of the building seismic force-resisting system',
-        'Egress stairs and ramp fasteners and attachments'
+        "Interior nonstructural walls and partitions: Light frame ≤ 9ft (2.74m) in height",
+        "Interior nonstructural walls and partitions: Light frame > 9ft (2.74m) in height",
+        "Interior nonstructural walls and partitions: Reinforced Masonry",
+        "Interior nonstructural walls and partitions: All other walls and partitions",
+        "Cantilever elements (unbraced or braced to structure below its center of mass): Parapets and cantilever interior nonstructural walls",
+        "Cantilever elements (unbraced or braced to structure below its center of mass): Chimneys where laterally braced or supported by the structural frame",
+        "Cantilever elements (braced to structural frame above its center of mass): Parapets",
+        "Cantilever elements (braced to structural frame above its center of mass): Chimneys",
+        "Cantilever elements (braced to structural frame above its center of mass): Exterior nonstructural walls",
+        "Exterior nonstructural wall elements and connections: Wall element",
+        "Exterior nonstructural wall elements and connections: Body of wall panel connections",
+        "Exterior nonstructural wall elements and connections: Fasteners of the connecting system",
+        "Veneer: Limited deformability elements and attachments",
+        "Veneer: Low deformability elements and attachments",
+        "Penthouses (except where framed by an extension of the building frame): Seismic Force-Resisting Systems with R≥6",
+        "Penthouses (except where framed by an extension of the building frame): Seismic Force-Resisting Systems with 6>R≥4",
+        "Penthouses (except where framed by an extension of the building frame): Seismic Force-Resisting Systems with R<4",
+        "Penthouses (except where framed by an extension of the building frame): Other Systems",
+        "Ceilings: All",
+        "Cabinets: Permanent floor-supported storage cabinets more than 6 ft (1,829 mm) tall, including contents",
+        "Cabinets: Permanent floor-supported library shelving, book stacks, and bookshelves more than 6 ft (1,829 mm) tall, including contents",
+        "Laboratory equipment",
+        "Access Floors: Special access floors (designed in accordance with Section 13.5.7.2)",
+        "Access Floors: All other",
+        "Appendages and ornamentations",
+        "Signs and Billboards",
+        "Other rigid components",
+        "Other flexible components: High-deformability elements and attachments",
+        "Other flexible components: Limited-deformability elements and attachments",
+        "Other flexible components: Low-deformability elements and attachments",
+        "Egress stairways not part of the building seismic force-resisting system",
+        "Egress stairs and ramp fasteners and attachments",
     )
 
     CompTxt = CompList[i]
@@ -177,9 +182,7 @@ def CompFunction(CompNum: Union[str, int]) -> str:
     return CompTxt
 
 
-
 def InfoFunction(info: List[str]) -> List[Optional[int]]:
-
     info_log = [None] * len(info)
 
     i = 0
@@ -192,6 +195,7 @@ def InfoFunction(info: List[str]) -> List[Optional[int]]:
 
     return info_log
 
+
 def getArchitecturalComponentParams(component_name: str) -> Dict[str, Dict[str, float]]:
     # Table 13.5-1 coefficients for architectural components
     component_params = {
@@ -199,199 +203,181 @@ def getArchitecturalComponentParams(component_name: str) -> Dict[str, Dict[str, 
             "Car_above": 1.0,
             "Car_below": 1.0,
             "Rpo": 1.0,
-            "Oop": 1.5
+            "Oop": 1.5,
         },
         "Light frame > 9 ft (2.74 m) in height": {
             "Car_above": 1.4,
             "Car_below": 1.4,
             "Rpo": 1.4,
-            "Oop": 1.5
+            "Oop": 1.5,
         },
         "Reinforced masonry": {
             "Car_above": 1.0,
             "Car_below": 1.0,
             "Rpo": 1.0,
-            "Oop": 1.5
+            "Oop": 1.5,
         },
         "All other walls and partitions": {
             "Car_above": 2.2,
             "Car_below": 2.8,
             "Rpo": 1.5,
-            "Oop": 1.5
+            "Oop": 1.5,
         },
         "Parapets and cantilever interior nonstructural walls": {
             "Car_above": 1.8,
             "Car_below": 2.2,
             "Rpo": 1.5,
-            "Oop": 1.75
+            "Oop": 1.75,
         },
         "Chimneys where laterally braced or supported by the structural frame": {
             "Car_above": 1.8,
             "Car_below": 2.2,
             "Rpo": 1.5,
-            "Oop": 1.75
+            "Oop": 1.75,
         },
         "Parapets (braced to structural frame above its center of mass)": {
             "Car_above": 1.0,
             "Car_below": 1.0,
             "Rpo": 1.0,
-            "Oop": 1.5
+            "Oop": 1.5,
         },
         "Chimneys (braced to structural frame above its center of mass)": {
             "Car_above": 1.0,
             "Car_below": 1.0,
             "Rpo": 1.0,
-            "Oop": 1.5
+            "Oop": 1.5,
         },
         "Exterior nonstructural walls": {
             "Car_above": 1.0,
             "Car_below": 1.0,
             "Rpo": 1.0,
-            "Oop": 1.5
+            "Oop": 1.5,
         },
-        "Wall element": {
-            "Car_above": 1.0,
-            "Car_below": 1.0,
-            "Rpo": 1.0,
-            "Oop": 1.5
-        },
+        "Wall element": {"Car_above": 1.0, "Car_below": 1.0, "Rpo": 1.0, "Oop": 1.5},
         "Body of wall panel connections": {
             "Car_above": 1.0,
             "Car_below": 1.0,
             "Rpo": 1.0,
-            "Oop": 1.5
+            "Oop": 1.5,
         },
         "Fasteners of the connecting system": {
             "Car_above": 2.2,
             "Car_below": 2.8,
             "Rpo": 1.5,
-            "Oop": 1.5
+            "Oop": 1.5,
         },
         "Limited-deformability elements and attachments": {
             "Car_above": 1.0,
             "Car_below": 1.0,
             "Rpo": 1.0,
-            "Oop": 1.5
+            "Oop": 1.5,
         },
         "Low-deformability elements and attachments": {
             "Car_above": 1.0,
             "Car_below": 1.0,
             "Rpo": 1.0,
-            "Oop": 1.5
+            "Oop": 1.5,
         },
         "Penthouses (R > 6)": {
             "Car_above": 1.4,
             "Car_below": 1.4,
             "Rpo": 2.0,
-            "Oop": 2.0
+            "Oop": 2.0,
         },
         "Penthouses (4 < R < 6)": {
             "Car_above": 2.2,
             "Car_below": 2.2,
             "Rpo": 2.0,
-            "Oop": 1.75
+            "Oop": 1.75,
         },
         "Penthouses (R < 4)": {
             "Car_above": 2.8,
             "Car_below": 2.8,
             "Rpo": 2.0,
-            "Oop": 1.5
+            "Oop": 1.5,
         },
-        "Other systems": {
-            "Car_above": 2.8,
-            "Car_below": 2.8,
-            "Rpo": 1.5,
-            "Oop": 1.5
-        },
-        "Ceilings": {
-            "Car_above": 1.0,
-            "Car_below": 1.0,
-            "Rpo": 1.0,
-            "Oop": 1.5
-        },
+        "Other systems": {"Car_above": 2.8, "Car_below": 2.8, "Rpo": 1.5, "Oop": 1.5},
+        "Ceilings": {"Car_above": 1.0, "Car_below": 1.0, "Rpo": 1.0, "Oop": 1.5},
         "Permanent floor-supported storage cabinets > 6 ft": {
             "Car_above": 1.0,
             "Car_below": 1.0,
             "Rpo": 1.0,
-            "Oop": 1.5
+            "Oop": 1.5,
         },
         "Permanent floor-supported library shelving > 6 ft": {
             "Car_above": 1.0,
             "Car_below": 1.0,
             "Rpo": 1.0,
-            "Oop": 1.5
+            "Oop": 1.5,
         },
         "Laboratory equipment": {
             "Car_above": 1.0,
             "Car_below": 1.0,
             "Rpo": 1.0,
-            "Oop": 1.5
+            "Oop": 1.5,
         },
         "Special access floors": {
             "Car_above": 1.0,
             "Car_below": 1.0,
             "Rpo": 2.0,
-            "Oop": 2.0
+            "Oop": 2.0,
         },
         "All other access floors": {
             "Car_above": 2.2,
             "Car_below": 2.8,
             "Rpo": 1.5,
-            "Oop": 1.5
+            "Oop": 1.5,
         },
         "Appendages and ornamentations": {
             "Car_above": 1.8,
             "Car_below": 2.2,
             "Rpo": 1.5,
-            "Oop": 1.75
+            "Oop": 1.75,
         },
         "Signs and billboards": {
             "Car_above": 1.8,
             "Car_below": 2.2,
             "Rpo": 1.5,
-            "Oop": 1.75
+            "Oop": 1.75,
         },
         "Other rigid components": {
             "Car_above": 1.0,
             "Car_below": 1.0,
             "Rpo": 1.0,
-            "Oop": 1.5
+            "Oop": 1.5,
         },
         "High-deformability elements and attachments": {
             "Car_above": 1.4,
             "Car_below": 1.4,
             "Rpo": 1.4,
-            "Oop": 1.5
+            "Oop": 1.5,
         },
         "Limited-deformability elements and attachments": {
             "Car_above": 1.8,
             "Car_below": 2.2,
             "Rpo": 1.5,
-            "Oop": 1.75
+            "Oop": 1.75,
         },
         "Low-deformability materials and attachments": {
             "Car_above": 2.2,
             "Car_below": 2.8,
             "Rpo": 1.5,
-            "Oop": 1.5
+            "Oop": 1.5,
         },
         "Egress stairways not part of the building seismic force-resisting system": {
             "Car_above": 1.0,
             "Car_below": 1.0,
             "Rpo": 1.0,
-            "Oop": 1.5
+            "Oop": 1.5,
         },
         "Egress stairs and ramp fasteners and attachments": {
             "Car_above": 1.8,
             "Car_below": 2.2,
             "Rpo": 1.5,
-            "Oop": 1.75
-        }
+            "Oop": 1.75,
+        },
     }
-    
-    return component_params.get(component_name, {
-        "Car_above": 1.0,
-        "Car_below": 1.0,
-        "Rpo": 1.0,
-        "Oop": 1.5
-    })
+
+    return component_params.get(
+        component_name, {"Car_above": 1.0, "Car_below": 1.0, "Rpo": 1.0, "Oop": 1.5}
+    )
