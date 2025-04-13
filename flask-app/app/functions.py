@@ -1,7 +1,8 @@
 import math
+from typing import Tuple, List, Dict, Union, Optional
 
 
-def HfFunction(HfRadio, z, h, Ta):
+def HfFunction(HfRadio: str, z: Union[str, float], h: Union[str, float], Ta: Union[str, float]) -> Tuple[float, float, float, str, str, str, str]:
     # Initialize default values
     a1 = 0.0
     a2 = 0.0
@@ -76,7 +77,7 @@ def HfFunction(HfRadio, z, h, Ta):
     return a1, a2, Hf, HfText, HfType, CarType, HfCalc
 
 
-def RmuFunction(R, Omega0):
+def RmuFunction(R: Union[str, float], Omega0: Union[str, float]) -> Tuple[float, str]:
 
     R = float(R)
     Omega0 = float(Omega0)
@@ -89,7 +90,7 @@ def RmuFunction(R, Omega0):
 
 
 
-def IpFunction(IpRadio):
+def IpFunction(IpRadio: str) -> float:
     Ip = 1.0  # Default value
     if IpRadio == 'Ip1.0':
         Ip = 1.0
@@ -100,7 +101,7 @@ def IpFunction(IpRadio):
 
 
 
-def XFunction(Hf, Rmu, Car, Rpo):
+def XFunction(Hf: float, Rmu: float, Car: Union[str, float], Rpo: Union[str, float]) -> Tuple[float, float, str]:
 
     Car = float(Car)
     Rpo = float(Rpo)
@@ -120,7 +121,7 @@ def XFunction(Hf, Rmu, Car, Rpo):
     return X, Xcalc, XText
 
 
-def FpFunction(X, Sds, Ip, Wp, Oop):
+def FpFunction(X: float, Sds: Union[str, float], Ip: float, Wp: Union[str, float], Oop: Union[str, float]) -> Tuple[float, str, float]:
 
     Sds = float(Sds)
     Wp = float(Wp)
@@ -133,7 +134,7 @@ def FpFunction(X, Sds, Ip, Wp, Oop):
 
     return Fp, FpText, OopFp
 
-def CompFunction(CompNum):
+def CompFunction(CompNum: Union[str, int]) -> str:
 
     i = int(CompNum) - 1
     CompList = (
@@ -177,7 +178,7 @@ def CompFunction(CompNum):
 
 
 
-def InfoFunction(info):
+def InfoFunction(info: List[str]) -> List[Optional[int]]:
 
     info_log = [None] * len(info)
 
@@ -191,7 +192,7 @@ def InfoFunction(info):
 
     return info_log
 
-def getArchitecturalComponentParams(component_name):
+def getArchitecturalComponentParams(component_name: str) -> Dict[str, Dict[str, float]]:
     # Table 13.5-1 coefficients for architectural components
     component_params = {
         "Light frame < 9 ft (2.74 m) in height": {

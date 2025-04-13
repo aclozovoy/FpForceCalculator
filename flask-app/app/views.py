@@ -1,15 +1,16 @@
-from flask import Blueprint, render_template, request, jsonify
+from flask import Blueprint, render_template, request, jsonify, Response
 from .functions import *
 from datetime import datetime
+from typing import Dict, Any, Union, Tuple
 
 views = Blueprint('views', __name__)
 
 @views.route('/', methods=['GET'])
-def main():
+def main() -> str:
     return render_template('main.html')
 
 @views.route('/calculate', methods=['POST'])
-def calculate():
+def calculate() -> Tuple[Response, int]:
     try:
         data = request.get_json()
         
@@ -59,20 +60,20 @@ def calculate():
                 'X': round(X, 2),
                 'Xcalc': round(Xcalc, 2)
             }
-        })
+        }), 200
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 400
 
 @views.route('/about')
-def about():
+def about() -> str:
     return render_template('about.html')
 
 @views.route('/health')
-def health():
+def health() -> Tuple[Response, int]:
     return jsonify({'status': 'healthy'}), 200
 
 @views.route('/printout', methods=['GET'])
-def printout():
+def printout() -> Union[str, Tuple[Response, int]]:
     try:
         # Get the calculation data from the session or request
         data = request.args
@@ -145,7 +146,7 @@ def printout():
         return jsonify({'success': False, 'error': str(e)}), 400
 
 @views.route('/get_component_params', methods=['POST'])
-def get_component_params():
+def get_component_params() -> Tuple[Response, int]:
     try:
         data = request.get_json()
         component_name = data.get('component_name')
@@ -169,6 +170,6 @@ def get_component_params():
         return jsonify({
             'success': True,
             'params': params
-        })
+        }), 200
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 400

@@ -1,10 +1,11 @@
 from flask import Flask
 from dotenv import load_dotenv
 import os
+from typing import Flask
 
 load_dotenv()
 
-def create_app():
+def create_app() -> Flask:
     app = Flask(__name__)
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev')
     
