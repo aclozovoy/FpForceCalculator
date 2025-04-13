@@ -149,11 +149,22 @@ def get_component_params():
     try:
         data = request.get_json()
         component_name = data.get('component_name')
+        support_condition = data.get('support_condition', 'above')  # Default to 'above'
         
         if not component_name:
             return jsonify({'success': False, 'error': 'Component name is required'}), 400
             
         params = getArchitecturalComponentParams(component_name)
+        
+        # Select the appropriate Car value based on support condition
+        if support_condition == 'below':
+            params['Car'] = params['Car_below']
+        else:
+            params['Car'] = params['Car_above']
+            
+        # Remove the separate Car values since we've selected the appropriate one
+        del params['Car_above']
+        del params['Car_below']
         
         return jsonify({
             'success': True,

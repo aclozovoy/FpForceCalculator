@@ -194,38 +194,203 @@ def InfoFunction(info):
 def getArchitecturalComponentParams(component_name):
     # Table 13.5-1 coefficients for architectural components
     component_params = {
-        "Light frame < 9 ft (2.74 m) in height": {"Car": 1.0, "Rpo": 1.0, "Oop": 1.5},
-        "Light frame > 9 ft (2.74 m) in height": {"Car": 1.4, "Rpo": 1.4, "Oop": 1.5},
-        "Reinforced masonry": {"Car": 1.0, "Rpo": 1.0, "Oop": 1.5},
-        "All other walls and partitions": {"Car": 2.2, "Rpo": 2.8, "Oop": 1.5},
-        "Parapets and cantilever interior nonstructural walls": {"Car": 1.8, "Rpo": 2.2, "Oop": 1.5},
-        "Chimneys where laterally braced or supported by the structural frame": {"Car": 1.8, "Rpo": 2.2, "Oop": 1.5},
-        "Parapets (braced to structural frame above its center of mass)": {"Car": 1.0, "Rpo": 1.0, "Oop": 1.5},
-        "Chimneys (braced to structural frame above its center of mass)": {"Car": 1.0, "Rpo": 1.0, "Oop": 1.5},
-        "Exterior nonstructural walls": {"Car": 1.0, "Rpo": 1.0, "Oop": 1.5},
-        "Wall element": {"Car": 1.0, "Rpo": 1.0, "Oop": 1.5},
-        "Body of wall panel connections": {"Car": 1.0, "Rpo": 1.0, "Oop": 1.5},
-        "Fasteners of the connecting system": {"Car": 2.2, "Rpo": 2.8, "Oop": 1.5},
-        "Limited-deformability elements and attachments": {"Car": 1.0, "Rpo": 1.0, "Oop": 1.5},
-        "Low-deformability elements and attachments": {"Car": 1.0, "Rpo": 1.0, "Oop": 1.5},
-        "Penthouses (R > 6)": {"Car": 1.4, "Rpo": 2.0, "Oop": 2.0},
-        "Penthouses (4 < R < 6)": {"Car": 2.2, "Rpo": 2.0, "Oop": 1.75},
-        "Penthouses (R < 4)": {"Car": 2.8, "Rpo": 2.0, "Oop": 1.5},
-        "Other systems": {"Car": 2.8, "Rpo": 1.5, "Oop": 1.5},
-        "Ceilings": {"Car": 1.0, "Rpo": 1.0, "Oop": 1.5},
-        "Permanent floor-supported storage cabinets > 6 ft": {"Car": 1.0, "Rpo": 1.0, "Oop": 1.5},
-        "Permanent floor-supported library shelving > 6 ft": {"Car": 1.0, "Rpo": 1.0, "Oop": 1.5},
-        "Laboratory equipment": {"Car": 1.0, "Rpo": 1.0, "Oop": 1.5},
-        "Special access floors": {"Car": 1.0, "Rpo": 2.0, "Oop": 2.0},
-        "All other access floors": {"Car": 2.2, "Rpo": 2.8, "Oop": 1.5},
-        "Appendages and ornamentations": {"Car": 1.8, "Rpo": 2.2, "Oop": 1.5},
-        "Signs and billboards": {"Car": 1.8, "Rpo": 2.2, "Oop": 1.5},
-        "Other rigid components": {"Car": 1.0, "Rpo": 1.0, "Oop": 1.5},
-        "High-deformability elements and attachments": {"Car": 1.4, "Rpo": 1.4, "Oop": 1.5},
-        "Limited-deformability elements and attachments": {"Car": 1.8, "Rpo": 2.2, "Oop": 1.5},
-        "Low-deformability materials and attachments": {"Car": 2.2, "Rpo": 2.8, "Oop": 1.5},
-        "Egress stairways not part of the building seismic force-resisting system": {"Car": 1.0, "Rpo": 1.0, "Oop": 1.5},
-        "Egress stairs and ramp fasteners and attachments": {"Car": 1.8, "Rpo": 2.2, "Oop": 1.5}
+        "Light frame < 9 ft (2.74 m) in height": {
+            "Car_above": 1.0,
+            "Car_below": 1.0,
+            "Rpo": 1.0,
+            "Oop": 1.5
+        },
+        "Light frame > 9 ft (2.74 m) in height": {
+            "Car_above": 1.4,
+            "Car_below": 1.4,
+            "Rpo": 1.4,
+            "Oop": 1.5
+        },
+        "Reinforced masonry": {
+            "Car_above": 1.0,
+            "Car_below": 1.0,
+            "Rpo": 1.0,
+            "Oop": 1.5
+        },
+        "All other walls and partitions": {
+            "Car_above": 2.2,
+            "Car_below": 2.8,
+            "Rpo": 1.5,
+            "Oop": 1.5
+        },
+        "Parapets and cantilever interior nonstructural walls": {
+            "Car_above": 1.8,
+            "Car_below": 2.2,
+            "Rpo": 1.5,
+            "Oop": 1.75
+        },
+        "Chimneys where laterally braced or supported by the structural frame": {
+            "Car_above": 1.8,
+            "Car_below": 2.2,
+            "Rpo": 1.5,
+            "Oop": 1.75
+        },
+        "Parapets (braced to structural frame above its center of mass)": {
+            "Car_above": 1.0,
+            "Car_below": 1.0,
+            "Rpo": 1.0,
+            "Oop": 1.5
+        },
+        "Chimneys (braced to structural frame above its center of mass)": {
+            "Car_above": 1.0,
+            "Car_below": 1.0,
+            "Rpo": 1.0,
+            "Oop": 1.5
+        },
+        "Exterior nonstructural walls": {
+            "Car_above": 1.0,
+            "Car_below": 1.0,
+            "Rpo": 1.0,
+            "Oop": 1.5
+        },
+        "Wall element": {
+            "Car_above": 1.0,
+            "Car_below": 1.0,
+            "Rpo": 1.0,
+            "Oop": 1.5
+        },
+        "Body of wall panel connections": {
+            "Car_above": 1.0,
+            "Car_below": 1.0,
+            "Rpo": 1.0,
+            "Oop": 1.5
+        },
+        "Fasteners of the connecting system": {
+            "Car_above": 2.2,
+            "Car_below": 2.8,
+            "Rpo": 1.5,
+            "Oop": 1.5
+        },
+        "Limited-deformability elements and attachments": {
+            "Car_above": 1.0,
+            "Car_below": 1.0,
+            "Rpo": 1.0,
+            "Oop": 1.5
+        },
+        "Low-deformability elements and attachments": {
+            "Car_above": 1.0,
+            "Car_below": 1.0,
+            "Rpo": 1.0,
+            "Oop": 1.5
+        },
+        "Penthouses (R > 6)": {
+            "Car_above": 1.4,
+            "Car_below": 1.4,
+            "Rpo": 2.0,
+            "Oop": 2.0
+        },
+        "Penthouses (4 < R < 6)": {
+            "Car_above": 2.2,
+            "Car_below": 2.2,
+            "Rpo": 2.0,
+            "Oop": 1.75
+        },
+        "Penthouses (R < 4)": {
+            "Car_above": 2.8,
+            "Car_below": 2.8,
+            "Rpo": 2.0,
+            "Oop": 1.5
+        },
+        "Other systems": {
+            "Car_above": 2.8,
+            "Car_below": 2.8,
+            "Rpo": 1.5,
+            "Oop": 1.5
+        },
+        "Ceilings": {
+            "Car_above": 1.0,
+            "Car_below": 1.0,
+            "Rpo": 1.0,
+            "Oop": 1.5
+        },
+        "Permanent floor-supported storage cabinets > 6 ft": {
+            "Car_above": 1.0,
+            "Car_below": 1.0,
+            "Rpo": 1.0,
+            "Oop": 1.5
+        },
+        "Permanent floor-supported library shelving > 6 ft": {
+            "Car_above": 1.0,
+            "Car_below": 1.0,
+            "Rpo": 1.0,
+            "Oop": 1.5
+        },
+        "Laboratory equipment": {
+            "Car_above": 1.0,
+            "Car_below": 1.0,
+            "Rpo": 1.0,
+            "Oop": 1.5
+        },
+        "Special access floors": {
+            "Car_above": 1.0,
+            "Car_below": 1.0,
+            "Rpo": 2.0,
+            "Oop": 2.0
+        },
+        "All other access floors": {
+            "Car_above": 2.2,
+            "Car_below": 2.8,
+            "Rpo": 1.5,
+            "Oop": 1.5
+        },
+        "Appendages and ornamentations": {
+            "Car_above": 1.8,
+            "Car_below": 2.2,
+            "Rpo": 1.5,
+            "Oop": 1.75
+        },
+        "Signs and billboards": {
+            "Car_above": 1.8,
+            "Car_below": 2.2,
+            "Rpo": 1.5,
+            "Oop": 1.75
+        },
+        "Other rigid components": {
+            "Car_above": 1.0,
+            "Car_below": 1.0,
+            "Rpo": 1.0,
+            "Oop": 1.5
+        },
+        "High-deformability elements and attachments": {
+            "Car_above": 1.4,
+            "Car_below": 1.4,
+            "Rpo": 1.4,
+            "Oop": 1.5
+        },
+        "Limited-deformability elements and attachments": {
+            "Car_above": 1.8,
+            "Car_below": 2.2,
+            "Rpo": 1.5,
+            "Oop": 1.75
+        },
+        "Low-deformability materials and attachments": {
+            "Car_above": 2.2,
+            "Car_below": 2.8,
+            "Rpo": 1.5,
+            "Oop": 1.5
+        },
+        "Egress stairways not part of the building seismic force-resisting system": {
+            "Car_above": 1.0,
+            "Car_below": 1.0,
+            "Rpo": 1.0,
+            "Oop": 1.5
+        },
+        "Egress stairs and ramp fasteners and attachments": {
+            "Car_above": 1.8,
+            "Car_below": 2.2,
+            "Rpo": 1.5,
+            "Oop": 1.75
+        }
     }
     
-    return component_params.get(component_name, {"Car": 1.0, "Rpo": 1.0, "Oop": 1.5})
+    return component_params.get(component_name, {
+        "Car_above": 1.0,
+        "Car_below": 1.0,
+        "Rpo": 1.0,
+        "Oop": 1.5
+    })

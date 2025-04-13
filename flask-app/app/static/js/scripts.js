@@ -1,6 +1,6 @@
 // SHOW AND HIDE INPUT BOXES FOR HEIGHT FACTOR
 $(document).ready(function(){
-    $("input[name$='HfRadio']").click(function(){
+    $("#HfRadio").change(function(){
         var RadioValue = $(this).val();
 
         if (RadioValue=='PeriodKnown') {
@@ -16,7 +16,38 @@ $(document).ready(function(){
             $("#HInput").hide("slow");
             $("#TaInput").hide("slow");
         }
-    })
+        
+        // Update component parameters when Hf type changes
+        if ($("#CompNum").val()) {
+            var componentName = $("#CompNum option:selected").text();
+            if (componentName && componentName !== 'Select a component...') {
+                var supportCondition = (RadioValue === 'BelowGrade') ? 'below' : 'above';
+                
+                $.ajax({
+                    url: '/get_component_params',
+                    method: 'POST',
+                    data: JSON.stringify({ 
+                        component_name: componentName,
+                        support_condition: supportCondition
+                    }),
+                    contentType: 'application/json',
+                    success: function(response) {
+                        if (response.success) {
+                            $("#Car").val(response.params.Car);
+                            $("#Rpo").val(response.params.Rpo);
+                            $("#Oop").val(response.params.Oop);
+                            
+                            // Trigger a click event to update any dependent calculations
+                            $(document).click();
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error getting component parameters:', error);
+                    }
+                });
+            }
+        }
+    });
 });
 
 // LIVE CALCULATION OF R_mu FACTOR
@@ -180,12 +211,19 @@ $(document).ready(function(){
 $(document).ready(function(){
     $("#CompNum").change(function() {
         var componentName = $(this).find("option:selected").text();
-        if (componentName) {
+        if (componentName && componentName !== 'Select a component...') {
+            // Get the support condition from the HfRadio selection
+            var HfRadio = $("#HfRadio").val();
+            var supportCondition = (HfRadio === 'BelowGrade') ? 'below' : 'above';
+            
             // Make an AJAX call to get the component parameters
             $.ajax({
                 url: '/get_component_params',
                 method: 'POST',
-                data: JSON.stringify({ component_name: componentName }),
+                data: JSON.stringify({ 
+                    component_name: componentName,
+                    support_condition: supportCondition
+                }),
                 contentType: 'application/json',
                 success: function(response) {
                     if (response.success) {

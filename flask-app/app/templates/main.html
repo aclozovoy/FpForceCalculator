@@ -9,27 +9,19 @@
 	
 	<form id="calculatorForm" class="space-y-6">
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-			<!-- Basic Parameters -->
-			<div class="space-y-4">
-				<h2 class="text-lg font-semibold text-gray-700">Basic Parameters</h2>
-				
-				<div>
-					<label for="Sds" class="block text-sm font-medium text-gray-700">Sds</label>
-					<input type="number" step="0.001" id="Sds" name="Sds" required
-						   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-				</div>
-
-				<div>
-					<label for="Wp" class="block text-sm font-medium text-gray-700">Wp</label>
-					<input type="number" step="0.001" id="Wp" name="Wp" required
-						   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-				</div>
-			</div>
-
 			<!-- Component Parameters -->
 			<div class="space-y-4">
 				<h2 class="text-lg font-semibold text-gray-700">Component Parameters</h2>
 				
+				<div>
+					<label for="IpRadio" class="block text-sm font-medium text-gray-700">Ip</label>
+					<select id="IpRadio" name="IpRadio" required
+							class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+						<option value="1">1.0</option>
+						<option value="1.5">1.5</option>
+					</select>
+				</div>
+
 				<div>
 					<label for="CompNum" class="block text-sm font-medium text-gray-700">Architectural Component</label>
 					<select id="CompNum" name="CompNum" required
@@ -90,15 +82,6 @@
 					</select>
 				</div>
 
-				<div>
-					<label for="IpRadio" class="block text-sm font-medium text-gray-700">Ip</label>
-					<select id="IpRadio" name="IpRadio" required
-							class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-						<option value="1">1.0</option>
-						<option value="1.5">1.5</option>
-					</select>
-				</div>
-
 				<div class="grid grid-cols-3 gap-4">
 					<div>
 						<label for="Car" class="block text-sm font-medium text-gray-700">Car</label>
@@ -118,6 +101,12 @@
 							   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-gray-100">
 					</div>
 				</div>
+
+				<div>
+					<label for="Wp" class="block text-sm font-medium text-gray-700">Wp</label>
+					<input type="number" step="0.001" id="Wp" name="Wp" required
+						   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+				</div>
 			</div>
 		</div>
 
@@ -127,14 +116,20 @@
 				<h2 class="text-lg font-semibold text-gray-700">Structural Parameters</h2>
 				
 				<div>
+					<label for="Sds" class="block text-sm font-medium text-gray-700">Sds</label>
+					<input type="number" step="0.001" id="Sds" name="Sds" required
+						   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+				</div>
+
+				<div>
 					<label for="R" class="block text-sm font-medium text-gray-700">R</label>
-					<input type="number" step="0.1" id="R" name="R" required
+					<input type="number" step="0.001" id="R" name="R" required
 						   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
 				</div>
 
 				<div>
 					<label for="Omega0" class="block text-sm font-medium text-gray-700">Ω0</label>
-					<input type="number" step="0.01" id="Omega0" name="Omega0" required
+					<input type="number" step="0.001" id="Omega0" name="Omega0" required
 						   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
 				</div>
 			</div>
@@ -153,19 +148,19 @@
 					</select>
 				</div>
 
-				<div>
+				<div id="ZInput">
 					<label for="z" class="block text-sm font-medium text-gray-700">z</label>
 					<input type="number" step="0.001" id="z" name="z" required
 						   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
 				</div>
 
-				<div>
+				<div id="HInput">
 					<label for="h" class="block text-sm font-medium text-gray-700">h</label>
 					<input type="number" step="0.001" id="h" name="h" required
 						   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
 				</div>
 
-				<div>
+				<div id="TaInput">
 					<label for="Ta" class="block text-sm font-medium text-gray-700">Ta</label>
 					<input type="number" step="0.001" id="Ta" name="Ta" required
 						   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
