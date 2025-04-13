@@ -14,7 +14,7 @@
 				<h2 class="text-lg font-semibold text-gray-700">Component Parameters</h2>
 				
 				<div>
-					<label for="IpRadio" class="block text-sm font-medium text-gray-700">Ip</label>
+					<label for="IpRadio" class="block text-sm font-medium text-gray-700">I<sub>p</sub></label>
 					<select id="IpRadio" name="IpRadio" required
 							class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
 						<option value="1">1.0</option>
@@ -84,26 +84,26 @@
 
 				<div class="grid grid-cols-3 gap-4">
 					<div>
-						<label for="Car" class="block text-sm font-medium text-gray-700">Car</label>
+						<label for="Car" class="block text-sm font-medium text-gray-700">C<sub>ar</sub></label>
 						<input type="number" step="0.01" id="Car" name="Car" required readonly
 							   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-gray-100">
 					</div>
 
 					<div>
-						<label for="Rpo" class="block text-sm font-medium text-gray-700">Rpo</label>
+						<label for="Rpo" class="block text-sm font-medium text-gray-700">R<sub>po</sub></label>
 						<input type="number" step="0.01" id="Rpo" name="Rpo" required readonly
 							   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-gray-100">
 					</div>
 
 					<div>
-						<label for="Oop" class="block text-sm font-medium text-gray-700">Oop</label>
+						<label for="Oop" class="block text-sm font-medium text-gray-700">Ω<sub>op</sub></label>
 						<input type="number" step="0.01" id="Oop" name="Oop" required readonly
 							   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-gray-100">
 					</div>
 				</div>
 
 				<div>
-					<label for="Wp" class="block text-sm font-medium text-gray-700">Wp</label>
+					<label for="Wp" class="block text-sm font-medium text-gray-700">W<sub>p</sub></label>
 					<input type="number" step="0.001" id="Wp" name="Wp" required
 						   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
 				</div>
@@ -116,7 +116,7 @@
 				<h2 class="text-lg font-semibold text-gray-700">Structural Parameters</h2>
 				
 				<div>
-					<label for="Sds" class="block text-sm font-medium text-gray-700">Sds</label>
+					<label for="Sds" class="block text-sm font-medium text-gray-700">S<sub>DS</sub></label>
 					<input type="number" step="0.001" id="Sds" name="Sds" required
 						   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
 				</div>
@@ -128,9 +128,33 @@
 				</div>
 
 				<div>
-					<label for="Omega0" class="block text-sm font-medium text-gray-700">Ω0</label>
+					<label for="Omega0" class="block text-sm font-medium text-gray-700">Ω<sub>0</sub></label>
 					<input type="number" step="0.001" id="Omega0" name="Omega0" required
 						   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+				</div>
+
+				<div>
+					<label for="Rmu" class="block text-sm font-medium text-gray-700">R<sub>μ</sub></label>
+					<input type="number" step="0.001" id="Rmu" name="Rmu" readonly
+						   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-gray-100">
+				</div>
+
+				<div>
+					<label for="Hf" class="block text-sm font-medium text-gray-700">H<sub>f</sub></label>
+					<input type="number" step="0.001" id="Hf" name="Hf" readonly
+						   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-gray-100">
+				</div>
+
+				<div>
+					<label for="Fp" class="block text-sm font-medium text-gray-700">F<sub>p</sub></label>
+					<input type="number" step="0.001" id="Fp" name="Fp" readonly
+						   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-gray-100">
+				</div>
+
+				<div>
+					<label for="OopFp" class="block text-sm font-medium text-gray-700">Ω<sub>op</sub>F<sub>p</sub></label>
+					<input type="number" step="0.001" id="OopFp" name="OopFp" readonly
+						   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-gray-100">
 				</div>
 			</div>
 
@@ -139,7 +163,7 @@
 				<h2 class="text-lg font-semibold text-gray-700">Height Parameters</h2>
 				
 				<div>
-					<label for="HfRadio" class="block text-sm font-medium text-gray-700">Hf Type</label>
+					<label for="HfRadio" class="block text-sm font-medium text-gray-700">H<sub>f</sub> Type</label>
 					<select id="HfRadio" name="HfRadio" required
 							class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
 						<option value="PeriodKnown">Supported above grade (period known)</option>
@@ -161,7 +185,7 @@
 				</div>
 
 				<div id="TaInput">
-					<label for="Ta" class="block text-sm font-medium text-gray-700">Ta</label>
+					<label for="Ta" class="block text-sm font-medium text-gray-700">T<sub>a</sub></label>
 					<input type="number" step="0.001" id="Ta" name="Ta" required
 						   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
 				</div>
@@ -185,19 +209,19 @@
 		<div class="bg-gray-50 rounded-lg p-4">
 			<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 				<div>
-					<p class="text-sm text-gray-500">Fp</p>
+					<p class="text-sm text-gray-500">F<sub>p</sub></p>
 					<p id="result-Fp" class="text-lg font-semibold text-gray-900"></p>
 				</div>
 				<div>
-					<p class="text-sm text-gray-500">OopFp</p>
+					<p class="text-sm text-gray-500">Ω<sub>op</sub>F<sub>p</sub></p>
 					<p id="result-OopFp" class="text-lg font-semibold text-gray-900"></p>
 				</div>
 				<div>
-					<p class="text-sm text-gray-500">Hf</p>
+					<p class="text-sm text-gray-500">H<sub>f</sub></p>
 					<p id="result-Hf" class="text-lg font-semibold text-gray-900"></p>
 				</div>
 				<div>
-					<p class="text-sm text-gray-500">Rmu</p>
+					<p class="text-sm text-gray-500">R<sub>μ</sub></p>
 					<p id="result-Rmu" class="text-lg font-semibold text-gray-900"></p>
 				</div>
 			</div>
@@ -240,6 +264,126 @@ document.getElementById('CompNum').addEventListener('change', function() {
 	}
 });
 
+// Function to calculate Rmu
+function calculateRmu() {
+	const R = parseFloat(document.getElementById('R').value);
+	const Omega0 = parseFloat(document.getElementById('Omega0').value);
+
+	if (R > 0 && Omega0 > 0) {
+		const Rmu = Math.pow(1.1 * R / Omega0, 0.5);
+		document.getElementById('Rmu').value = Rmu.toFixed(2);
+		document.getElementById('result-Rmu').textContent = `Rμ = ${Rmu.toFixed(2)}`;
+		document.getElementById('result-Rmu').parentElement.parentElement.classList.remove('hidden');
+	} else {
+		document.getElementById('Rmu').value = '';
+		document.getElementById('result-Rmu').textContent = '';
+	}
+}
+
+// Function to calculate Hf
+function calculateHf() {
+	const z = parseFloat(document.getElementById('z').value);
+	const h = parseFloat(document.getElementById('h').value);
+	const Ta = parseFloat(document.getElementById('Ta').value);
+	const HfRadio = document.getElementById('HfRadio').value;
+
+	if (z > 0 && h > 0 && Ta > 0 && HfRadio === 'PeriodKnown') {
+		const a1 = Math.min(1/Ta, 2.5);
+		const a2 = Math.max(1 - Math.pow(0.4/Ta, 2), 0);
+		const Hf = 1 + a1 * (z/h) + a2 * Math.pow(z/h, 10);
+		document.getElementById('Hf').value = Hf.toFixed(2);
+		document.getElementById('result-Hf').textContent = `Hf = ${Hf.toFixed(2)} (a1 = ${a1.toFixed(2)}, a2 = ${a2.toFixed(2)})`;
+		document.getElementById('result-Hf').parentElement.parentElement.classList.remove('hidden');
+	} else if (z > 0 && h > 0 && HfRadio === 'PeriodUnknown') {
+		const Hf = 1 + 2.5 * (z/h);
+		document.getElementById('Hf').value = Hf.toFixed(2);
+		document.getElementById('result-Hf').textContent = `Hf = ${Hf.toFixed(2)}`;
+		document.getElementById('result-Hf').parentElement.parentElement.classList.remove('hidden');
+	} else if (HfRadio === 'BelowGrade') {
+		const Hf = 1;
+		document.getElementById('Hf').value = Hf.toFixed(2);
+		document.getElementById('result-Hf').textContent = 'Hf = 1.00';
+		document.getElementById('result-Hf').parentElement.parentElement.classList.remove('hidden');
+	} else {
+		document.getElementById('Hf').value = '';
+		document.getElementById('result-Hf').textContent = '';
+	}
+}
+
+// Function to calculate Fp and OopFp
+function calculateFp() {
+	console.log('Calculating Fp...');
+	const Sds = parseFloat(document.getElementById('Sds').value);
+	const Wp = parseFloat(document.getElementById('Wp').value);
+	const IpRadio = document.getElementById('IpRadio').value;
+	const Rmu = parseFloat(document.getElementById('Rmu').value);
+	const Hf = parseFloat(document.getElementById('Hf').value);
+	const Car = parseFloat(document.getElementById('Car').value);
+	const Rpo = parseFloat(document.getElementById('Rpo').value);
+	const Oop = parseFloat(document.getElementById('Oop').value);
+
+	console.log('Input values:', { Sds, Wp, IpRadio, Rmu, Hf, Car, Rpo, Oop });
+
+	if (Sds > 0 && Wp > 0 && Rmu > 0 && Hf > 0 && Car > 0 && Rpo > 0 && Oop > 0) {
+		const Ip = parseFloat(IpRadio);
+		const X = Math.min(Math.max((Hf/Rmu) * (Car/Rpo), 0.3), 1.6);
+		const Fp = X * Sds * Ip * Wp;
+		const OopFp = Oop * Fp;
+
+		console.log('Calculated values:', { X, Fp, OopFp });
+
+		document.getElementById('Fp').value = Fp.toFixed(1);
+		document.getElementById('OopFp').value = OopFp.toFixed(1);
+		document.getElementById('result-Fp').textContent = `Fp = ${Fp.toFixed(1)} lbs`;
+		document.getElementById('result-OopFp').textContent = `Ω<sub>op</sub>F<sub>p</sub> = ${OopFp.toFixed(1)} lbs`;
+		document.getElementById('result-Fp').parentElement.parentElement.classList.remove('hidden');
+		document.getElementById('result-OopFp').parentElement.parentElement.classList.remove('hidden');
+	} else {
+		console.log('Missing required values for Fp calculation');
+		document.getElementById('Fp').value = '';
+		document.getElementById('OopFp').value = '';
+		document.getElementById('result-Fp').textContent = '';
+		document.getElementById('result-OopFp').textContent = '';
+	}
+}
+
+// Add event listeners for Fp calculation
+document.getElementById('Sds').addEventListener('input', calculateFp);
+document.getElementById('Wp').addEventListener('input', calculateFp);
+document.getElementById('IpRadio').addEventListener('change', calculateFp);
+document.getElementById('Rmu').addEventListener('input', calculateFp);
+document.getElementById('Hf').addEventListener('input', calculateFp);
+document.getElementById('Car').addEventListener('input', calculateFp);
+document.getElementById('Rpo').addEventListener('input', calculateFp);
+document.getElementById('Oop').addEventListener('input', calculateFp);
+
+// Update existing event listeners to also trigger Fp calculation
+document.getElementById('R').addEventListener('input', () => {
+	calculateRmu();
+	calculateFp();
+});
+document.getElementById('Omega0').addEventListener('input', () => {
+	calculateRmu();
+	calculateFp();
+});
+document.getElementById('HfRadio').addEventListener('change', () => {
+	calculateHf();
+	calculateFp();
+});
+document.getElementById('z').addEventListener('input', () => {
+	calculateHf();
+	calculateFp();
+});
+document.getElementById('h').addEventListener('input', () => {
+	calculateHf();
+	calculateFp();
+});
+document.getElementById('Ta').addEventListener('input', () => {
+	calculateHf();
+	calculateFp();
+});
+
+// Handle form submission
 document.getElementById('calculatorForm').addEventListener('submit', async (e) => {
 	e.preventDefault();
 	
@@ -254,41 +398,26 @@ document.getElementById('calculatorForm').addEventListener('submit', async (e) =
 			},
 			body: JSON.stringify(data)
 		});
-		
 		const result = await response.json();
 		
 		if (result.success) {
 			document.getElementById('results').classList.remove('hidden');
-			
-			// Update results
-			document.getElementById('result-Fp').textContent = result.results.Fp;
-			document.getElementById('result-OopFp').textContent = result.results.OopFp;
-			document.getElementById('result-Hf').textContent = result.results.Hf;
-			document.getElementById('result-Rmu').textContent = result.results.Rmu;
-
-			// Enable print button and store form data
+			document.getElementById('result-Fp').textContent = result.results.FpText;
+			document.getElementById('result-OopFp').textContent = `${result.results.OopFp} lbs`;
+			document.getElementById('result-Hf').textContent = result.results.HfText;
+			document.getElementById('result-Rmu').textContent = result.results.RmuText;
 			document.getElementById('printButton').disabled = false;
-			window.lastCalculationData = data;
-		} else {
-			alert('Error: ' + result.error);
 		}
 	} catch (error) {
-		alert('Error calculating results: ' + error.message);
+		console.error('Error:', error);
 	}
 });
 
 // Handle print button click
-document.getElementById('printButton').addEventListener('click', () => {
-	if (window.lastCalculationData) {
-		// Convert form data to URL parameters
-		const params = new URLSearchParams();
-		for (const [key, value] of Object.entries(window.lastCalculationData)) {
-			params.append(key, value);
-		}
-		
-		// Open printout in new tab
-		window.open(`/printout?${params.toString()}`, '_blank');
-	}
+document.getElementById('printButton').addEventListener('click', function() {
+	const formData = new FormData(document.getElementById('calculatorForm'));
+	const params = new URLSearchParams(formData);
+	window.open(`/printout?${params.toString()}`, '_blank');
 });
 </script>
 {% endblock %}

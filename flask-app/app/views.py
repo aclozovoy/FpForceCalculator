@@ -173,3 +173,46 @@ def get_component_params() -> Tuple[Response, int]:
         }), 200
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 400
+
+@views.route('/calculate_rmu', methods=['POST'])
+def calculate_rmu() -> Tuple[Response, int]:
+    try:
+        data = request.get_json()
+        R = float(data.get('R', 0))
+        Omega0 = float(data.get('Omega0', 0))
+        
+        Rmu, RmuText = RmuFunction(R, Omega0)
+        
+        return jsonify({
+            'success': True,
+            'results': {
+                'Rmu': round(Rmu, 2),
+                'RmuText': RmuText
+            }
+        }), 200
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 400
+
+@views.route('/calculate_hf', methods=['POST'])
+def calculate_hf() -> Tuple[Response, int]:
+    try:
+        data = request.get_json()
+        HfRadio = data.get('HfRadio', '1')
+        z = float(data.get('z', 0))
+        h = float(data.get('h', 0))
+        Ta = float(data.get('Ta', 0))
+        
+        a1, a2, Hf, HfText, HfType, CarType, HfCalc = HfFunction(HfRadio, z, h, Ta)
+        
+        return jsonify({
+            'success': True,
+            'results': {
+                'Hf': round(Hf, 2),
+                'HfText': HfText,
+                'HfType': HfType,
+                'CarType': CarType,
+                'HfCalc': HfCalc
+            }
+        }), 200
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 400
