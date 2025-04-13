@@ -143,3 +143,21 @@ def printout():
                              OopFp=OopFp)
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 400
+
+@views.route('/get_component_params', methods=['POST'])
+def get_component_params():
+    try:
+        data = request.get_json()
+        component_name = data.get('component_name')
+        
+        if not component_name:
+            return jsonify({'success': False, 'error': 'Component name is required'}), 400
+            
+        params = getArchitecturalComponentParams(component_name)
+        
+        return jsonify({
+            'success': True,
+            'params': params
+        })
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 400

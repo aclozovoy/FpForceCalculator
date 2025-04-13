@@ -176,3 +176,38 @@ $(document).ready(function(){
     $('#CompNum').click();
 });
 
+// Handle architectural component selection
+$(document).ready(function(){
+    $("#CompNum").change(function() {
+        var componentName = $(this).find("option:selected").text();
+        if (componentName) {
+            // Make an AJAX call to get the component parameters
+            $.ajax({
+                url: '/get_component_params',
+                method: 'POST',
+                data: JSON.stringify({ component_name: componentName }),
+                contentType: 'application/json',
+                success: function(response) {
+                    if (response.success) {
+                        // Update the input fields with the component parameters
+                        $("#Car").val(response.params.Car);
+                        $("#Rpo").val(response.params.Rpo);
+                        $("#Oop").val(response.params.Oop);
+                        
+                        // Trigger a click event to update any dependent calculations
+                        $(document).click();
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error getting component parameters:', error);
+                }
+            });
+        } else {
+            // Clear the fields if no component is selected
+            $("#Car").val('');
+            $("#Rpo").val('');
+            $("#Oop").val('');
+        }
+    });
+});
+

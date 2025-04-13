@@ -31,12 +31,62 @@
 				<h2 class="text-lg font-semibold text-gray-700">Component Parameters</h2>
 				
 				<div>
-					<label for="CompNum" class="block text-sm font-medium text-gray-700">Component Number</label>
+					<label for="CompNum" class="block text-sm font-medium text-gray-700">Architectural Component</label>
 					<select id="CompNum" name="CompNum" required
 							class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
+						<option value="">Select a component...</option>
+						<optgroup label="Interior nonstructural walls and partitions">
+							<option value="1">Light frame < 9 ft (2.74 m) in height</option>
+							<option value="2">Light frame > 9 ft (2.74 m) in height</option>
+							<option value="3">Reinforced masonry</option>
+							<option value="4">All other walls and partitions</option>
+						</optgroup>
+						<optgroup label="Cantilever elements (unbraced or braced to structure below its center of mass)">
+							<option value="5">Parapets and cantilever interior nonstructural walls</option>
+							<option value="6">Chimneys where laterally braced or supported by the structural frame</option>
+						</optgroup>
+						<optgroup label="Cantilever elements (braced to structural frame above its center of mass)">
+							<option value="7">Parapets</option>
+							<option value="8">Chimneys</option>
+							<option value="9">Exterior nonstructural walls</option>
+						</optgroup>
+						<optgroup label="Exterior nonstructural wall elements and connections">
+							<option value="10">Wall element</option>
+							<option value="11">Body of wall panel connections</option>
+							<option value="12">Fasteners of the connecting system</option>
+						</optgroup>
+						<optgroup label="Veneer">
+							<option value="13">Limited-deformability elements and attachments</option>
+							<option value="14">Low-deformability elements and attachments</option>
+						</optgroup>
+						<optgroup label="Penthouses">
+							<option value="15">Seismic Force-Resisting Systems with R > 6</option>
+							<option value="16">Seismic Force-Resisting Systems with 4 < R < 6</option>
+							<option value="17">Seismic Force-Resisting Systems with R < 4</option>
+							<option value="18">Other Systems</option>
+						</optgroup>
+						<optgroup label="Ceilings">
+							<option value="19">All</option>
+						</optgroup>
+						<optgroup label="Cabinets">
+							<option value="20">Permanent floor-supported storage cabinets > 6 ft</option>
+							<option value="21">Permanent floor-supported library shelving > 6 ft</option>
+							<option value="22">Laboratory equipment</option>
+						</optgroup>
+						<optgroup label="Access Floors">
+							<option value="23">Special access floors</option>
+							<option value="24">All other</option>
+						</optgroup>
+						<optgroup label="Other Components">
+							<option value="25">Appendages and ornamentations</option>
+							<option value="26">Signs and billboards</option>
+							<option value="27">Other rigid components</option>
+							<option value="28">High-deformability elements and attachments</option>
+							<option value="29">Limited-deformability elements and attachments</option>
+							<option value="30">Low-deformability materials and attachments</option>
+							<option value="31">Egress stairways not part of the building seismic force-resisting system</option>
+							<option value="32">Egress stairs and ramp fasteners and attachments</option>
+						</optgroup>
 					</select>
 				</div>
 
@@ -47,6 +97,26 @@
 						<option value="1">1.0</option>
 						<option value="1.5">1.5</option>
 					</select>
+				</div>
+
+				<div class="grid grid-cols-3 gap-4">
+					<div>
+						<label for="Car" class="block text-sm font-medium text-gray-700">Car</label>
+						<input type="number" step="0.01" id="Car" name="Car" required readonly
+							   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-gray-100">
+					</div>
+
+					<div>
+						<label for="Rpo" class="block text-sm font-medium text-gray-700">Rpo</label>
+						<input type="number" step="0.01" id="Rpo" name="Rpo" required readonly
+							   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-gray-100">
+					</div>
+
+					<div>
+						<label for="Oop" class="block text-sm font-medium text-gray-700">Oop</label>
+						<input type="number" step="0.01" id="Oop" name="Oop" required readonly
+							   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-gray-100">
+					</div>
 				</div>
 			</div>
 		</div>
@@ -69,31 +139,6 @@
 				</div>
 			</div>
 
-			<!-- Additional Parameters -->
-			<div class="space-y-4">
-				<h2 class="text-lg font-semibold text-gray-700">Additional Parameters</h2>
-				
-				<div>
-					<label for="Car" class="block text-sm font-medium text-gray-700">Car</label>
-					<input type="number" step="0.01" id="Car" name="Car" required
-						   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-				</div>
-
-				<div>
-					<label for="Rpo" class="block text-sm font-medium text-gray-700">Rpo</label>
-					<input type="number" step="0.01" id="Rpo" name="Rpo" required
-						   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-				</div>
-
-				<div>
-					<label for="Oop" class="block text-sm font-medium text-gray-700">Oop</label>
-					<input type="number" step="0.01" id="Oop" name="Oop" required
-						   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-				</div>
-			</div>
-		</div>
-
-		<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 			<!-- Height Parameters -->
 			<div class="space-y-4">
 				<h2 class="text-lg font-semibold text-gray-700">Height Parameters</h2>
@@ -167,6 +212,38 @@
 
 {% block scripts %}
 <script>
+// Handle architectural component selection
+document.getElementById('CompNum').addEventListener('change', function() {
+	const componentName = this.options[this.selectedIndex].text;
+	if (componentName && componentName !== 'Select a component...') {
+		// Make an AJAX call to get the component parameters
+		fetch('/get_component_params', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ component_name: componentName })
+		})
+		.then(response => response.json())
+		.then(data => {
+			if (data.success) {
+				// Update the input fields with the component parameters
+				document.getElementById('Car').value = data.params.Car;
+				document.getElementById('Rpo').value = data.params.Rpo;
+				document.getElementById('Oop').value = data.params.Oop;
+			}
+		})
+		.catch(error => {
+			console.error('Error getting component parameters:', error);
+		});
+	} else {
+		// Clear the fields if no component is selected
+		document.getElementById('Car').value = '';
+		document.getElementById('Rpo').value = '';
+		document.getElementById('Oop').value = '';
+	}
+});
+
 document.getElementById('calculatorForm').addEventListener('submit', async (e) => {
 	e.preventDefault();
 	
