@@ -15,7 +15,6 @@ def calculate():
         # Extract and validate input data
         Sds = float(data.get('Sds', 0))
         Wp = float(data.get('Wp', 0))
-        units = data.get('units', 'metric')
         Ip = IpFunction(data.get('IpRadio', '1'))
         Car = float(data.get('Car', 0))
         Rpo = float(data.get('Rpo', 0))

@@ -1,16 +1,8 @@
-FROM nginx
+FROM nginx:stable-alpine
 
-COPY nginx.conf /etc/nginx/conf.d/nginx.conf
+# Remove default nginx config and copy our custom config
 RUN rm /etc/nginx/conf.d/default.conf
-
-RUN apt update
-# RUN apt upgrade
-RUN apt install -y certbot 
-RUN apt install -y python3-certbot-nginx
-# RUN certbot --nginx -d fpforce.net -d www.fpforce.net
-
-# RUN useradd nginx-user
-# USER nginx-user
+COPY nginx.conf /etc/nginx/conf.d/nginx.conf
 
 EXPOSE 80 443
 
